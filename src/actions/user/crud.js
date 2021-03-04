@@ -1,6 +1,6 @@
 import Api from '../../common/utilities/api'
 
-const baseUrl = '' //Aquí irá la URL del backend
+const baseUrl = 'http://localhost:3002' //Aquí irá la URL del backend
 
 const api = token =>
     new Api({
@@ -9,11 +9,25 @@ const api = token =>
     })
 
 const TypeActionsCrud = {
-    //Aquí se definen las actions
+    LOGIN_USER: 'LOGIN_USER',
+    CHANGE_LOGIN_INFO: 'CHANGE_LOGIN_INFO'
 }
 
-/* Aquí se implementan las actions */
+const loginUser = () => ({
+    type: TypeActionsCrud.LOGIN_USER,
+    payload: api().get('/login')
+})
+
+const changeUserLoginInfo = (id, value) => ({
+    type: TypeActionsCrud.CHANGE_LOGIN_INFO,
+    payload: {
+        id,
+        value
+    }
+})
 
 export {
-    TypeActionsCrud
+    TypeActionsCrud,
+    loginUser,
+    changeUserLoginInfo
 }

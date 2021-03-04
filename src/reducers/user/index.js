@@ -1,10 +1,17 @@
+import Crud from './crud'
+
 const initialState = {
-    user: {},
-    isLoggedIn: false
+    user: {
+        name:'',
+        password:''
+    },
+    isLoggedIn: false,
+    error: '',
+    token: null
 }
 
 const Managers = {
-
+    ...Crud
 }
 
 export default (state = initialState, action = { type: '' }) => {
