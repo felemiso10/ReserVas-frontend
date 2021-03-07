@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {  View, Switch, StyleSheet , Button, Text } from 'react-native';
+import {  View, Switch, StyleSheet , Button, Text, Linking } from 'react-native';
 import { connect } from 'react-redux'
 import PropTypes from "prop-types";
 import { registerUser, changeUserLoginInfo } from '../../actions/user'
@@ -32,6 +32,10 @@ const Register = () => {
              <Input  placeholder='Address' onChangeText={value => changeUserLoginInfo('Address', value)} />
              <Input  placeholder='Phone' onChangeText={value => changeUserLoginInfo('Phone', value)} />
              <Button onPress={registerUser} title="Registrar" />
+             <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
+             onPress={() => Linking.openURL('http://localhost:19006/login')}>
+             Sign in
+             </Text>
           </Card>
          </div>
          :
@@ -45,6 +49,10 @@ const Register = () => {
             <Input  placeholder='NIF' onChangeText={value => changeUserLoginInfo('NIF', value)} />
             <Input  placeholder='Phone' onChangeText={value => changeUserLoginInfo('Phone', value)} />
             <Button onPress={registerUser} title="Registrar" />
+            <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
+             onPress={() => Linking.openURL('http://localhost:19006/login')}>
+             Sign in
+             </Text>
          </Card>
         </div>
       }</Text>
