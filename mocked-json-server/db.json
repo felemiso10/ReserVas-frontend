@@ -2,5 +2,10 @@
   "login": {
     "token": "0ee9cd05-5b10-4c4f-ad6c-b89c42788fb1",
     "error": ""
+  },
+
+  "register":{
+    "token": "0ee9cd05-5b10-4c4f-ad6c-b89c42788fb1",
+    "error": ""
   }
 }

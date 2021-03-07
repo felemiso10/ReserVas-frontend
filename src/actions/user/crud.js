@@ -10,7 +10,8 @@ const api = token =>
 
 const TypeActionsCrud = {
     LOGIN_USER: 'LOGIN_USER',
-    CHANGE_LOGIN_INFO: 'CHANGE_LOGIN_INFO'
+    CHANGE_LOGIN_INFO: 'CHANGE_LOGIN_INFO',
+    REGISTER_USER: 'REGISTER_USER'
 }
 
 const loginUser = () => ({
@@ -26,8 +27,14 @@ const changeUserLoginInfo = (id, value) => ({
     }
 })
 
+const registerUser = () => ({
+    type: TypeActionsCrud.REGISTER_USER,
+    payload: api().get('/register')
+})
+
 export {
     TypeActionsCrud,
     loginUser,
-    changeUserLoginInfo
+    changeUserLoginInfo,
+    registerUser
 }
