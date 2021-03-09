@@ -11,6 +11,7 @@ const Register = ({
 }) => {
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);  
+  
     return (
       <div>
         <View style={styles.container}>
@@ -35,8 +36,8 @@ const Register = ({
              <Input  placeholder='Phone' onChangeText={value => changeUserLoginInfo('phone', value)} />
              <Button onPress={registerUser} title="Registrar" />
              <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
-             onPress={() => Linking.openURL('http://localhost:19006/login')}>
-             Sign in
+               onPress={() => Linking.openURL('http://localhost:19006/login')}>
+               Sign in
              </Text>
           </Card>
          </div>
@@ -52,8 +53,8 @@ const Register = ({
             <Input  placeholder='Phone' onChangeText={value => changeUserLoginInfo('Phone', value)} />
             <Button onPress={registerUser} title="Registrar" />
             <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
-             onPress={() => Linking.openURL('http://localhost:19006/login')}>
-             Sign in
+               onPress={() => Linking.openURL('http://localhost:19006/login')}>
+               Sign in
              </Text>
          </Card>
         </div>
