@@ -6,7 +6,9 @@ import { registerUser, changeUserLoginInfo } from '../../actions/user'
 import { Card, Input } from 'react-native-elements'
 import { render } from 'react-dom';
 
-const Register = () => {
+const Register = ({
+  changeUserLoginInfo
+}) => {
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);  
     return (
@@ -28,9 +30,9 @@ const Register = () => {
              <Card.Divider/>
              <Input  placeholder='Name' onChangeText={value => changeUserLoginInfo('name', value)} />
              <Input  placeholder='Password' onChangeText={value => changeUserLoginInfo('password', value)} />
-             <Input  placeholder='Email' onChangeText={value => changeUserLoginInfo('Email', value)} />
-             <Input  placeholder='Address' onChangeText={value => changeUserLoginInfo('Address', value)} />
-             <Input  placeholder='Phone' onChangeText={value => changeUserLoginInfo('Phone', value)} />
+             <Input  placeholder='Email' onChangeText={value => changeUserLoginInfo('email', value)} />
+             <Input  placeholder='Address' onChangeText={value => changeUserLoginInfo('address', value)} />
+             <Input  placeholder='Phone' onChangeText={value => changeUserLoginInfo('phone', value)} />
              <Button onPress={registerUser} title="Registrar" />
              <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
              onPress={() => Linking.openURL('http://localhost:19006/login')}>
@@ -69,4 +71,15 @@ const styles = StyleSheet.create({
     }
   });
 
-export default Register;
+
+const mapStateToProps = state => ({
+    
+})
+ const mapDispatchToProps = {
+    changeUserLoginInfo
+ }
+
+const RegisterConnected = connect(mapStateToProps, mapDispatchToProps)(Register)
+
+export default RegisterConnected
+export { Register }
