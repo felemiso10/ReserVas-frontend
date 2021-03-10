@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Text, Button } from 'react-native';
+import { Text, Button, Linking } from 'react-native';
 import { connect } from 'react-redux'
 import PropTypes from "prop-types";
 import { loginUser, changeUserLoginInfo } from '../../actions/user'
@@ -19,6 +19,10 @@ const Login = ({
                     <Input  placeholder='Name' onChangeText={value => changeUserLoginInfo('name', value)} />
                     <Input  placeholder='Password' onChangeText={value => changeUserLoginInfo('password', value)} />
                     <Button onPress={loginUser} title="Login" />
+                    <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
+                    onPress={() => Linking.openURL('http://localhost:19006/register')}>
+                    Sign up
+                    </Text>
                 </Card>
             </div>
         </div>

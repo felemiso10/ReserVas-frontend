@@ -29,11 +29,12 @@ const Register = ({
           <Card>
              <Card.Title>Registrar como servicio</Card.Title>
              <Card.Divider/>
-             <Input  placeholder='Name' onChangeText={value => changeUserLoginInfo('name', value)} />
-             <Input  placeholder='Password' onChangeText={value => changeUserLoginInfo('password', value)} />
-             <Input  placeholder='Email' onChangeText={value => changeUserLoginInfo('email', value)} />
-             <Input  placeholder='Address' onChangeText={value => changeUserLoginInfo('address', value)} />
-             <Input  placeholder='Phone' onChangeText={value => changeUserLoginInfo('phone', value)} />
+             <Input  placeholder='Username' onBlur onChangeText={value => changeUserLoginInfo('name', value)} />
+             <Input  placeholder='Password' onBlur onChangeText={value => changeUserLoginInfo('password', value)} />
+             <Input  placeholder='Name' onBlur onChangeText={value => changeUserLoginInfo('name', value)} />
+             <Input  placeholder='Surname' onBlur onChangeText={value => changeUserLoginInfo('surname', value)} />
+             <Input  placeholder='Email'onBlur onChangeText={value => changeUserLoginInfo('email', value)} />
+             <Input  placeholder='Address' onBlur onChangeText={value => changeUserLoginInfo('address', value)} />
              <Button onPress={registerUser} title="Registrar" />
              <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
                onPress={() => Linking.openURL('http://localhost:19006/login')}>
@@ -46,11 +47,12 @@ const Register = ({
          <Card>
             <Card.Title>Registrar como cliente</Card.Title>
             <Card.Divider/>
-            <Input  placeholder='Name' onChangeText={value => changeUserLoginInfo('name', value)} />
-            <Input  placeholder='Password' onChangeText={value => changeUserLoginInfo('password', value)} />
-            <Input  placeholder='Email' onChangeText={value => changeUserLoginInfo('Email', value)} />
-            <Input  placeholder='NIF' onChangeText={value => changeUserLoginInfo('NIF', value)} />
-            <Input  placeholder='Phone' onChangeText={value => changeUserLoginInfo('Phone', value)} />
+            <Input  placeholder='Username' onBlur onChangeText={value => changeUserLoginInfo('username', value)} />
+            <Input  placeholder='Password' onBlur onChangeText={value => changeUserLoginInfo('password', value)} />
+            <Input  placeholder='Name' onBlur onChangeText={value => changeUserLoginInfo('name', value)} />
+            <Input  placeholder='Surname' onBlur onChangeText={value => changeUserLoginInfo('surname', value)} />
+            <Input  placeholder='Email' onBlur onChangeText={value => changeUserLoginInfo('email', value)} />
+            <Input  placeholder='Date' onBlur onChangeText={value => changeUserLoginInfo('date', value)} />
             <Button onPress={registerUser} title="Registrar" />
             <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
                onPress={() => Linking.openURL('http://localhost:19006/login')}>

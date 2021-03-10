@@ -35,7 +35,7 @@ const MainPage = ({
                         leftComponent={{ icon: 'menu', color: '#fff', underlayColor: '#3488C0', }}
                         centerComponent={{ text: 'Reser&vas', 
                             style: { color: '#fff', fontWeight: 'bold', fontSize: 40}}}
-                        rightComponent={{ icon: 'login', size: 60, color: '#fff', onPress:()=> Linking.openURL('http://localhost:19006/register') }}
+                        rightComponent={{ icon: 'login', size: 60, color: '#fff', onPress:()=> Linking.openURL('http://localhost:19006/login') }}
                     >
                         <Search></Search>
                     </Header>
