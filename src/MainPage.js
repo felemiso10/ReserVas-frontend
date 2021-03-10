@@ -7,6 +7,7 @@ import PublicRoute from './components/Authentication/PublicRoute'
 import PrivateRoute from './components/Authentication/PrivateRoute'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import Search from './components/Search'
 import Home from './scenes/Home'
 import Login from './scenes/Login'
 import Register from './scenes/Register'
@@ -20,6 +21,8 @@ const styles = StyleSheet.create({
     },
   });
 
+ 
+
 const MainPage = ({
     isLoggedIn
 }) => {
@@ -27,12 +30,16 @@ const MainPage = ({
         <Router>
             <SafeAreaView>
                 <View style={{justifyContent: 'center'}}>
-                    <Header
-                        leftComponent={{ icon: 'menu', color: '#fff'}}
+                    <Header 
+                        containerStyle={{ backgroundColor:'darkslategrey',width: '100%', borderBottomWidth: 5 }}
+                        leftComponent={{ icon: 'menu', color: '#fff', underlayColor: '#3488C0', }}
                         centerComponent={{ text: 'Reser&vas', 
-                            style: { color: '#fff', fontWeight: 'bold', fontSize: 20}}}
-                        rightComponent={{ icon: 'home', color: '#fff', onPress:()=> Linking.openURL('http://localhost:19006/register') }}
-                    />
+                            style: { color: '#fff', fontWeight: 'bold', fontSize: 40}}}
+                        rightComponent={{ icon: 'login', size: 60, color: '#fff', onPress:()=> Linking.openURL('http://localhost:19006/register') }}
+                    >
+                        <Search></Search>
+                    </Header>
+                    
                 </View>
                 <View style={styles.container}>
                     <Switch>
