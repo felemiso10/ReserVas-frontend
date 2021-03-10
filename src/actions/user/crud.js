@@ -14,9 +14,9 @@ const TypeActionsCrud = {
     REGISTER_USER: 'REGISTER_USER'
 }
 
-const loginUser = () => ({
+const loginUser = (user) => ({
     type: TypeActionsCrud.LOGIN_USER,
-    payload: api().get('/login')
+    payload: api().post('/login', {body: user})
 })
 
 const changeUserLoginInfo = (id, value) => ({

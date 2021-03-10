@@ -13,17 +13,18 @@ const Register = ({
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);  
   
     return (
-      <div>
-        <View style={styles.container}>
-          <Switch
-            trackColor={{ false: "#87cefa", true: "#87cefa" }}
-            thumbColor={isEnabled ? "#0000cd" : "#0000cd"}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleSwitch}
-            value={isEnabled}
-          />
-         </View>
-
+      <div>      
+          <View style={styles.container}>
+          <Text>Cliente</Text>
+            <Switch
+              trackColor={{ false: "#87cefa", true: "#87cefa" }}
+              thumbColor={isEnabled ? "#0000cd" : "#0000cd"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleSwitch}
+              value={isEnabled}
+            />
+            <Text>Servicio</Text>
+          </View>
          <Text>{isEnabled ?
           <div className="row" >
           <Card>

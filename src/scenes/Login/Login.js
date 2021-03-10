@@ -7,7 +7,7 @@ import { Card, Input } from 'react-native-elements'
 
 const Login = ({
     loginUser,
-    token,
+    user,
     changeUserLoginInfo
 }) => {
     return (
@@ -18,7 +18,12 @@ const Login = ({
                     <Card.Divider/>
                     <Input  placeholder='Name' onChangeText={value => changeUserLoginInfo('name', value)} />
                     <Input  placeholder='Password' onChangeText={value => changeUserLoginInfo('password', value)} />
-                    <Button onPress={loginUser} title="Login" />
+                    <Button onPress={() => 
+                        loginUser({
+                            name: user.name,
+                            password: user.password
+                        })
+                    } title="Login" />
                     <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
                     onPress={() => Linking.openURL('http://localhost:19006/register')}>
                     Sign up
@@ -30,7 +35,7 @@ const Login = ({
 }
 
 const mapStateToProps = state => ({
-    token: state.user.token
+    user: state.user.user
 })
  const mapDispatchToProps = {
     loginUser,
