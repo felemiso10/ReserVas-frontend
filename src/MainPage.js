@@ -21,8 +21,6 @@ const styles = StyleSheet.create({
     },
   });
 
- 
-
 const MainPage = ({
     isLoggedIn
 }) => {
@@ -31,13 +29,15 @@ const MainPage = ({
             <SafeAreaView>
                 <View style={{justifyContent: 'center'}}>
                     <Header 
-                        containerStyle={{ backgroundColor:'darkslategrey',width: '100%', borderBottomWidth: 5 }}
-                        leftComponent={{ icon: 'menu', color: '#fff', underlayColor: '#3488C0', }}
+                        containerStyle={{backgroundColor:'darkslategrey',width: '100%', borderBottomWidth: 5, marginBottom:'10px' }}
+
+                        leftComponent={{ icon: 'menu', color: '#fff', underlayColor: '#3488C0', onPress: () => this.toggleMenu() }}
                         centerComponent={{ text: 'Reser&vas', 
-                            style: { color: '#fff', fontWeight: 'bold', fontSize: 40}}}
-                        rightComponent={{ icon: 'login', size: 60, color: '#fff', onPress:()=> Linking.openURL('http://localhost:19006/login') }}
+                            style: { color: '#fff', fontWeight: 'bold', fontSize: 20}}}
+                        rightComponent={{ icon: 'user-circle-o',type:'font-awesome', color: '#fff', 
+                            onPress:()=> Linking.openURL('http://localhost:19006/login') }}
                     >
-                        <Search></Search>
+                        
                     </Header>
                     
                 </View>
