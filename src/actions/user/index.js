@@ -2,7 +2,8 @@ import {
     TypeActionsCrud,
     loginUser,
     changeUserLoginInfo,
-    registerUser
+    registerUser,
+    registerStore
 } from './crud'
 
 
@@ -14,5 +15,6 @@ export {
     Actions,
     loginUser,
     changeUserLoginInfo,
-    registerUser
+    registerUser,
+    registerStore
 }
