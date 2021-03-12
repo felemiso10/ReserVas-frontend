@@ -22,8 +22,61 @@ const Register = ({
       isValidSurname: true,
       isValidEmail: true,
       isValidDate: true,
-      isValidAddress: true
+      isValidAddress: true,
+      isValidUserForm: true,
+      isValidStoreForm: true
     })
+
+    function userForm() {
+      if (!user.name || !user.password || !user.username || !user.surname || !user.email || !user.date){
+        
+        setValid({
+          isValidUserForm: false
+        })
+      }
+      else{
+        setValid({
+          isValidUserForm: true
+        })
+
+        registerUser({
+          username: user.username,
+          password: user.password,
+          name: user.name,
+          email: user.email,
+          date: user.date
+        })
+
+
+      }
+    }
+
+
+
+    function storeForm() {
+      if (!user.name || !user.password || !user.username || !user.surname || !user.email || !user.address){
+        setValid({
+          isValidStoreForm: false
+        })
+      }
+      else{
+        setValid({
+          isValidStoreForm: false
+        })
+
+        registerStore({
+          username: user.username,
+          password: user.password,
+          name: user.name,
+          email: user.email,
+          address: user.address
+        })
+
+
+      }
+    }
+
+
 
     function addressVal() {
       if (user.address == "" || user.address == undefined) {
@@ -112,23 +165,33 @@ const Register = ({
                
                isValidName: false
            })
-           console.log(valid.isValidName , "el false")
+           
       }
       else{
            setValid({
                isValidName: true
            })
-           console.log(valid.isValidName , "el true")
+           
        }
   }
 
     function cliente() {
       setIsEnabled(previousState => false)
+      setValid({
+        isValidStoreForm: true,
+        isValidUserForm: true
+      })
     }
 
     function empresa() {
       setIsEnabled(previousState => true)
+      setValid({
+        isValidStoreForm: true,
+        isValidUserForm: true
+      })
     }
+
+
 
 
     return (
@@ -155,7 +218,7 @@ const Register = ({
           <Card>
              <Card.Title>Registrar como servicio</Card.Title>
              <Card.Divider/>
-             <Input  placeholder='Username' onBlur = {() => usernameVal()} onChangeText={value => changeUserLoginInfo('username', value)} />
+             <Input  placeholder='Username'  onBlur = {() => usernameVal()} onChangeText={value => changeUserLoginInfo('username', value)} />
 
               {valid.isValidUsername || valid.isValidUsername == undefined ? null :
                   <Text style={styles.errorMsg}>No puede tener el campo vacío</Text>
@@ -191,14 +254,7 @@ const Register = ({
                 <Text style={styles.errorMsg}>No puede tener el campo vacío</Text>
              }
 
-             <Button onPress={() => registerStore({
-                username: user.username,
-                password: user.password,
-                name: user.name,
-                surname: user.surname,
-                email: user.email,
-                address: user.address
-             }) } title="Registrar" />
+             <Button onPress={() => storeForm() } title="Registrar" />
              <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
                onPress={() => Linking.openURL('http://localhost:19006/login')}>
                Sign in
@@ -247,13 +303,7 @@ const Register = ({
             }
 
             <Button title="Registrar" onPress={() => 
-              registerUser({
-                username: user.username,
-                password: user.password,
-                name: user.name,
-                email: user.email,
-                date: user.date
-              })} />
+              userForm()} />
             <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
                onPress={() => Linking.openURL('http://localhost:19006/login')}>
                Sign in
@@ -261,6 +311,28 @@ const Register = ({
          </Card>
         </div>
       }</Text>
+
+
+
+      {valid.isValidUserForm || valid.isValidUserForm == undefined  ? null :
+
+      <div>
+      <View style ={styles.container2}>
+          <Text style ={{color: "white"}}> Tienes que rellenar todos los campos </Text>
+      </View>
+      </div>
+      }
+
+      {valid.isValidStoreForm || valid.isValidStoreForm == undefined ? null :
+
+        <div>
+        <View style ={styles.container2}>
+            <Text style ={{color: "white"}}> Tienes que rellenar todos los campos </Text>
+        </View>
+        </div>
+
+      }
+
 
     </div>
     )
@@ -278,7 +350,19 @@ const styles = StyleSheet.create({
       color: "red",
       marginBottom: "10px",
       marginLeft:"10px"
-  }
+    },
+    container2: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      flexDirection: "row",
+      justifyContent: 'space-around',
+      backgroundColor: "red",
+      opacity: "0.7",
+      color: "white",
+      marginTop: "20px",
+      padding:"60px, 30px"
+    },
   });
 
 

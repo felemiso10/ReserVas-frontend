@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from "prop-types";
 import { loginUser, changeUserLoginInfo } from '../../actions/user'
 import { Card, Input } from 'react-native-elements'
-import { set } from 'ramda';
+import { View } from 'react-native';
 
 const Login = ({
     loginUser,
@@ -13,8 +13,26 @@ const Login = ({
 }) => {
    const [valid, setIsEnabled] = React.useState({
        isValidName: true,
-       isValidPass: true
+       isValidPass: true,
+       isValidForm: true,
    })
+
+  
+   function loginComp() {
+       if(user.name == "" || user.name == undefined || user.password == "" || user.password == undefined){
+            setIsEnabled({isValidForm: false})
+       }
+       else{
+        setIsEnabled({isValidForm: true})
+        
+         
+            loginUser({
+                name: user.name,
+                password: user.password
+            })
+    
+       }
+    }
    
    function nameVal() {
        if (user.name == ""){
@@ -22,14 +40,14 @@ const Login = ({
                 
                 isValidName: false
             })
-            console.log(valid.isValidName , "el false")
+           
        }
        else{
             setIsEnabled({
                 
                 isValidName: true
             })
-            console.log(valid.isValidName , "el true")
+           
         }
    }
     function passVal() {
@@ -37,13 +55,13 @@ const Login = ({
             setIsEnabled({
                 isValidPass: false
             })
-            console.log(valid.isValidPass , "Pass false")
+            
         }
         else{
             setIsEnabled({
                 isValidPass: true
             })
-            console.log(valid.isValidPass , "pass true")
+            
         }
     }
 
@@ -71,10 +89,7 @@ const Login = ({
                     }
 
                     <Button onPress={() => 
-                        loginUser({
-                            name: user.name,
-                            password: user.password
-                        })
+                        loginComp()
                     } title="Login" />
                     <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
                     onPress={() => Linking.openURL('http://localhost:19006/register')}>
@@ -82,6 +97,15 @@ const Login = ({
                     </Text>
                 </Card>
             </div>
+        {valid.isValidForm || valid.isValidForm == undefined ? null :
+
+            <div>
+            <View style ={styles.container}>
+                <Text style ={{color: "white"}}> Tienes que rellenar todos los campos </Text>
+            </View>
+            </div>
+        }
+
         </div>
     )
 }
@@ -91,7 +115,19 @@ const styles = StyleSheet.create({
         color: "red",
         marginBottom: "10px",
         marginLeft:"10px"
-    }
+    },
+    container: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "row",
+        justifyContent: 'space-around',
+        backgroundColor: "red",
+        opacity: "0.7",
+        color: "white",
+        marginTop: "20px",
+        padding:"60px, 30px"
+      },
 });
 
 
