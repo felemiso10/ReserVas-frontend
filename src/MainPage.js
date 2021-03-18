@@ -1,29 +1,39 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+/*
 import { BrowserRouter as Router, Redirect, Switch} from "react-router-dom";
 import { StyleSheet, Text, View, Linking } from 'react-native';
-import {Header} from 'react-native-elements';
 import PublicRoute from './components/Authentication/PublicRoute'
 import PrivateRoute from './components/Authentication/PrivateRoute'
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 import Search from './components/Search'
+*/
+
 import Home from './scenes/Home'
 import Login from './scenes/Login'
 import Register from './scenes/Register'
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  });
+import {
+    DrawerContentScrollView,
+    DrawerItem, 
+    createDrawerNavigator 
+} from '@react-navigation/drawer';
+
+const Drawer = createDrawerNavigator();
+
+function SideMenu(props){
+    return (
+        <DrawerContentScrollView {...props}>
+            <DrawerItem  label="Elemento 1"/>
+            <DrawerItem  label="Elemento 2"/>
+        </DrawerContentScrollView>
+    )
+}
 
 const MainPage = ({
     isLoggedIn
 }) => {
+    /*
     return (
         <Router>
             <SafeAreaView>
@@ -66,6 +76,13 @@ const MainPage = ({
                 </View>
             </SafeAreaView>
         </Router>
+    )*/
+    return (
+            <Drawer.Navigator initialRouteName={isLoggedIn ? "Home" : "Login"} drawerContent={props => <SideMenu {...props} />}>
+                <Drawer.Screen name="Home" component={Home}/>
+                <Drawer.Screen name="Login" component={Login} />
+                <Drawer.Screen name="Register" component={Register} />
+            </Drawer.Navigator>
     )
 }
 

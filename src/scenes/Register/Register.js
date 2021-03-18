@@ -5,12 +5,16 @@ import PropTypes from "prop-types";
 import { registerUser, changeUserLoginInfo, registerStore } from '../../actions/user'
 import { Card, Input } from 'react-native-elements'
 import { render } from 'react-dom';
+import Header from '../../components/Header'
+
+import styles from '../../styles/commonStyles'
 
 const Register = ({
   changeUserLoginInfo,
   user,
   registerUser,
-  registerStore
+  registerStore,
+  navigation
 }) => {
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);  
@@ -195,8 +199,9 @@ const Register = ({
 
 
     return (
-      <div>      
-          <View style={styles.container}>
+      <div>
+          <Header navigation={navigation}/>      
+          <View style={styles.registerContainer}>
             <Button
                 title = "Cliente"
                 onPress={() => cliente()}
@@ -211,9 +216,10 @@ const Register = ({
             <Button
               title = "Empresa"
               onPress={() => empresa()}
-          />
+            />
           </View>
-         <Text>{isEnabled ?
+          <View style={styles.registerContainer}>
+          <Text>{isEnabled ?
           <div className="row" >
           <Card>
              <Card.Title>Registrar como servicio</Card.Title>
@@ -296,7 +302,7 @@ const Register = ({
                 <Text style={styles.errorMsg}>No puede tener el campo vacío</Text>
             }
 
-            <Input  placeholder='Date' onBlur = {() => dateVal()} onChangeText={value => changeUserLoginInfo('date', value)} />
+            <Input  placeholder='Date' type='date' onBlur = {() => dateVal()} onChangeText={value => changeUserLoginInfo('date', value)} />
 
             {valid.isValidDate || valid.isValidDate == undefined ? null :
                 <Text style={styles.errorMsg}>No puede tener el campo vacío</Text>
@@ -305,30 +311,29 @@ const Register = ({
             <Button title="Registrar" onPress={() => 
               userForm()} />
             <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
-               onPress={() => Linking.openURL('http://localhost:19006/login')}>
+               onPress={() => navigation.navigate('Login')}>
                Sign in
              </Text>
          </Card>
         </div>
       }</Text>
-
-
+          </View>
 
       {valid.isValidUserForm || valid.isValidUserForm == undefined  ? null :
 
       <div>
-      <View style ={styles.container2}>
-          <Text style ={{color: "white"}}> Tienes que rellenar todos los campos </Text>
-      </View>
+        <View style ={styles.registerContainer2}>
+            <Text style ={{color: "white"}}> Tienes que rellenar todos los campos </Text>
+        </View>
       </div>
       }
 
       {valid.isValidStoreForm || valid.isValidStoreForm == undefined ? null :
 
         <div>
-        <View style ={styles.container2}>
-            <Text style ={{color: "white"}}> Tienes que rellenar todos los campos </Text>
-        </View>
+          <View style ={styles.registerContainer2}>
+              <Text style ={{color: "white"}}> Tienes que rellenar todos los campos </Text>
+          </View>
         </div>
 
       }
@@ -337,33 +342,6 @@ const Register = ({
     </div>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: "center",
-      justifyContent: "center",
-      flexDirection: "row",
-      justifyContent: 'space-around'
-    },
-    errorMsg: {
-      color: "red",
-      marginBottom: "10px",
-      marginLeft:"10px"
-    },
-    container2: {
-      flex: 1,
-      alignItems: "center",
-      justifyContent: "center",
-      flexDirection: "row",
-      justifyContent: 'space-around',
-      backgroundColor: "red",
-      opacity: "0.7",
-      color: "white",
-      marginTop: "20px",
-      padding:"60px, 30px"
-    },
-  });
 
 
 const mapStateToProps = state => ({

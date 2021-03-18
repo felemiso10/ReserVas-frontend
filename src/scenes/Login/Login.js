@@ -5,11 +5,15 @@ import PropTypes from "prop-types";
 import { loginUser, changeUserLoginInfo } from '../../actions/user'
 import { Card, Input } from 'react-native-elements'
 import { View } from 'react-native';
+import Header from '../../components/Header'
+
+import styles from '../../styles/commonStyles'
 
 const Login = ({
     loginUser,
     user,
-    changeUserLoginInfo
+    changeUserLoginInfo,
+    navigation
 }) => {
    const [valid, setIsEnabled] = React.useState({
        isValidName: true,
@@ -66,70 +70,50 @@ const Login = ({
     }
 
     return (
-        <div>
-            <div className="row">
-                <Card>
-                    <Card.Title>LOGIN</Card.Title>
-                    <Card.Divider/>
-                    <Input  placeholder='Name' onBlur = {() => nameVal()} onChangeText={value => changeUserLoginInfo('name', value)}
-                    />
+        <View >
+            <Header navigation={navigation}/>
+            <View style={styles.registerContainer}>
+                <div className="row">
+                    <Card>
+                        <Card.Title>LOGIN</Card.Title>
+                        <Card.Divider/>
+                        <Input  placeholder='Name' onBlur = {() => nameVal()} onChangeText={value => changeUserLoginInfo('name', value)}
+                        />
 
-                        {valid.isValidName || valid.isValidName == undefined ? null :
+                            {valid.isValidName || valid.isValidName == undefined ? null :
+                                <Text style={styles.errorMsg}>No puede tener el campo vacío</Text>
+                            }   
+
+                        <Input  placeholder='Password'
+                        secureTextEntry={true}
+                        onBlur = {() => passVal()}
+                        onChangeText={value => changeUserLoginInfo('password', value)} 
+                        />
+
+                        {valid.isValidPass || valid.isValidPass == undefined ? null :
                             <Text style={styles.errorMsg}>No puede tener el campo vacío</Text>
-                        }   
+                        }
 
-                    <Input  placeholder='Password'
-                    secureTextEntry={true}
-                    onBlur = {() => passVal()}
-                    onChangeText={value => changeUserLoginInfo('password', value)} 
-                    />
-
-                    {valid.isValidPass || valid.isValidPass == undefined ? null :
-                        <Text style={styles.errorMsg}>No puede tener el campo vacío</Text>
-                    }
-
-                    <Button onPress={() => 
-                        loginComp()
-                    } title="Login" />
-                    <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
-                    onPress={() => Linking.openURL('http://localhost:19006/register')}>
-                    Sign up
-                    </Text>
-                </Card>
-            </div>
-        {valid.isValidForm || valid.isValidForm == undefined ? null :
-
-            <div>
-            <View style ={styles.container}>
-                <Text style ={{color: "white"}}> Tienes que rellenar todos los campos </Text>
-            </View>
-            </div>
-        }
-
-        </div>
+                        <Button onPress={() => 
+                            loginComp()
+                        } title="Login" />
+                        <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
+                        onPress={() => navigation.navigate('Register')}>
+                        Sign up
+                        </Text>
+                    </Card>
+                </div>
+            </ View>
+            {valid.isValidForm || valid.isValidForm == undefined ? null :
+                <div>
+                <View style ={styles.loginContainer}>
+                    <Text style ={{color: "white"}}> Tienes que rellenar todos los campos </Text>
+                </View>
+                </div>
+            }
+        </View>
     )
 }
-
-const styles = StyleSheet.create({
-    errorMsg: {
-        color: "red",
-        marginBottom: "10px",
-        marginLeft:"10px"
-    },
-    container: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "row",
-        justifyContent: 'space-around',
-        backgroundColor: "red",
-        opacity: "0.7",
-        color: "white",
-        marginTop: "20px",
-        padding:"60px, 30px"
-      },
-});
-
 
 const mapStateToProps = state => ({
     user: state.user.user
