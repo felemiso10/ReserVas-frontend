@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
     flex: 1,
     minHeight: 275,
     maxHeight: 275,
- 
+    minWidth: 900,
+    maxWidth:900,
     borderWidth: 3,
     borderRadius: 6,
   },
@@ -40,22 +41,25 @@ export default class Screen extends React.Component {
                 style={{ width: 200, height: 200,margin:5 }}
                 source={require('../../assets/cat3.png')}
           />
-           <Image
-                style={{ width: 200, height: 200,margin:5 }}
-                source={require('../../assets/cat4.png')}
-          />
-           <Image
-                style={{ width: 200, height: 200,margin:5}}
-                source={require('../../assets/cat5.png')}
-          />
           </View>
           
           <View style={[styles.slideContainer,styles.slide]}>
           <Image
                 style={{ width: 200, height: 200,margin:5 }}
+                source={require('../../assets/cat4.png')}
+          />
+          <Image
+                style={{ width: 200, height: 200,margin:5 }}
+                source={require('../../assets/cat5.png')}
+           />
+          <Image
+                style={{ width: 200, height: 200,margin:5 }}
                 source={require('../../assets/cat6.png')}
           />
-           <Image
+          </View>
+
+          <View style={[styles.slideContainer,styles.slide]}>
+          <Image
                 style={{ width: 200, height: 200,margin:5 }}
                 source={require('../../assets/cat7.png')}
           />
