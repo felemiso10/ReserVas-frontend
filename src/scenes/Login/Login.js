@@ -6,6 +6,7 @@ import { loginUser, changeUserLoginInfo } from '../../actions/user'
 import { Card, Input } from 'react-native-elements'
 import { View } from 'react-native';
 import Header from '../../components/Header'
+import CustomInput from '../../components/forms/CustomInput'
 
 import styles from '../../styles/commonStyles'
 
@@ -23,7 +24,7 @@ const Login = ({
 
   
    function loginComp() {
-       if(user.name == "" || user.name == undefined || user.password == "" || user.password == undefined){
+       if(user.name === "" || user.name === undefined || user.password === "" || user.password === undefined){
             setIsEnabled({isValidForm: false})
        }
        else{
@@ -39,7 +40,7 @@ const Login = ({
     }
    
    function nameVal() {
-       if (user.name == ""){
+       if (user.name === ""){
             setIsEnabled({
                 
                 isValidName: false
@@ -55,7 +56,7 @@ const Login = ({
         }
    }
     function passVal() {
-        if (user.password == ""){
+        if (user.password === ""){
             setIsEnabled({
                 isValidPass: false
             })
@@ -77,22 +78,21 @@ const Login = ({
                     <Card>
                         <Card.Title>LOGIN</Card.Title>
                         <Card.Divider/>
-                        <Input  placeholder='Name' onBlur = {() => nameVal()} onChangeText={value => changeUserLoginInfo('name', value)}
+                        <CustomInput 
+                            placeholder='Name' 
+                            onChange={changeUserLoginInfo} 
+                            idInput='name' 
+                            isValidValue={valid.isValidName} 
+                            validateValue={nameVal} 
+                        />  
+                        <CustomInput 
+                            placeholder='Password' 
+                            onChange={changeUserLoginInfo} 
+                            idInput='password' 
+                            isValidValue={valid.isValidPass} 
+                            validateValue={passVal} 
+                            isPasswordInput={true}
                         />
-
-                            {valid.isValidName || valid.isValidName == undefined ? null :
-                                <Text style={styles.errorMsg}>No puede tener el campo vacío</Text>
-                            }   
-
-                        <Input  placeholder='Password'
-                        secureTextEntry={true}
-                        onBlur = {() => passVal()}
-                        onChangeText={value => changeUserLoginInfo('password', value)} 
-                        />
-
-                        {valid.isValidPass || valid.isValidPass == undefined ? null :
-                            <Text style={styles.errorMsg}>No puede tener el campo vacío</Text>
-                        }
 
                         <Button onPress={() => 
                             loginComp()
