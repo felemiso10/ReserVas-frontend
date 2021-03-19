@@ -1,7 +1,9 @@
 import {
     TypeActionsCrud,
     loginUser,
-    changeUserLoginInfo
+    changeUserLoginInfo,
+    registerUser,
+    registerStore
 } from './crud'
 
 
@@ -12,5 +14,7 @@ const Actions = {
 export {
     Actions,
     loginUser,
-    changeUserLoginInfo
+    changeUserLoginInfo,
+    registerUser,
+    registerStore
 }

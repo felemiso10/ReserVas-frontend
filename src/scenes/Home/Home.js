@@ -1,8 +1,14 @@
 import React, { useState } from 'react'
-import { Text } from 'react-native';
+import { View, Text } from 'react-native';
+import Header from '../../components/Header'
 
-const Home = () => {
-    return <Text>Esta es la página de home</Text>
+const Home = ({navigation}) => {
+    return (
+        <View>
+            <Header navigation={navigation}/>
+            <Text>Esta es la página de home</Text>
+        </View>
+    )
 }
 
 export default Home;

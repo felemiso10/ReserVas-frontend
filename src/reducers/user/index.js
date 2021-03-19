@@ -2,8 +2,14 @@ import Crud from './crud'
 
 const initialState = {
     user: {
+        username: '',
         name:'',
-        password:''
+        password:'',
+        email: '',
+        nif: '',
+        phone: '',
+        address: '',
+        date: ''
     },
     isLoggedIn: false,
     error: '',

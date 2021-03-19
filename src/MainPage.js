@@ -1,53 +1,88 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+/*
 import { BrowserRouter as Router, Redirect, Switch} from "react-router-dom";
-import { StyleSheet, Text, View } from 'react-native';
-
+import { StyleSheet, Text, View, Linking } from 'react-native';
 import PublicRoute from './components/Authentication/PublicRoute'
 import PrivateRoute from './components/Authentication/PrivateRoute'
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Search from './components/Search'
+*/
 
 import Home from './scenes/Home'
 import Login from './scenes/Login'
 import Register from './scenes/Register'
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  });
+import {
+    DrawerContentScrollView,
+    DrawerItem, 
+    createDrawerNavigator 
+} from '@react-navigation/drawer';
+
+const Drawer = createDrawerNavigator();
+
+function SideMenu(props){
+    return (
+        <DrawerContentScrollView {...props}>
+            <DrawerItem  label="Elemento 1"/>
+            <DrawerItem  label="Elemento 2"/>
+        </DrawerContentScrollView>
+    )
+}
 
 const MainPage = ({
     isLoggedIn
 }) => {
+    /*
     return (
         <Router>
-            <View style={styles.container}>
-                <Switch>
-                    <PrivateRoute 
-                        component={Home}
-                        path="/"
-                        isLoggedIn={isLoggedIn}
-                        exact
-                    />
-                    <PublicRoute 
-                        component={Login}
-                        path="/login"
-                    />
-                    <PublicRoute 
-                        component={Register}
-                        path="/register"
-                    />
-                    <PrivateRoute 
-                        component={() => <Redirect to={"/"} />}
-                        path="/"
-                        isLoggedIn={isLoggedIn}
-                    />
-                </Switch>
-            </View>
+            <SafeAreaView>
+                <View style={{justifyContent: 'center'}}>
+                    <Header 
+                        containerStyle={{backgroundColor:'darkslategrey',width: '100%', borderBottomWidth: 5, marginBottom:'10px' }}
+
+                        leftComponent={{ icon: 'menu', color: '#fff', underlayColor: '#3488C0', onPress: () => this.toggleMenu() }}
+                        centerComponent={{ text: 'Reser&vas', 
+                            style: { color: '#fff', fontWeight: 'bold', fontSize: 20}}}
+                        rightComponent={{ icon: 'user-circle-o',type:'font-awesome', color: '#fff', 
+                            onPress:()=> Linking.openURL('http://localhost:19006/login') }}
+                    >
+                        
+                    </Header>
+                    
+                </View>
+                <View style={styles.container}>
+                    <Switch>
+                        <PrivateRoute 
+                            component={Home}
+                            path="/"
+                            isLoggedIn={isLoggedIn}
+                            exact
+                        />
+                        <PublicRoute 
+                            component={Login}
+                            path="/login"
+                        />
+                        <PublicRoute 
+                            component={Register}
+                            path="/register"
+                        />
+                        <PrivateRoute 
+                            component={() => <Redirect to={"/"} />}
+                            path="/"
+                            isLoggedIn={isLoggedIn}
+                        />
+                    </Switch>
+                </View>
+            </SafeAreaView>
         </Router>
+    )*/
+    return (
+            <Drawer.Navigator initialRouteName={isLoggedIn ? "Home" : "Login"} drawerContent={props => <SideMenu {...props} />}>
+                <Drawer.Screen name="Home" component={Home}/>
+                <Drawer.Screen name="Login" component={Login} />
+                <Drawer.Screen name="Register" component={Register} />
+            </Drawer.Navigator>
     )
 }
 
