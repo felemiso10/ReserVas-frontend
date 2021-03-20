@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View,Image} from 'react-native';
+import { StyleSheet, Text, View,Image,TouchableOpacity} from 'react-native';
 import Swiper from 'react-native-web-swiper';
+import { useNavigation } from '@react-navigation/native';
 
 const styles = StyleSheet.create({
   container: {
@@ -23,16 +24,18 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Screen extends React.Component {
-  render() {
+function CatCarousel(){
+  const navigation = useNavigation();
     return (
-      <View style={styles.container}>
+        <View style={styles.container}>
         <Swiper loop>
           <View style={[styles.slideContainer,styles.slide]}>
+          <TouchableOpacity onPress={() => navigation.navigate('Register')}>
           <Image
                 style={{ width: 200, height: 200,margin:5 }}
                 source={require('../../assets/cat1.png')}
           />
+          </TouchableOpacity>
           <Image
                 style={{ width: 200, height: 200,margin:5 }}
                 source={require('../../assets/cat2.png')}
@@ -75,6 +78,7 @@ export default class Screen extends React.Component {
          
         </Swiper>
       </View>
-    );
-  }
+    )
 }
+
+export default CatCarousel
