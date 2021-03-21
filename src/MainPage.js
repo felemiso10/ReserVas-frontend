@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import Search from './components/Search'
 /*
 import { BrowserRouter as Router, Redirect, Switch} from "react-router-dom";
 import { StyleSheet, Text, View, Linking } from 'react-native';
@@ -24,8 +25,9 @@ const Drawer = createDrawerNavigator();
 function SideMenu(props){
     return (
         <DrawerContentScrollView {...props}>
-            <DrawerItem  label="Elemento 1"/>
-            <DrawerItem  label="Elemento 2"/>
+            <Search/>
+            <DrawerItem  label="Home" onPress={() => props.navigation.navigate('Home')} />
+            <DrawerItem  label="Login" onPress={() => props.navigation.navigate('Login')}/>
         </DrawerContentScrollView>
     )
 }
