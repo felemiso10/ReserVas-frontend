@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { View, Text } from 'react-native';
-import Addcitahomeservice from '../../components/Addcitahomeservice';
 import Header from '../../components/Header'
+import styles from '../../styles/commonStyles'
 
 const Home = ({navigation}) => {
     return (
         <View>
             <Header navigation={navigation}/>
-            <Addcitahomeservice/>
+            <Text>Aqui iria home Calendario</Text>
         </View>
     )
 }

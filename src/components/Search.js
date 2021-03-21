@@ -14,10 +14,11 @@ export default class Search extends React.Component {
     const { search } = this.state;
 
     return (
-      <SearchBar 
+      <SearchBar
+        lightTheme   
         round
         searchIcon ='false'
-        containerStyle={{borderWidth: 0.1, borderRadius: 20}}
+        containerStyle={{borderWidth: 0, backgroundColor:'transparent'}}
         placeholder="Type Here..."
         onChangeText={this.updateSearch}
         value={search}
