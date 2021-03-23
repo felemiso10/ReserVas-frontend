@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import Search from './components/Search'
+import {Icon} from 'react-native-elements'
+
 /*
 import { BrowserRouter as Router, Redirect, Switch} from "react-router-dom";
 import { StyleSheet, Text, View, Linking } from 'react-native';
@@ -26,8 +28,8 @@ function SideMenu(props){
     return (
         <DrawerContentScrollView {...props}>
             <Search/>
-            <DrawerItem  label="Home" onPress={() => props.navigation.navigate('Home')} />
-            <DrawerItem  label="Login" onPress={() => props.navigation.navigate('Login')}/>
+            <DrawerItem  label="Home" icon={() => <Icon name='home' type='font-awesome'/>} onPress={() => props.navigation.navigate('Home')} />
+            <DrawerItem  label="Login" icon={() => <Icon name='user-circle-o' type='font-awesome'/>}  onPress={() => props.navigation.navigate('Login')}/>
         </DrawerContentScrollView>
     )
 }
