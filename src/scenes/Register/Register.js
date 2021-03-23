@@ -6,6 +6,8 @@ import { registerUser, changeUserLoginInfo, registerStore } from '../../actions/
 import { Card, Input } from 'react-native-elements'
 import { render } from 'react-dom';
 import Header from '../../components/Header'
+import CustomInput from '../../components/forms/CustomInput'
+
 
 import styles from '../../styles/commonStyles'
 
@@ -221,44 +223,56 @@ const Register = ({
           <View style={styles.registerContainer}>
           <Text>{isEnabled ?
           <div className="row" >
+
           <Card>
-             <Card.Title>Registrar como servicio</Card.Title>
-             <Card.Divider/>
-             <Input  placeholder='Username'  onBlur = {() => usernameVal()} onChangeText={value => changeUserLoginInfo('username', value)} />
+          <Card.Title>Registrar como empresa</Card.Title>
+             <CustomInput 
+                placeholder = 'Username'
+                onChange = {changeUserLoginInfo}
+                idInput = 'username'
+                isValidValue = {valid.isValidUsername}
+                validateValue = {usernameVal}
+             />
 
-              {valid.isValidUsername || valid.isValidUsername == undefined ? null :
-                  <Text style={styles.errorMsg}>No puede tener el campo vacío</Text>
-              }
-
-             <Input  placeholder='Password' secureTextEntry={true} onBlur = {() => passVal()} onChangeText={value => changeUserLoginInfo('password', value)} />
              
-             {valid.isValidPass || valid.isValidPass == undefined ? null :
-                <Text style={styles.errorMsg}>No puede tener el campo vacío</Text>
-             }
-             
-             <Input  placeholder='Name' onBlur = {() => nameVal()} onChangeText={value => changeUserLoginInfo('name', value)} />
+             <CustomInput 
+                placeholder = 'Password'
+                onChange = {changeUserLoginInfo}
+                idInput = 'password'
+                isValidValue = {valid.isValidPass}
+                validateValue = {passVal}
+                isPasswordInput={true}
+             />
 
-             {valid.isValidName || valid.isValidName == undefined ? null :
-                <Text style={styles.errorMsg}>No puede tener el campo vacío</Text>
-             } 
+             <CustomInput 
+                placeholder = 'Name'
+                onChange = {changeUserLoginInfo}
+                idInput = 'name'
+                isValidValue = {valid.isValidName}
+                validateValue = {nameVal}
+             />
 
-             <Input  placeholder='Surname' onBlur = {() => surnameVal()} onChangeText={value => changeUserLoginInfo('surname', value)} />
-
-             {valid.isValidSurname || valid.isValidSurname == undefined ? null :
-                <Text style={styles.errorMsg}>No puede tener el campo vacío</Text>
-             } 
-
-             <Input  placeholder='Email' onBlur = {() => emailVal()} onChangeText={value => changeUserLoginInfo('email', value)} />
-
-             {valid.isValidEmail || valid.isValidEmail == undefined ? null :
-                <Text style={styles.errorMsg}>No puede tener el campo vacío</Text>
-             }
-
-             <Input  placeholder='Address' onBlur = {() => addressVal()} onChangeText={value => changeUserLoginInfo('address', value)} />
-
-             {valid.isValidAddress || valid.isValidAddress == undefined ? null :
-                <Text style={styles.errorMsg}>No puede tener el campo vacío</Text>
-             }
+             <CustomInput 
+                placeholder = 'Surname'
+                onChange = {changeUserLoginInfo}
+                idInput = 'surname'
+                isValidValue = {valid.isValidSurname}
+                validateValue = {surnameVal}
+             />
+             <CustomInput 
+                placeholder = 'Email'
+                onChange = {changeUserLoginInfo}
+                idInput = 'email'
+                isValidValue = {valid.isValidEmail}
+                validateValue = {emailVal}
+             />
+             <CustomInput 
+                placeholder = 'Address'
+                onChange = {changeUserLoginInfo}
+                idInput = 'address'
+                isValidValue = {valid.isValidAddress}
+                validateValue = {addressVal}
+             />
 
              <Button onPress={() => storeForm() } title="Registrar" />
              <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
@@ -272,41 +286,59 @@ const Register = ({
          <Card>
             <Card.Title>Registrar como cliente</Card.Title>
             <Card.Divider/>
-            <Input  placeholder='Username' onBlur = {() => usernameVal()} onChangeText={value => changeUserLoginInfo('username', value)} />
+           
 
-            {valid.isValidUsername || valid.isValidUsername == undefined ? null :
-              <Text style={styles.errorMsg}>No puede tener el campo vacío</Text>
-            }
+            <CustomInput 
+                placeholder = 'Username'
+                onChange = {changeUserLoginInfo}
+                idInput = 'username'
+                isValidValue = {valid.isValidUsername}
+                validateValue = {usernameVal}
+             />
 
-            <Input  placeholder='Password' secureTextEntry={true} onBlur = {() => passVal()} onChangeText={value => changeUserLoginInfo('password', value)} />
+             
+             <CustomInput 
+                placeholder = 'Password'
+                onChange = {changeUserLoginInfo}
+                idInput = 'password'
+                isValidValue = {valid.isValidPass}
+                validateValue = {passVal}
+                isPasswordInput={true}
+             />
 
-            {valid.isValidPass || valid.isValidPass == undefined ? null :
-                <Text style={styles.errorMsg}>No puede tener el campo vacío</Text>
-            }
+             <CustomInput 
+                placeholder = 'Name'
+                onChange = {changeUserLoginInfo}
+                idInput = 'name'
+                isValidValue = {valid.isValidName}
+                validateValue = {nameVal}
+             />
 
-            <Input  placeholder='Name' onBlur = {() => nameVal()} onChangeText={value => changeUserLoginInfo('name', value)} />
+             <CustomInput 
+                placeholder = 'Surname'
+                onChange = {changeUserLoginInfo}
+                idInput = 'surname'
+                isValidValue = {valid.isValidSurname}
+                validateValue = {surnameVal}
+             />
+             <CustomInput 
+                placeholder = 'Email'
+                onChange = {changeUserLoginInfo}
+                idInput = 'email'
+                isValidValue = {valid.isValidEmail}
+                validateValue = {emailVal}
+             />
 
-            {valid.isValidName || valid.isValidName == undefined ? null :
-                <Text style={styles.errorMsg}>No puede tener el campo vacío</Text>
-             } 
-
-            <Input  placeholder='Surname' onBlur = {() => surnameVal()} onChangeText={value => changeUserLoginInfo('surname', value)} />
-
-            {valid.isValidSurname || valid.isValidSurname == undefined ? null :
-                <Text style={styles.errorMsg}>No puede tener el campo vacío</Text>
-            } 
-
-            <Input  placeholder='Email' onBlur = {() => emailVal()} onChangeText={value => changeUserLoginInfo('email', value)} />
-
-            {valid.isValidEmail || valid.isValidEmail == undefined ? null :
-                <Text style={styles.errorMsg}>No puede tener el campo vacío</Text>
-            }
 
             <Input  placeholder='Date' type='date' onBlur = {() => dateVal()} onChangeText={value => changeUserLoginInfo('date', value)} />
 
-            {valid.isValidDate || valid.isValidDate == undefined ? null :
-                <Text style={styles.errorMsg}>No puede tener el campo vacío</Text>
-            }
+            <CustomInput 
+                placeholder = 'Date'
+                onChange = {changeUserLoginInfo}
+                idInput = 'date'
+                isValidValue = {valid.isValidDate}
+                validateValue = {dateVal}
+             />
 
             <Button title="Registrar" onPress={() => 
               userForm()} />
