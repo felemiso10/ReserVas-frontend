@@ -16,7 +16,7 @@ function Addcitahomeservice(){
             <Card>
             <Card.Title>Añadir cita</Card.Title>
             <Card.Divider/>
-            <DatePicker defaultValue={moment('2021/03/21', dateFormat)} format={dateFormat} />
+            <DatePicker defaultValue={moment} format={dateFormat} />
             <TimePicker defaultValue={moment('14:00', format)} format={format} />
             </Card>
             </div>
