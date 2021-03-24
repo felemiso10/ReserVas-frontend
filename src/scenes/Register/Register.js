@@ -7,7 +7,7 @@ import { Card, Input } from 'react-native-elements'
 import { render } from 'react-dom';
 import Header from '../../components/Header'
 import CustomInput from '../../components/forms/CustomInput'
-
+import DatePicker from 'react-native-modern-datepicker';
 
 import styles from '../../styles/commonStyles'
 
@@ -20,7 +20,9 @@ const Register = ({
 }) => {
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);  
-  
+    const [visibility, setVisibility] = useState(false);
+
+
     const [valid, setValid] = React.useState({
       isValidName: true,
       isValidPass: true,
@@ -197,7 +199,9 @@ const Register = ({
       })
     }
 
-
+    function seeCalendar() {
+      setVisibility(true);
+    }
 
 
     return (
@@ -329,16 +333,36 @@ const Register = ({
                 validateValue = {emailVal}
              />
 
+            {
+              /*
+               <Input  placeholder='Date' type='date' onBlur = {() => dateVal()} 
+               onChangeText={value => changeUserLoginInfo('date', value)} />
+   
+               <CustomInput 
+                   placeholder = 'Date'
+                   onChange = {changeUserLoginInfo}
+                   idInput = 'date'
+                   isValidValue = {valid.isValidDate}
+                   validateValue = {dateVal}
+                />*/
+            }
+              {!visibility ? 
+              <View style={{marginBottom:15}}>
+              <Button title = "Selecciona tu fecha de nacimiento" onPress= {() =>seeCalendar()} />
+              </View>
+              :
+                <View style={{marginBottom:15}}>
+                  <DatePicker
+                    mode = "calendar"
+                    onSelectedChange={date => changeUserLoginInfo('date', date)}
+                  />
+                </View>
+              }
 
-            <Input  placeholder='Date' type='date' onBlur = {() => dateVal()} onChangeText={value => changeUserLoginInfo('date', value)} />
 
-            <CustomInput 
-                placeholder = 'Date'
-                onChange = {changeUserLoginInfo}
-                idInput = 'date'
-                isValidValue = {valid.isValidDate}
-                validateValue = {dateVal}
-             />
+              
+
+           
 
             <Button title="Registrar" onPress={() => 
               userForm()} />
