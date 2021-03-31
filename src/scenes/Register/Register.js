@@ -8,6 +8,7 @@ import { render } from 'react-dom';
 import Header from '../../components/Header'
 import CustomInput from '../../components/forms/CustomInput'
 import DatePicker from 'react-native-modern-datepicker';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 import styles from '../../styles/commonStyles'
 
@@ -276,8 +277,9 @@ const Register = ({
                 idInput = 'address'
                 isValidValue = {valid.isValidAddress}
                 validateValue = {addressVal}
-             />
-
+              />
+                
+             
              <Button onPress={() => storeForm() } title="Registrar" />
              <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
                onPress={() => Linking.openURL('http://localhost:19006/login')}>
@@ -358,11 +360,6 @@ const Register = ({
                   />
                 </View>
               }
-
-
-              
-
-           
 
             <Button title="Registrar" onPress={() => 
               userForm()} />
