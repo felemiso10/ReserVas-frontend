@@ -25,13 +25,6 @@ const Register = ({
 
 
     const [valid, setValid] = React.useState({
-      isValidName: true,
-      isValidPass: true,
-      isValidUsername:true,
-      isValidSurname: true,
-      isValidEmail: true,
-      isValidDate: true,
-      isValidAddress: true,
       isValidUserForm: true,
       isValidStoreForm: true
     })
@@ -59,9 +52,6 @@ const Register = ({
 
       }
     }
-
-
-
     function storeForm() {
       if (!user.name || !user.password || !user.username || !user.surname || !user.email || !user.address){
         setValid({
@@ -80,109 +70,8 @@ const Register = ({
           email: user.email,
           address: user.address
         })
-
-
       }
     }
-
-
-
-    function addressVal() {
-      if (user.address == "" || user.address == undefined) {
-        setValid({
-          isValidAddress: false
-        })
-      }
-      else{
-        setValid({
-          isValidAddress: true
-        })
-      }
-    }
-
-    function dateVal() {
-      if (user.date == "" || user.date == undefined){
-        setValid({
-          isValidDate: false
-        })
-      }
-      else{
-        setValid({
-          isValidDate: true
-        })
-      }
-    }
-
-    function emailVal() {
-      if (user.email == "" || user.email == undefined){
-        setValid({
-          isValidEmail: false
-        })
-      }
-      else{
-        setValid({
-          isValidEmail: true
-        })
-      }
-    }
-
-    function surnameVal() {
-      if (user.surname == "" || user.surname == undefined){
-        setValid({
-          isValidSurname: false
-        })
-      }
-      else{
-        setValid({
-          isValidSurname: true
-        })
-      }
-    }
-
-    function usernameVal() {
-      if (user.username == ""){
-        setValid({
-          isValidUsername: false
-        })
-      }
-      else{
-        setValid({
-          isValidUsername: true
-        })
-      }
-    }
-
-    function passVal() {
-      if (user.password == "" ){
-        setValid({
-
-          isValidPass: false
-        
-        })
-      }
-      else{
-        setValid({
-
-          isValidPass: true
-        })
-      }
-    }
-  
-    function nameVal() {
-      if (user.name == "" ){
-           setValid({
-               
-               isValidName: false
-           })
-           
-      }
-      else{
-           setValid({
-               isValidName: true
-           })
-           
-       }
-  }
 
     function cliente() {
       setIsEnabled(previousState => false)
@@ -235,8 +124,8 @@ const Register = ({
                 placeholder = 'Username'
                 onChange = {changeUserLoginInfo}
                 idInput = 'username'
-                isValidValue = {valid.isValidUsername}
-                validateValue = {usernameVal}
+                object ={user}
+                isRequired = 'true' 
              />
 
              
@@ -244,39 +133,39 @@ const Register = ({
                 placeholder = 'Password'
                 onChange = {changeUserLoginInfo}
                 idInput = 'password'
-                isValidValue = {valid.isValidPass}
-                validateValue = {passVal}
                 isPasswordInput={true}
+                object ={user}
+                isRequired = 'true' 
              />
 
              <CustomInput 
                 placeholder = 'Name'
                 onChange = {changeUserLoginInfo}
                 idInput = 'name'
-                isValidValue = {valid.isValidName}
-                validateValue = {nameVal}
+                object ={user}
+                isRequired = 'true' 
              />
 
              <CustomInput 
                 placeholder = 'Surname'
                 onChange = {changeUserLoginInfo}
                 idInput = 'surname'
-                isValidValue = {valid.isValidSurname}
-                validateValue = {surnameVal}
+                object ={user}
+                isRequired = 'true' 
              />
              <CustomInput 
                 placeholder = 'Email'
                 onChange = {changeUserLoginInfo}
                 idInput = 'email'
-                isValidValue = {valid.isValidEmail}
-                validateValue = {emailVal}
+                object ={user}
+                isRequired = 'true' 
              />
              <CustomInput 
                 placeholder = 'Address'
                 onChange = {changeUserLoginInfo}
                 idInput = 'address'
-                isValidValue = {valid.isValidAddress}
-                validateValue = {addressVal}
+                object ={user}
+                isRequired = 'true' 
               />
                 
              
@@ -298,8 +187,8 @@ const Register = ({
                 placeholder = 'Username'
                 onChange = {changeUserLoginInfo}
                 idInput = 'username'
-                isValidValue = {valid.isValidUsername}
-                validateValue = {usernameVal}
+                object ={user}
+                isRequired = 'true' 
              />
 
              
@@ -307,32 +196,32 @@ const Register = ({
                 placeholder = 'Password'
                 onChange = {changeUserLoginInfo}
                 idInput = 'password'
-                isValidValue = {valid.isValidPass}
-                validateValue = {passVal}
                 isPasswordInput={true}
+                object ={user}
+                isRequired = 'true' 
              />
 
              <CustomInput 
                 placeholder = 'Name'
                 onChange = {changeUserLoginInfo}
                 idInput = 'name'
-                isValidValue = {valid.isValidName}
-                validateValue = {nameVal}
+                object ={user}
+                isRequired = 'true' 
              />
 
              <CustomInput 
                 placeholder = 'Surname'
                 onChange = {changeUserLoginInfo}
                 idInput = 'surname'
-                isValidValue = {valid.isValidSurname}
-                validateValue = {surnameVal}
+                object ={user}
+                isRequired = 'true' 
              />
              <CustomInput 
                 placeholder = 'Email'
                 onChange = {changeUserLoginInfo}
                 idInput = 'email'
-                isValidValue = {valid.isValidEmail}
-                validateValue = {emailVal}
+                object ={user}
+                isRequired = 'true' 
              />
 
             {

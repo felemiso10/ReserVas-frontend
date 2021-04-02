@@ -48,12 +48,16 @@ const Login = ({
                         <CustomInput 
                             placeholder='Name' 
                             onChange={changeUserLoginInfo} 
-                            idInput='name'                  
+                            idInput='name'
+                            object ={user}
+                            isRequired = 'true'                  
                         />  
                         <CustomInput 
                             placeholder='Password' 
                             onChange={changeUserLoginInfo} 
                             idInput='password'
+                            object ={user}
+                            isRequired = 'true' 
                         />
 
                         <Button onPress={() => 
