@@ -11,7 +11,7 @@
 
   "reservasUsuario":[
     {
-      "nombre": "Peluquería",
+      "nombre": "",
       "fecha": "31-03-2021",
       "horaInicio":"11:00",
       "horaFin": "11:30",
@@ -25,7 +25,7 @@
       "id": "idTienda"
     },
     {
-      "nombre": "Peluquería3",
+      "nombre": "",
       "fecha": "29-03-2021",
       "horaInicio":"14:00",
       "horaFin": "15:00",

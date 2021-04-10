@@ -32,11 +32,17 @@ const Home = ({
         changeWeek(fecha)
     }, [allBookings])
 
+    useEffect(() => {
+        if(selectedDate) {
+            setFecha(selectedDate.lunes.fecha)
+        }
+    }, [selectedDate]) 
+
     return (
         <View>
             <Header navigation={navigation}/>
             <View style={{display: 'flex', justifyContent: 'center'}}>
-                <Calendar fecha={fecha} selectedDate={selectedDate} />
+                <Calendar fecha={fecha} selectedDate={selectedDate} changeWeek={changeWeek} />
             </View>
         </View>
     )
