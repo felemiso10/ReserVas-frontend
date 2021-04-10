@@ -36,6 +36,13 @@ const styles = StyleSheet.create({
         color: "white",
         marginTop: "20px",
         padding:"60px, 30px"
+    },
+    calendarTitle: {
+        flex: '1 1 100%'
+    },
+    calendarContainer: {
+        display: 'flex',
+        justifyContent: 'center'
     }
   });
 
