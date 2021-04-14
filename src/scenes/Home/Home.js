@@ -11,6 +11,7 @@ import {
 } from '../../common/dateFunctions'
 import { changeWeek, getAllBookings } from '../../actions/calendar'
 import styles from '../../styles/commonStyles'
+import CatCarousel from '../../components/CatCarousel';
 
 const Home = ({
     navigation, 
@@ -39,11 +40,15 @@ const Home = ({
     }, [selectedDate]) 
 
     return (
-        <View>
-            <Header navigation={navigation}/>
+        <View>             
+            <Header navigation={navigation}/>             
             <View style={{display: 'flex', justifyContent: 'center'}}>
                 <Calendar fecha={fecha} selectedDate={selectedDate} changeWeek={changeWeek} />
-            </View>
+            </View>             
+            <View style={styles.homeCarousel}>               
+                <CatCarousel></CatCarousel>             
+            </View>             
+            <Text>Aqui iria home PlanesCompletos</Text>         
         </View>
     )
 }

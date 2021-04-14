@@ -13,3 +13,4 @@ web-build/
 .DS_Store
 .vscode/launch.json
 .vscode/settings.json
+package-lock.json

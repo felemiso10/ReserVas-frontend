@@ -43,6 +43,14 @@ const styles = StyleSheet.create({
     calendarContainer: {
         display: 'flex',
         justifyContent: 'center'
+    },
+    homeCarousel: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "row",
+        justifyContent: 'space-around',
+        marginTop: 30
     }
   });
 
