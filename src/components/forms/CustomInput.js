@@ -1,22 +1,36 @@
 import React, { useState } from 'react'
 import { Input } from 'react-native-elements'
+import { connect } from 'react-redux'
 
 const CustomInput = ({
     placeholder,
     onChange,
     idInput,
-    isValidValue,
-    validateValue,
-    isPasswordInput //opcional
-}) => 
-(
+    object,
+    isPasswordInput,//opcional
+    isRequired
+   
+}) => {
+    
+
+    const [valid, setIsValid] = useState(true)
+
+    function inputValidate() {
+        
+        isRequired ? object[idInput] ? setIsValid(true) : setIsValid(false) : ``
+    }
+    
+    
+return(
     <Input  
         placeholder={placeholder} 
-        onBlur = {() => validateValue()} 
+        onBlur = {() => inputValidate()} 
         onChangeText={value => onChange(idInput, value)}
         secureTextEntry={isPasswordInput}
-        errorMessage={isValidValue || isValidValue == undefined ? '' : 'No puede tener el campo vacío'}
+        errorMessage={valid ? '' : 'No puede tener el campo vacío'}
+        
     />
 )
+}
 
-export default CustomInput
+export  default CustomInput 

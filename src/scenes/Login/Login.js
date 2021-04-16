@@ -17,8 +17,7 @@ const Login = ({
     navigation
 }) => {
    const [valid, setIsEnabled] = React.useState({
-       isValidName: true,
-       isValidPass: true,
+    
        isValidForm: true,
    })
 
@@ -38,38 +37,6 @@ const Login = ({
     
        }
     }
-   
-   function nameVal() {
-       if (user.name === ""){
-            setIsEnabled({
-                
-                isValidName: false
-            })
-           
-       }
-       else{
-            setIsEnabled({
-                
-                isValidName: true
-            })
-           
-        }
-   }
-    function passVal() {
-        if (user.password === ""){
-            setIsEnabled({
-                isValidPass: false
-            })
-            
-        }
-        else{
-            setIsEnabled({
-                isValidPass: true
-            })
-            
-        }
-    }
-
     return (
         <View >
             <Header navigation={navigation}/>
@@ -81,17 +48,16 @@ const Login = ({
                         <CustomInput 
                             placeholder='Name' 
                             onChange={changeUserLoginInfo} 
-                            idInput='name' 
-                            isValidValue={valid.isValidName} 
-                            validateValue={nameVal} 
+                            idInput='name'
+                            object ={user}
+                            isRequired = 'true'                  
                         />  
                         <CustomInput 
                             placeholder='Password' 
                             onChange={changeUserLoginInfo} 
-                            idInput='password' 
-                            isValidValue={valid.isValidPass} 
-                            validateValue={passVal} 
-                            isPasswordInput={true}
+                            idInput='password'
+                            object ={user}
+                            isRequired = 'true' 
                         />
 
                         <Button onPress={() => 

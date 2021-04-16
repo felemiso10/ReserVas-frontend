@@ -11,6 +11,8 @@ const initialState = {
         address: '',
         date: ''
     },
+    //El tipo de usuario puede ser tienda o cliente
+    userType: 'cliente',
     isLoggedIn: false,
     error: '',
     token: null
