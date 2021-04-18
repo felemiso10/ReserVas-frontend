@@ -2,25 +2,25 @@ import React, { useState } from 'react'
 import { Card } from 'react-native-elements'
 import { View, Button } from 'react-native';
 import styles from '../styles/commonStyles'
-import { TimePicker,DatePicker, AutoComplete } from 'antd';
-import moment from 'moment';
+import { AutoComplete } from 'antd';
 import 'antd/dist/antd.css';
 
 const options = [
     {
-      value: 'Un saludo',
+      value: 'Fail',
     },
     {
-      value: 'Titirí',
+      value: 'Dr. Oetker',
     },
     {
-      value: 'Ejemplo',
+      value: 'Geralt de Rivia',
+    },
+    {
+      value: 'Paquito Chocolatero',
     },
   ];
 
 function Addcitahomeservice(){
-    const format = 'HH:mm';
-    const dateFormat = 'YYYY/MM/DD';
 
     return (
         <View style={styles.registerContainer}>
@@ -28,14 +28,13 @@ function Addcitahomeservice(){
             <Card>
             <Card.Title>Añadir cita</Card.Title>
             <Card.Divider/>
-            <DatePicker defaultValue={moment} format={dateFormat} />
-            <TimePicker defaultValue={moment('14:00', format)} format={format} />
             <AutoComplete
                 style={{
                 width: 200,
                 }}
                 options={options}
                 placeholder="Nombre del usuario"
+                onChange = {onChange}
                 filterOption={(inputValue, option) =>
                 option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
                 }
