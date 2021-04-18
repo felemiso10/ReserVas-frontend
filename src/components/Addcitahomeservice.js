@@ -4,45 +4,47 @@ import { View, Button } from 'react-native';
 import styles from '../styles/commonStyles'
 import { AutoComplete } from 'antd';
 import 'antd/dist/antd.css';
+import CustomInput from '../components/forms/CustomInput'
 
-const options = [
-    {
-      value: 'Fail',
-    },
-    {
-      value: 'Dr. Oetker',
-    },
-    {
-      value: 'Geralt de Rivia',
-    },
-    {
-      value: 'Paquito Chocolatero',
-    },
-  ];
+const Addcitahomeservice = ({
+  user,
+  changeUserLoginInfo
+}) => {
+ const [valid, setIsEnabled] = React.useState({
+     isValidForm: true,
+ })
 
-function Addcitahomeservice(){
+ function loginComp() {
+  if(user.name === "" || user.name === undefined ){
+       setIsEnabled({isValidForm: false})
+  }
+  else{
+   setIsEnabled({isValidForm: true})
 
+       loginUser({
+           name: user.name,
+       })
+
+  }
+}
+ 
     return (
         <View style={styles.registerContainer}>
             <div className="row">
             <Card>
             <Card.Title>Añadir cita</Card.Title>
             <Card.Divider/>
-            <AutoComplete
-                style={{
-                width: 200,
-                }}
-                options={options}
-                placeholder="Nombre del usuario"
-                onChange = {onChange}
-                filterOption={(inputValue, option) =>
-                option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
-                }
-            />
+            <CustomInput 
+              placeholder='Usuario que reservará...' 
+              onChange={changeUserLoginInfo} 
+              idInput='username'
+              object ={user}
+              isRequired = 'true'                  
+            />  
             <Card.Divider/>
-            <Button
-                title = "Crear cita"
-            />
+            <Button onPress={() => 
+               loginComp()
+            } title="Crear cita" />
             </Card>
             </div>
         </View>
