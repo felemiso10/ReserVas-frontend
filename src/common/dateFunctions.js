@@ -13,7 +13,7 @@ const calcularLunes = (fecha) => {
     } else if (fecha.getDay() == 1){
         lunes = moment(fecha).format('DD-MM-YYYY')
     } else if(fecha.getDay() == 0){
-        lunes = moment(fecha).substract(6, 'days').format('DD-MM-YYYY')
+        lunes = moment(fecha).subtract(6, 'days').format('DD-MM-YYYY')
     }
     return lunes
 }

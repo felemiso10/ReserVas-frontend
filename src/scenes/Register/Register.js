@@ -40,12 +40,14 @@ const Register = ({
           isValidUserForm: true
         })
 
+        const fechaModificada = user.date.replaceAll('/', '-')
+
         registerUser({
           username: user.username,
           password: user.password,
           name: user.name,
           email: user.email,
-          date: user.date
+          date: fechaModificada
         })
 
 
@@ -250,7 +252,8 @@ const Register = ({
               }
 
             <Button title="Registrar" onPress={() => 
-              userForm()} />
+              userForm()
+            } />
             <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
                onPress={() => navigation.navigate('Login')}>
                Sign in
