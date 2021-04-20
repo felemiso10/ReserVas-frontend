@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import {  View, Switch, StyleSheet , Button, Text, Linking } from 'react-native';
 import { connect } from 'react-redux'
 import PropTypes from "prop-types";
-import { registerUser, changeUserLoginInfo, registerStore } from '../../actions/user'
+import { registerUser, changeUserLoginInfo, registerStore, clearInput } from '../../actions/user'
 import { Card, Input } from 'react-native-elements'
 import { render } from 'react-dom';
 import Header from '../../components/Header'
 import CustomInput from '../../components/forms/CustomInput'
 import DatePicker from 'react-native-modern-datepicker';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { useFocusEffect } from '@react-navigation/native';
 
 import styles from '../../styles/commonStyles'
 
@@ -17,9 +17,10 @@ const Register = ({
   user,
   registerUser,
   registerStore,
+  clearInput,
   navigation
 }) => {
-    const [isEnabled, setIsEnabled] = useState(false);
+    const [isEnabled, setIsEnabled] = useState(true);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);  
     const [visibility, setVisibility] = useState(false);
 
@@ -28,6 +29,25 @@ const Register = ({
       isValidUserForm: true,
       isValidStoreForm: true
     })
+
+    const refName = React.createRef();
+    const refPassword = React.createRef();
+    const refUsername = React.createRef();
+    const refEmail = React.createRef();
+    const refSurname = React.createRef();
+    const refAddress = React.createRef();
+    useFocusEffect(
+      React.useCallback(() => {
+
+
+
+        return () => {
+
+          //resetAll()
+          clearInput()
+        };
+      }, [])
+    );
 
     function userForm() {
       if (!user.name || !user.password || !user.username || !user.surname || !user.email || !user.date){
@@ -74,25 +94,49 @@ const Register = ({
     }
 
     function cliente() {
-      setIsEnabled(previousState => false)
+      setIsEnabled(false)
       setValid({
         isValidStoreForm: true,
         isValidUserForm: true
       })
+      resetAll()
+      refAddress.current.clear();
     }
 
     function empresa() {
-      setIsEnabled(previousState => true)
+      setIsEnabled(true)
       setValid({
         isValidStoreForm: true,
         isValidUserForm: true
       })
+      resetAll()
     }
 
     function seeCalendar() {
       setVisibility(true);
     }
 
+
+    function resetAll() {
+      console.log("hola?")
+      refName.current.clear();
+      refPassword.current.clear();
+      refSurname.current.clear();
+      refUsername.current.clear();
+      refEmail.current.clear();
+      setVisibility(false)
+
+      if(isEnabled){
+        refAddress.current.clear()
+      }
+
+      clearInput()
+    }
+
+    function goToLogin() {
+      resetAll()
+      navigation.navigate('Login')
+    }
 
     return (
       <div>
@@ -125,7 +169,8 @@ const Register = ({
                 onChange = {changeUserLoginInfo}
                 idInput = 'username'
                 object ={user}
-                isRequired = 'true' 
+                isRequired = 'true'
+                refer = {refUsername} 
              />
 
              
@@ -135,7 +180,8 @@ const Register = ({
                 idInput = 'password'
                 isPasswordInput={true}
                 object ={user}
-                isRequired = 'true' 
+                isRequired = 'true'
+                refer = {refPassword}  
              />
 
              <CustomInput 
@@ -143,7 +189,8 @@ const Register = ({
                 onChange = {changeUserLoginInfo}
                 idInput = 'name'
                 object ={user}
-                isRequired = 'true' 
+                isRequired = 'true'
+                refer = {refName}  
              />
 
              <CustomInput 
@@ -152,26 +199,31 @@ const Register = ({
                 idInput = 'surname'
                 object ={user}
                 isRequired = 'true' 
+                refer = {refSurname} 
              />
              <CustomInput 
                 placeholder = 'Email'
                 onChange = {changeUserLoginInfo}
                 idInput = 'email'
                 object ={user}
-                isRequired = 'true' 
+                isRequired = 'true'
+                refer = {refEmail}  
              />
              <CustomInput 
                 placeholder = 'Address'
                 onChange = {changeUserLoginInfo}
                 idInput = 'address'
                 object ={user}
-                isRequired = 'true' 
+                isRequired = 'true'
+                refer={refAddress}
               />
                 
              
              <Button onPress={() => storeForm() } title="Registrar" />
              <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
-               onPress={() => Linking.openURL('http://localhost:19006/login')}>
+               onPress={() => goToLogin()}
+          
+               >
                Sign in
              </Text>
           </Card>
@@ -188,7 +240,8 @@ const Register = ({
                 onChange = {changeUserLoginInfo}
                 idInput = 'username'
                 object ={user}
-                isRequired = 'true' 
+                isRequired = 'true'
+                refer = {refUsername}  
              />
 
              
@@ -198,7 +251,8 @@ const Register = ({
                 idInput = 'password'
                 isPasswordInput={true}
                 object ={user}
-                isRequired = 'true' 
+                isRequired = 'true'
+                refer = {refPassword}  
              />
 
              <CustomInput 
@@ -206,7 +260,8 @@ const Register = ({
                 onChange = {changeUserLoginInfo}
                 idInput = 'name'
                 object ={user}
-                isRequired = 'true' 
+                isRequired = 'true'
+                refer = {refName}  
              />
 
              <CustomInput 
@@ -214,7 +269,8 @@ const Register = ({
                 onChange = {changeUserLoginInfo}
                 idInput = 'surname'
                 object ={user}
-                isRequired = 'true' 
+                isRequired = 'true'
+                refer = {refSurname}  
              />
              <CustomInput 
                 placeholder = 'Email'
@@ -222,6 +278,7 @@ const Register = ({
                 idInput = 'email'
                 object ={user}
                 isRequired = 'true' 
+                refer = {refEmail} 
              />
 
             {
@@ -253,7 +310,7 @@ const Register = ({
             <Button title="Registrar" onPress={() => 
               userForm()} />
             <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
-               onPress={() => navigation.navigate('Login')}>
+               onPress={() => goToLogin()}>
                Sign in
              </Text>
          </Card>
@@ -279,8 +336,6 @@ const Register = ({
         </div>
 
       }
-
-
     </div>
     )
 }
@@ -292,7 +347,8 @@ const mapStateToProps = state => ({
  const mapDispatchToProps = {
     changeUserLoginInfo,
     registerUser,
-    registerStore
+    registerStore,
+    clearInput
  }
 
 const RegisterConnected = connect(mapStateToProps, mapDispatchToProps)(Register)
