@@ -98,10 +98,7 @@ const Login = ({
                 </View>
                 </div>
             }
-             <View style={styles.homeCarousel}>               
-                 
-                <Addcitahomeservice></Addcitahomeservice>        
-            </View>   
+            
         </View>
         
     )
