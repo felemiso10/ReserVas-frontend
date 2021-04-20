@@ -2,51 +2,81 @@ import React, { useState } from 'react'
 import { Card } from 'react-native-elements'
 import { View, Button } from 'react-native';
 import styles from '../styles/commonStyles'
-import { TimePicker,DatePicker, AutoComplete } from 'antd';
-import moment from 'moment';
+import { AutoComplete } from 'antd';
 import 'antd/dist/antd.css';
+import CustomInput from '../components/forms/CustomInput'
+import Modal from '@material-ui/core/Modal';
+import IconButton from '@material-ui/core/IconButton';
+import AddIcon from '@material-ui/icons/Add';
 
-const options = [
-    {
-      value: 'Un saludo',
-    },
-    {
-      value: 'Titirí',
-    },
-    {
-      value: 'Ejemplo',
-    },
-  ];
+const Addcitahomeservice = ({
+  user,
+  changeUserLoginInfo
+}) => {
+ const [valid, setIsEnabled] = React.useState({
+     isValidForm: true,
+ })
 
-function Addcitahomeservice(){
-    const format = 'HH:mm';
-    const dateFormat = 'YYYY/MM/DD';
+ function loginComp() {
+  if(user.name === "" || user.name === undefined ){
+       setIsEnabled({isValidForm: false})
+  }
+  else{
+   setIsEnabled({isValidForm: true})
 
+       loginUser({
+           name: user.name,
+       })
+
+  }
+}
+
+const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+ 
     return (
-        <View style={styles.registerContainer}>
-            <div className="row">
-            <Card>
-            <Card.Title>Añadir cita</Card.Title>
-            <Card.Divider/>
-            <DatePicker defaultValue={moment} format={dateFormat} />
-            <TimePicker defaultValue={moment('14:00', format)} format={format} />
-            <AutoComplete
-                style={{
-                width: 200,
-                }}
-                options={options}
-                placeholder="Nombre del usuario"
-                filterOption={(inputValue, option) =>
-                option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
-                }
-            />
-            <Card.Divider/>
-            <Button
-                title = "Crear cita"
-            />
-            </Card>
-            </div>
-        </View>
+        <div>
+            <button type="button" onClick={handleOpen} >
+                <IconButton color="primary" >
+                    <AddIcon />
+                </IconButton>
+            </button>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+            >
+            <View style={styles.registerContainer}>
+                <div className="row">
+                <Card>
+                <Card.Title>Añadir cita</Card.Title>
+                <Card.Divider/>
+                <CustomInput 
+                placeholder='Usuario que reservará...' 
+                onChange={changeUserLoginInfo} 
+                idInput='username'
+                object ={user}
+                isRequired = 'true'                  
+                />  
+                <Card.Divider/>
+                <Button onPress={() => 
+                loginComp()
+                } title="Crear cita" />
+                </Card>
+                </div>
+            </View>
+            </Modal>
+
+        </div>
     )
 }
 

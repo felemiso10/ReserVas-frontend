@@ -116,7 +116,8 @@ const Home = ({
                 <Calendar fecha={fecha} selectedDate={selectedDate} changeWeek={changeWeek} />
             </View>             
             <View style={styles.homeCarousel}>               
-                <CatCarousel></CatCarousel>             
+                <CatCarousel></CatCarousel>     
+                <Addcitahomeservice></Addcitahomeservice>        
             </View>             
             <Text>Aqui iria home PlanesCompletos</Text>
             <Button onPress={() => openImagePickerAsync(setImagen)} title="Seleccionar imagen" /> 

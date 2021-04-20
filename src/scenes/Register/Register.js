@@ -23,7 +23,6 @@ const Register = ({
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);  
     const [visibility, setVisibility] = useState(false);
 
-
     const [valid, setValid] = React.useState({
       isValidUserForm: true,
       isValidStoreForm: true
