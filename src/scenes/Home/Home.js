@@ -117,7 +117,6 @@ const Home = ({
             </View>             
             <View style={styles.homeCarousel}>               
                 <CatCarousel></CatCarousel>     
-                <Addcitahomeservice></Addcitahomeservice>        
             </View>             
             <Text>Aqui iria home PlanesCompletos</Text>
             <Button onPress={() => openImagePickerAsync(setImagen)} title="Seleccionar imagen" /> 

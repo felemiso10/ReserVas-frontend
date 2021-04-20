@@ -7,7 +7,7 @@ import { Card, Input } from 'react-native-elements'
 import { View } from 'react-native';
 import Header from '../../components/Header'
 import CustomInput from '../../components/forms/CustomInput'
-
+import Addcitahomeservice from '../../components/Addcitahomeservice'
 import styles from '../../styles/commonStyles'
 
 const Login = ({
@@ -77,7 +77,12 @@ const Login = ({
                 </View>
                 </div>
             }
+             <View style={styles.homeCarousel}>               
+                 
+                <Addcitahomeservice></Addcitahomeservice>        
+            </View>   
         </View>
+        
     )
 }
 
