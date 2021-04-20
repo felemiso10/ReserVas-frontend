@@ -2,18 +2,21 @@ import React, { useState } from 'react'
 import { Text, Button, Linking, StyleSheet } from 'react-native';
 import { connect } from 'react-redux'
 import PropTypes from "prop-types";
-import { loginUser, changeUserLoginInfo } from '../../actions/user'
+import { loginUser, changeUserLoginInfo, clearInput } from '../../actions/user'
 import { Card, Input } from 'react-native-elements'
 import { View } from 'react-native';
 import Header from '../../components/Header'
 import CustomInput from '../../components/forms/CustomInput'
+import { useFocusEffect } from '@react-navigation/native';
 import Addcitahomeservice from '../../components/Addcitahomeservice'
 import styles from '../../styles/commonStyles'
+import { onChange } from 'react-native-reanimated';
 
 const Login = ({
     loginUser,
     user,
     changeUserLoginInfo,
+    clearInput,
     navigation
 }) => {
    const [valid, setIsEnabled] = React.useState({
@@ -21,6 +24,23 @@ const Login = ({
        isValidForm: true,
    })
 
+    const refName = React.createRef();
+    const refPassword = React.createRef();
+   
+
+    useFocusEffect(
+      React.useCallback(() => {
+        
+        
+        return () => {
+            refName.current.clear();
+            refPassword.current.clear();
+            clearInput()
+          
+        };
+      }, [])
+    );
+      
   
    function loginComp() {
        if(user.name === "" || user.name === undefined || user.password === "" || user.password === undefined){
@@ -50,18 +70,19 @@ const Login = ({
                             onChange={changeUserLoginInfo} 
                             idInput='name'
                             object ={user}
-                            isRequired = 'true'                  
+                            isRequired = 'true'
+                            refer = {refName}             
                         />  
                         <CustomInput 
                             placeholder='Password' 
                             onChange={changeUserLoginInfo} 
                             idInput='password'
                             object ={user}
-                            isRequired = 'true' 
+                            isRequired = 'true'
+                            refer = {refPassword} 
                         />
 
-                        <Button onPress={() => 
-                            loginComp()
+                        <Button onPress={() => loginComp()
                         } title="Login" />
                         <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
                         onPress={() => navigation.navigate('Register')}>
@@ -91,7 +112,8 @@ const mapStateToProps = state => ({
 })
  const mapDispatchToProps = {
     loginUser,
-    changeUserLoginInfo
+    changeUserLoginInfo,
+    clearInput
  }
 
 const LoginConnected = connect(mapStateToProps, mapDispatchToProps)(Login)
