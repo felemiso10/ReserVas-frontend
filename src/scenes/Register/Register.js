@@ -24,7 +24,6 @@ const Register = ({
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);  
     const [visibility, setVisibility] = useState(false);
 
-
     const [valid, setValid] = React.useState({
       isValidUserForm: true,
       isValidStoreForm: true
@@ -61,12 +60,14 @@ const Register = ({
           isValidUserForm: true
         })
 
+        const fechaModificada = user.date.replaceAll('/', '-')
+
         registerUser({
           username: user.username,
           password: user.password,
           name: user.name,
           email: user.email,
-          date: user.date
+          date: fechaModificada
         })
 
 
@@ -308,7 +309,8 @@ const Register = ({
               }
 
             <Button title="Registrar" onPress={() => 
-              userForm()} />
+              userForm()
+            } />
             <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
                onPress={() => goToLogin()}>
                Sign in

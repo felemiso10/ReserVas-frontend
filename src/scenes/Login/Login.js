@@ -8,7 +8,7 @@ import { View } from 'react-native';
 import Header from '../../components/Header'
 import CustomInput from '../../components/forms/CustomInput'
 import { useFocusEffect } from '@react-navigation/native';
-
+import Addcitahomeservice from '../../components/Addcitahomeservice'
 import styles from '../../styles/commonStyles'
 import { onChange } from 'react-native-reanimated';
 
@@ -98,7 +98,12 @@ const Login = ({
                 </View>
                 </div>
             }
+             <View style={styles.homeCarousel}>               
+                 
+                <Addcitahomeservice></Addcitahomeservice>        
+            </View>   
         </View>
+        
     )
 }
 
