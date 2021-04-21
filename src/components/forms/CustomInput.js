@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Input } from 'react-native-elements'
-import { connect } from 'react-redux'
+
 
 const CustomInput = ({
     placeholder,
@@ -8,7 +8,8 @@ const CustomInput = ({
     idInput,
     object,
     isPasswordInput,//opcional
-    isRequired
+    isRequired,
+    refer
    
 }) => {
     
@@ -27,6 +28,7 @@ return(
         onBlur = {() => inputValidate()} 
         onChangeText={value => onChange(idInput, value)}
         secureTextEntry={isPasswordInput}
+        ref = {refer}
         errorMessage={valid ? '' : 'No puede tener el campo vacío'}
         
     />
