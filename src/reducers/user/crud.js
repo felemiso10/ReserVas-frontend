@@ -13,6 +13,8 @@ const loginUserRejected = state => ({
     error: 'Error al iniciar sesión'
 })
 
+
+
 const changeUserLoginInfo = (state, { payload }) => {
     state.user[payload.id]= payload.value
     //console.log(payload)
@@ -56,6 +58,17 @@ const newServiceRejected = state => ({
     error: 'Error al crear la cita'
 })
 
+const clearInput = (state) => {
+    state.user.name = ""
+    state.user.password = ""
+    state.user.username = ""
+    state.user.email = ""
+    state.user.date = ""
+    state.user.address = ""
+    state.user.surname = ""
+    return{...state}
+}
+
 const Crud = {
     [fullfilled(Actions.LOGIN_USER)]: loginUserFullFilled,
     [rejected(Actions.LOGIN_USER)]: loginUserRejected,
@@ -66,8 +79,8 @@ const Crud = {
     [rejected(Actions.REGISTER_STORE)]: registerStoreRejected,
     [Actions.CHANGE_SERVICE_INFO]: changeServiceInfo,  
     [fullfilled(Actions.NEW_SERVICE)]: newServiceFullFilled,
-    [rejected(Actions.NEW_SERVICE)]: newServiceRejected
-
+    [rejected(Actions.NEW_SERVICE)]: newServiceRejected,
+    [Actions.CLEAR_INPUT]: clearInput
 }
 
 export default Crud

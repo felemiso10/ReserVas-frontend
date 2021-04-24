@@ -116,12 +116,18 @@ const Home = ({
                 <Calendar fecha={fecha} selectedDate={selectedDate} changeWeek={changeWeek} />
             </View>             
             <View style={styles.homeCarousel}>               
-                <CatCarousel></CatCarousel>     
-                <Addcitahomeservice></Addcitahomeservice>        
+                <CatCarousel></CatCarousel>  
+                   
+            </View>  
+            <View style={styles.homeCarousel}>               
+                <Addcitahomeservice></Addcitahomeservice>  
+                   
             </View>             
-            <Text>Aqui iria home PlanesCompletos</Text>
+            <Text>Aqui iria home PlanesCompletos / Clientes anteriores</Text>
+            {/** 
             <Button onPress={() => openImagePickerAsync(setImagen)} title="Seleccionar imagen" /> 
-            <Button onPress={() => subirImagen(imagen, setDownloadURL)} title="Subir imagen" />    
+            <Button onPress={() => subirImagen(imagen, setDownloadURL)} title="Subir imagen" />  
+            */}  
         </View>
     )
 }

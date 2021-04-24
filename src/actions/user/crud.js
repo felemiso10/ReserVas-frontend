@@ -14,8 +14,10 @@ const TypeActionsCrud = {
     REGISTER_USER: 'REGISTER_USER',
     REGISTER_STORE: 'REGISTER_STORE',
     CHANGE_SERVICE_INFO: 'CHANGE_SERVICE_INFO',
-    NEW_SERVICE: 'NEW_SERVICE'
+    NEW_SERVICE: 'NEW_SERVICE',
+    CLEAR_INPUT: 'CLEAR_INPUT'
 }
+
 
 const loginUser = (user) => ({
     type: TypeActionsCrud.LOGIN_USER,
@@ -54,6 +56,10 @@ const newService = (user) => ({
     payload: api().post('/login', {body: user})
 })
 
+const clearInput = () => ({
+    type: TypeActionsCrud.CLEAR_INPUT,
+})
+
 export {
     TypeActionsCrud,
     loginUser,
@@ -61,5 +67,6 @@ export {
     registerUser,
     registerStore,
     changeServiceInfo,
-    newService
+    newService,
+    clearInput
 }
