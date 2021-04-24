@@ -41,6 +41,20 @@ const registerStoreRejected = state => ({
     error: 'Error al registrar la empresa'
 })
 
+const changeServiceInfo = (state, { payload }) => {
+    state.service[payload.id]= payload.value
+    //console.log(payload)
+    return {...state}
+}
+
+const newServiceFullFilled = (state, { payload }) => ({
+    ...state  
+})
+
+const newServiceRejected = state => ({
+    ...state,
+    error: 'Error al crear la cita'
+})
 
 const Crud = {
     [fullfilled(Actions.LOGIN_USER)]: loginUserFullFilled,
@@ -49,7 +63,11 @@ const Crud = {
     [fullfilled(Actions.REGISTER_USER)]: registerUserFullFilled,
     [rejected(Actions.REGISTER_USER)]: registerUserRejected,
     [fullfilled(Actions.REGISTER_STORE)]: registerStoreFullFiled,
-    [rejected(Actions.REGISTER_STORE)]: registerStoreRejected
+    [rejected(Actions.REGISTER_STORE)]: registerStoreRejected,
+    [Actions.CHANGE_SERVICE_INFO]: changeServiceInfo,  
+    [fullfilled(Actions.NEW_SERVICE)]: newServiceFullFilled,
+    [rejected(Actions.NEW_SERVICE)]: newServiceRejected
+
 }
 
 export default Crud

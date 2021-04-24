@@ -11,6 +11,13 @@ const initialState = {
         address: '',
         date: ''
     },
+    service: {
+        servicename: '',
+        username:'',
+        price: '',
+        horaInicio: '',
+        horfin: ''
+    },
     //El tipo de usuario puede ser tienda o cliente
     userType: 'cliente',
     isLoggedIn: false,

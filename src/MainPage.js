@@ -27,7 +27,6 @@ const Drawer = createDrawerNavigator();
 function SideMenu(props){
     return (
         <DrawerContentScrollView {...props}>
-            <Search/>
             <DrawerItem  label="Home" icon={() => <Icon name='home' type='font-awesome'/>} onPress={() => props.navigation.navigate('Home')} />
             <DrawerItem  label="Login" icon={() => <Icon name='user-circle-o' type='font-awesome'/>}  onPress={() => props.navigation.navigate('Login')}/>
         </DrawerContentScrollView>

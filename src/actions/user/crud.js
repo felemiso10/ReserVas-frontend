@@ -12,7 +12,9 @@ const TypeActionsCrud = {
     LOGIN_USER: 'LOGIN_USER',
     CHANGE_LOGIN_INFO: 'CHANGE_LOGIN_INFO',
     REGISTER_USER: 'REGISTER_USER',
-    REGISTER_STORE: 'REGISTER_STORE'
+    REGISTER_STORE: 'REGISTER_STORE',
+    CHANGE_SERVICE_INFO: 'CHANGE_SERVICE_INFO',
+    NEW_SERVICE: 'NEW_SERVICE'
 }
 
 const loginUser = (user) => ({
@@ -22,6 +24,14 @@ const loginUser = (user) => ({
 
 const changeUserLoginInfo = (id, value) => ({
     type: TypeActionsCrud.CHANGE_LOGIN_INFO,
+    payload: {
+        id,
+        value
+    }
+})
+
+const changeServiceInfo = (id, value) => ({
+    type: TypeActionsCrud.CHANGE_SERVICE_INFO,
     payload: {
         id,
         value
@@ -38,10 +48,18 @@ const registerStore = (user) => ({
     payload: api().post('/register', {body: user})
 })
 
+//Preguntar por esto 
+const newService = (user) => ({
+    type: TypeActionsCrud.NEW_SERVICE,
+    payload: api().post('/login', {body: user})
+})
+
 export {
     TypeActionsCrud,
     loginUser,
     changeUserLoginInfo,
     registerUser,
-    registerStore
+    registerStore,
+    changeServiceInfo,
+    newService
 }

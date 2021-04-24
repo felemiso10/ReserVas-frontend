@@ -2,30 +2,35 @@ import React, { useState } from 'react'
 import { Card } from 'react-native-elements'
 import { View, Button } from 'react-native';
 import styles from '../styles/commonStyles'
-import { AutoComplete } from 'antd';
+import { connect } from 'react-redux'
 import 'antd/dist/antd.css';
 import CustomInput from '../components/forms/CustomInput'
 import Modal from '@material-ui/core/Modal';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
+import {changeServiceInfo, newService} from '../actions/user'
 
 const Addcitahomeservice = ({
   user,
-  changeUserLoginInfo
+  changeServiceInfo,
+  newService
 }) => {
  const [valid, setIsEnabled] = React.useState({
      isValidForm: true,
  })
 
- function loginComp() {
-  if(user.name === "" || user.name === undefined ){
+ function newServiceComp() {
+  if(user.servicename === "" || user.servicename === undefined ||user.price === "" || user.price === undefined 
+      ||user.username === "" || user.username === undefined ){
        setIsEnabled({isValidForm: false})
   }
   else{
    setIsEnabled({isValidForm: true})
 
-       loginUser({
-           name: user.name,
+       newService({
+           username: user.username,
+           servicename: user.servicename,
+           price:user.price
        })
 
   }
@@ -58,19 +63,35 @@ const [open, setOpen] = React.useState(false);
             <View style={styles.registerContainer}>
                 <div className="row">
                 <Card>
-                <Card.Title>Añadir cita</Card.Title>
+                <Card.Title>Rellenar cita</Card.Title>
                 <Card.Divider/>
+
                 <CustomInput 
-                placeholder='Usuario que reservará...' 
-                onChange={changeUserLoginInfo} 
+                placeholder='Nombre del servicio...' 
+                onChange={changeServiceInfo} 
+                idInput='servicename'
+                object ={user}
+                isRequired = 'true'                  
+                /> 
+                <CustomInput 
+                placeholder='Usuario...' 
+                onChange={changeServiceInfo} 
                 idInput='username'
                 object ={user}
                 isRequired = 'true'                  
-                />  
+                />
+                 <CustomInput 
+                placeholder='Precio...' 
+                onChange={changeServiceInfo} 
+                idInput='price'
+                object ={user}
+                isRequired = 'true'      
+                />
+
                 <Card.Divider/>
                 <Button onPress={() => 
-                loginComp()
-                } title="Crear cita" />
+                newServiceComp()
+                } title="Agregar cita" />
                 </Card>
                 </div>
             </View>
@@ -80,4 +101,15 @@ const [open, setOpen] = React.useState(false);
     )
 }
 
-export default Addcitahomeservice
+const mapStateToProps = state => ({
+  user: state.user.user
+})
+const mapDispatchToProps = {
+  newService,
+  changeServiceInfo
+}
+
+const AddcitahomeserviceConnected = connect(mapStateToProps, mapDispatchToProps)(Addcitahomeservice)
+
+export default AddcitahomeserviceConnected;
+export { Addcitahomeservice }
