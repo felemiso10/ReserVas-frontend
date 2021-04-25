@@ -1,0 +1,72 @@
+{
+  "login": {
+    "token": "0ee9cd05-5b10-4c4f-ad6c-b89c42788fb1",
+    "error": ""
+  },
+  "register": {
+    "username": "gfdgdfg",
+    "password": "dfgdfg",
+    "name": "dfgdfgg",
+    "email": "dfgdgdfgfg",
+    "date": "2021-04-21"
+  },
+  "reservasUsuario": [
+    {
+      "nombre": "",
+      "fecha": "31-03-2021",
+      "horaInicio": "11:00",
+      "horaFin": "11:30",
+      "id": "idTienda"
+    },
+    {
+      "nombre": "Peluquería2",
+      "fecha": "31-03-2021",
+      "horaInicio": "12:00",
+      "horaFin": "12:30",
+      "id": "idTienda"
+    },
+    {
+      "nombre": "",
+      "fecha": "29-03-2021",
+      "horaInicio": "14:00",
+      "horaFin": "15:00",
+      "id": "idTienda"
+    },
+    {
+      "nombre": "Peluquería4",
+      "fecha": "01-04-2021",
+      "horaInicio": "10:00",
+      "horaFin": "12:00",
+      "id": "idTienda"
+    },
+    {
+      "nombre": "Peluquería5",
+      "fecha": "27-03-2021",
+      "horaInicio": "13:00",
+      "horaFin": "13:30",
+      "id": "idTienda"
+    },
+    {
+      "nombre": "Peluquería6",
+      "fecha": "26-03-2021",
+      "horaInicio": "12:00",
+      "horaFin": "12:45",
+      "id": "idTienda"
+    },
+    {
+      "nombre": "Peluquería7",
+      "fecha": "06-04-2021",
+      "horaInicio": "12:00",
+      "horaFin": "12:30",
+      "id": "idTienda"
+    }
+  ],
+  "reservasTienda": [
+    {
+      "nombre": "",
+      "fecha": "31-03-2020",
+      "horaInicio": "",
+      "horaFin": ""
+    }
+  ]
+}
