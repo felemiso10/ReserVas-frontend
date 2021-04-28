@@ -11,7 +11,7 @@ import AddIcon from '@material-ui/icons/Add';
 import {changeServiceInfo, newService} from '../actions/user'
 
 const Addcitahomeservice = ({
-  user,
+  service,
   changeServiceInfo,
   newService
 }) => {
@@ -20,17 +20,17 @@ const Addcitahomeservice = ({
  })
 
  function newServiceComp() {
-  if(user.servicename === "" || user.servicename === undefined ||user.price === "" || user.price === undefined 
-      ||user.username === "" || user.username === undefined ){
+  if(service.servicename === "" || service.servicename === undefined ||service.price === "" || service.price === undefined 
+      ||service.username === "" || service.username === undefined ){
        setIsEnabled({isValidForm: false})
   }
   else{
    setIsEnabled({isValidForm: true})
 
        newService({
-           username: user.username,
-           servicename: user.servicename,
-           price:user.price
+           username: service.username,
+           servicename: service.servicename,
+           price:service.price
        })
 
   }
@@ -70,21 +70,21 @@ const [open, setOpen] = React.useState(false);
                 placeholder='Nombre del servicio...' 
                 onChange={changeServiceInfo} 
                 idInput='servicename'
-                object ={user}
+                object ={service}
                 isRequired = 'true'                  
                 /> 
                 <CustomInput 
                 placeholder='Usuario...' 
                 onChange={changeServiceInfo} 
                 idInput='username'
-                object ={user}
+                object ={service}
                 isRequired = 'true'                  
                 />
                  <CustomInput 
                 placeholder='Precio...' 
                 onChange={changeServiceInfo} 
                 idInput='price'
-                object ={user}
+                object ={service}
                 isRequired = 'true'      
                 />
 
@@ -102,7 +102,7 @@ const [open, setOpen] = React.useState(false);
 }
 
 const mapStateToProps = state => ({
-  user: state.user.user
+  service: state.user.service
 })
 const mapDispatchToProps = {
   newService,
