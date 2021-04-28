@@ -49,11 +49,10 @@ const [open, setOpen] = React.useState(false);
  
     return (
         <div>
-            <button type="button" onClick={handleOpen} >
-                <IconButton color="primary" >
-                    <AddIcon />
-                </IconButton>
-            </button>
+            <IconButton color="primary" onClick={handleOpen}>
+               <AddIcon />
+            </IconButton>
+            
             <Modal
                 open={open}
                 onClose={handleClose}
