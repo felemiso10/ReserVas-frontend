@@ -12,11 +12,12 @@ const initialState = {
         date: ''
     },
     service: {
-        servicename: '',
-        username:'',
-        price: '',
+        name: '', //(service)
+        cliente:'', //username
+        precio: '', //price
         horaInicio: '',
-        horfin: ''
+        horaFin: '',
+        estado:''
     },
     //El tipo de usuario puede ser tienda o cliente
     userType: 'cliente',
