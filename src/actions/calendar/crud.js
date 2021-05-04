@@ -23,8 +23,14 @@ const changeWeek = (fechaLunes) => ({
     payload: { fechaLunes }
 })
 
+const getAllPlanes = () => ({
+    type: TypeActionsCrud.GET_ALL_PLANES,
+    payload: api().get('/allplanes')
+})
+
 export {
     TypeActionsCrud,
     getAllBookings,
-    changeWeek
+    changeWeek,
+    getAllPlanes
 }

@@ -10,10 +10,11 @@ import {
     calcularSemanaAnterior,
     calcularSemanaPosterior
 } from '../../common/dateFunctions'
-import { changeWeek, getAllBookings } from '../../actions/calendar'
+import { changeWeek, getAllBookings,getAllPlanes } from '../../actions/calendar'
 import styles from '../../styles/commonStyles'
 import CatCarousel from '../../components/CatCarousel';
 import * as ImagePicker from 'expo-image-picker'
+import Showplanes from '../../components/Showplanes';
 
 //Funciones para subir imagenes
 
@@ -80,7 +81,8 @@ const Home = ({
     getAllBookings, 
     changeWeek,
     allBookings,
-    selectedDate
+    selectedDate,
+    getAllPlanes
 }) => {
     const [fecha, setFecha] = useState(calcularLunes(new Date()))
 
@@ -88,7 +90,8 @@ const Home = ({
     const [downloadURL, setDownloadURL] = useState('')
 
     useEffect(() => {
-        getAllBookings()
+        getAllBookings(),
+        getAllPlanes()
     },[])
 
     useEffect(() => {
@@ -117,12 +120,10 @@ const Home = ({
             </View>             
             <View style={styles.homeCarousel}>               
                 <CatCarousel></CatCarousel>  
-                   
             </View>  
             <View style={styles.homeCarousel}>               
-                <Addcitahomeservice></Addcitahomeservice>  
-                   
-            </View>             
+                <Showplanes></Showplanes>  
+            </View>    
             <Text>Aqui iria home PlanesCompletos / Clientes anteriores</Text>
             {/** 
             <Button onPress={() => openImagePickerAsync(setImagen)} title="Seleccionar imagen" /> 
@@ -139,7 +140,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     getAllBookings,
-    changeWeek
+    changeWeek,
+    getAllPlanes
 }
 
 const HomeConnected = connect(mapStateToProps, mapDispatchToProps)(Home)

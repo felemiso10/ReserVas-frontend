@@ -68,5 +68,15 @@
       "horaInicio": "",
       "horaFin": ""
     }
+  ],
+  "allplanes": [
+    {
+      "nombre": "ruta dpm",
+      "imagen": "url"
+    },
+    {
+      "nombre": "ruta dpm",
+      "imagen": "url"
+    }
   ]
 }
