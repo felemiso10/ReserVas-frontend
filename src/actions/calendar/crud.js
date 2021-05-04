@@ -10,7 +10,8 @@ const api = token =>
 
 const TypeActionsCrud = {
     GET_ALL_BOOKINGS: 'GET_ALL_BOOKINGS',
-    CHANGE_WEEK: 'CHANGE_WEEK'
+    CHANGE_WEEK: 'CHANGE_WEEK',
+    GET_ALL_PLANES: 'GET_ALL_PLANES'
 }
 
 const getAllBookings = () => ({

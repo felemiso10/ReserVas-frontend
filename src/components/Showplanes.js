@@ -4,6 +4,7 @@ import Card from '@material-ui/core/Card';
 import { getAllPlanes } from '../actions/calendar'
 import { connect } from 'react-redux'
 import { useNavigation } from '@react-navigation/native';
+import styles from '../styles/commonStyles'
 
 import { View, Text,TouchableOpacity,Image } from 'react-native';
 
@@ -19,20 +20,19 @@ const Showplanes = ({
     const navigation = useNavigation();
     
     return (
-            <View>
+            <View  style={styles.registerContainer}>
                 <div className="row">
                     {
                         allPlanes.map((plan) => (
                          <Card>
-                                 {/** <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                          
+                           <TouchableOpacity onPress={() => navigation.navigate('Register')}>
                            <Image
                               style={{ width: 200, height: 200,margin:5 }}
                               source={{ uri: plan.imagen }}
                               />
-                            </TouchableOpacity>*/}
+                            </TouchableOpacity>
                           
-                            <Text style={{fontSize: 18, textAlign:"center"}}>
+                            <Text style={{fontSize: 16, alignSelf: 'center'}}>
                                 {plan.nombre}
                             </Text>
                           </Card>
