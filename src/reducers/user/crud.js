@@ -1,12 +1,16 @@
 import { Actions } from '../../actions/user'
 import { fullfilled, rejected, pending } from '../utils'
 
-const loginUserFullFilled = (state, { payload }) => ({
-    ...state,
-    isLoggedIn: true,
-    token: payload.token
-    
-})
+const loginUserFullFilled = (state, { payload }) => {
+    return {
+        ...state,
+        isLoggedIn: true,
+        userLogged: {
+            token: payload.token,
+            name: state.user.name
+        }
+    }
+}
 
 const loginUserRejected = state => ({
     ...state,
