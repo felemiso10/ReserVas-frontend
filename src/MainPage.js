@@ -15,6 +15,7 @@ import Search from './components/Search'
 import Home from './scenes/Home'
 import Login from './scenes/Login'
 import Register from './scenes/Register'
+import Plan from './scenes/Plan'
 
 import {
     DrawerContentScrollView,
@@ -85,6 +86,8 @@ const MainPage = ({
                 <Drawer.Screen name="Home" component={Home}/>
                 <Drawer.Screen name="Login" component={Login} />
                 <Drawer.Screen name="Register" component={Register} />
+                <Drawer.Screen name="Plan" component={Plan}  />
+
             </Drawer.Navigator>
     )
 }
