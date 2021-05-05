@@ -68,5 +68,133 @@
       "horaInicio": "",
       "horaFin": ""
     }
+  ],
+  "allplanes": [
+    {
+      "nombre": "Ruta playera",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/taes-imagenes.appspot.com/o/d41ae4d2094a139eb9b42838a192a211.jpg?alt=media&token=7d6ad63d-da83-4dad-99e2-c7ae3b331030",
+      "descripcion": "Ruta playera que te cagas",
+      "precioTotal": "120",
+      "servicios":[
+        {
+          "nombre": "Tapitas ricas",
+          "fecha": "06-04-2021",
+          "horaInicio": "10:00",
+          "horaFin": "10:30",
+          "id": "idTienda"
+        },
+        {
+          "nombre": "Coteles caros",
+          "fecha": "06-04-2021",
+          "horaInicio": "11:00",
+          "horaFin": "11:30",
+          "id": "idTienda"
+        },
+        {
+          "nombre": "A una calita",
+          "fecha": "06-04-2021",
+          "horaInicio": "12:00",
+          "horaFin": "12:30",
+          "id": "idTienda"
+        }
+      ]
+    },
+    {
+      "nombre": "ruta bares",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/taes-imagenes.appspot.com/o/tres-bares-espanoles-entre-los-50-mejores-del-mundo.jpg?alt=media&token=41027cac-3b2c-4ad8-bf66-0ab9b16dbe78",
+      "descripcion": "Ruta de picoteo",
+      "precioTotal": "80",
+      "servicios":[
+        {
+          "nombre": "Tapitas ricas",
+          "fecha": "06-04-2021",
+          "horaInicio": "10:00",
+          "horaFin": "10:30",
+          "id": "idTienda"
+        },
+        {
+          "nombre": "Cosas frescas",
+          "fecha": "06-04-2021",
+          "horaInicio": "10:40",
+          "horaFin": "10:45",
+          "id": "idTienda"
+        },
+        {
+          "nombre": "Coteles caros",
+          "fecha": "06-04-2021",
+          "horaInicio": "11:00",
+          "horaFin": "11:30",
+          "id": "idTienda"
+        },
+        {
+          "nombre": "A una calita",
+          "fecha": "06-04-2021",
+          "horaInicio": "12:00",
+          "horaFin": "12:30",
+          "id": "idTienda"
+        }
+      ]
+    },
+    {
+      "nombre": "ruta museo",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/taes-imagenes.appspot.com/o/museos_destacada-1366x769.jpg?alt=media&token=ee54a831-df3f-4382-be89-db8c1ca003b7"
+    },
+    {
+      "nombre": "ruta de chill",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/taes-imagenes.appspot.com/o/d41ae4d2094a139eb9b42838a192a211.jpg?alt=media&token=7d6ad63d-da83-4dad-99e2-c7ae3b331030"
+    },
+    {
+      "nombre": "ruta bares",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/taes-imagenes.appspot.com/o/tres-bares-espanoles-entre-los-50-mejores-del-mundo.jpg?alt=media&token=41027cac-3b2c-4ad8-bf66-0ab9b16dbe78"
+    },
+    {
+      "nombre": "ruta museo",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/taes-imagenes.appspot.com/o/museos_destacada-1366x769.jpg?alt=media&token=ee54a831-df3f-4382-be89-db8c1ca003b7"
+    },
+    {
+      "nombre": "ruta de chill",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/taes-imagenes.appspot.com/o/d41ae4d2094a139eb9b42838a192a211.jpg?alt=media&token=7d6ad63d-da83-4dad-99e2-c7ae3b331030"
+    },
+    {
+      "nombre": "ruta bares",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/taes-imagenes.appspot.com/o/tres-bares-espanoles-entre-los-50-mejores-del-mundo.jpg?alt=media&token=41027cac-3b2c-4ad8-bf66-0ab9b16dbe78"
+    },
+    {
+      "nombre": "ruta museo",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/taes-imagenes.appspot.com/o/museos_destacada-1366x769.jpg?alt=media&token=ee54a831-df3f-4382-be89-db8c1ca003b7"
+    },
+    {
+      "nombre": "ruta museo",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/taes-imagenes.appspot.com/o/museos_destacada-1366x769.jpg?alt=media&token=ee54a831-df3f-4382-be89-db8c1ca003b7"
+    },
+    {
+      "nombre": "ruta de chill",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/taes-imagenes.appspot.com/o/d41ae4d2094a139eb9b42838a192a211.jpg?alt=media&token=7d6ad63d-da83-4dad-99e2-c7ae3b331030"
+    },
+    {
+      "nombre": "ruta bares",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/taes-imagenes.appspot.com/o/tres-bares-espanoles-entre-los-50-mejores-del-mundo.jpg?alt=media&token=41027cac-3b2c-4ad8-bf66-0ab9b16dbe78"
+    },
+    {
+      "nombre": "ruta museo",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/taes-imagenes.appspot.com/o/museos_destacada-1366x769.jpg?alt=media&token=ee54a831-df3f-4382-be89-db8c1ca003b7"
+    },
+    {
+      "nombre": "ruta museo",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/taes-imagenes.appspot.com/o/museos_destacada-1366x769.jpg?alt=media&token=ee54a831-df3f-4382-be89-db8c1ca003b7"
+    },
+    {
+      "nombre": "ruta de chill",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/taes-imagenes.appspot.com/o/d41ae4d2094a139eb9b42838a192a211.jpg?alt=media&token=7d6ad63d-da83-4dad-99e2-c7ae3b331030"
+    },
+    {
+      "nombre": "ruta bares",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/taes-imagenes.appspot.com/o/tres-bares-espanoles-entre-los-50-mejores-del-mundo.jpg?alt=media&token=41027cac-3b2c-4ad8-bf66-0ab9b16dbe78"
+    },
+    {
+      "nombre": "ruta museo",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/taes-imagenes.appspot.com/o/museos_destacada-1366x769.jpg?alt=media&token=ee54a831-df3f-4382-be89-db8c1ca003b7"
+    }
+
   ]
 }

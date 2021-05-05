@@ -16,6 +16,7 @@ import Home from './scenes/Home'
 import Login from './scenes/Login'
 import Register from './scenes/Register'
 import HomeEmpresa from './scenes/HomeEmpresa'
+import Plan from './scenes/Plan'
 
 import {
     DrawerContentScrollView,
@@ -28,7 +29,6 @@ const Drawer = createDrawerNavigator();
 function SideMenu(props){
     return (
         <DrawerContentScrollView {...props}>
-            <Search/>
             <DrawerItem  label="Home" icon={() => <Icon name='home' type='font-awesome'/>} onPress={() => props.navigation.navigate('Home')} />
             <DrawerItem  label="HomeEmpresa" icon={() => <Icon name='home' type='font-awesome'/>} onPress={() => props.navigation.navigate('HomeEmpresa')} />
             <DrawerItem  label="Login" icon={() => <Icon name='user-circle-o' type='font-awesome'/>}  onPress={() => props.navigation.navigate('Login')}/>
@@ -89,6 +89,8 @@ const MainPage = ({
                 <Drawer.Screen name="Login" component={Login} />
                 <Drawer.Screen name="Register" component={Register} />
                 <Drawer.Screen name="HomeEmpresa" component={HomeEmpresa} />
+                <Drawer.Screen name="Plan" component={Plan}  />
+
             </Drawer.Navigator>
     )
 }

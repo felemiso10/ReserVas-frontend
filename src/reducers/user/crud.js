@@ -43,6 +43,21 @@ const registerStoreRejected = state => ({
     error: 'Error al registrar la empresa'
 })
 
+const changeServiceInfo = (state, { payload }) => {
+    state.service[payload.id]= payload.value
+    //console.log(payload)
+    return {...state}
+}
+
+const newServiceFullFilled = (state, { payload }) => ({
+    ...state  
+})
+
+const newServiceRejected = state => ({
+    ...state,
+    error: 'Error al crear la cita'
+})
+
 const clearInput = (state) => {
     state.user.name = ""
     state.user.password = ""
@@ -62,6 +77,9 @@ const Crud = {
     [rejected(Actions.REGISTER_USER)]: registerUserRejected,
     [fullfilled(Actions.REGISTER_STORE)]: registerStoreFullFiled,
     [rejected(Actions.REGISTER_STORE)]: registerStoreRejected,
+    [Actions.CHANGE_SERVICE_INFO]: changeServiceInfo,  
+    [fullfilled(Actions.NEW_SERVICE)]: newServiceFullFilled,
+    [rejected(Actions.NEW_SERVICE)]: newServiceRejected,
     [Actions.CLEAR_INPUT]: clearInput
 }
 
