@@ -121,10 +121,12 @@ const Home = ({
             <View style={styles.homeCarousel}>               
                 <CatCarousel></CatCarousel>  
             </View>  
-            <View style={styles.homeCarousel}>               
+
+            <View>
+            <Text style={{fontSize:24,textAlign:'center',fontWeight:'semi-bold',paddingTop: 30}}>Planes completos</Text>
+
                 <Showplanes></Showplanes>  
             </View>    
-            <Text>Aqui iria home PlanesCompletos / Clientes anteriores</Text>
             {/** 
             <Button onPress={() => openImagePickerAsync(setImagen)} title="Seleccionar imagen" /> 
             <Button onPress={() => subirImagen(imagen, setDownloadURL)} title="Subir imagen" />  

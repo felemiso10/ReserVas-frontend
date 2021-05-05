@@ -18,28 +18,27 @@ const Showplanes = ({
     },[])
 
     const navigation = useNavigation();
-    
+
     return (
-            <View  style={styles.registerContainer}>
-                <div className="row">
+            <View style={styles.showPlanes}>
                     {
                         allPlanes.map((plan) => (
-                         <Card>
+                        <View style={{paddingLeft:30,paddingTop:40}}>
+                          <Card style = {{padding:15,width:270,height:250}}>
                            <TouchableOpacity onPress={() => navigation.navigate('Register')}>
                            <Image
-                              style={{ width: 200, height: 200,margin:5 }}
+                              style={{ width: 225, height: 175,margin:5 }}
                               source={{ uri: plan.imagen }}
                               />
                             </TouchableOpacity>
-                          
-                            <Text style={{fontSize: 16, alignSelf: 'center'}}>
+                            <Text style={{fontSize:18,fontWeight:400}}>
                                 {plan.nombre}
                             </Text>
-                          </Card>
+                           </Card>
+                        </View>
                       ))
-                    }          
-               </div>
-      </View>
+                    }
+            </View>
     )
 }
 
