@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Button} from 'react-native';
+import { Text, Button,Image} from 'react-native';
 import { connect } from 'react-redux'
 import { View } from 'react-native';
 import Header from '../../components/Header'
@@ -16,10 +16,18 @@ const Plan  = ({
     return (
       <View>
       <Header navigation={navigation}/>
-          <View style={{alignItems:'center',paddingTop:40}} >
+          <View style={{alignItems:'center'}} >
           <Card>
 
-            <Card.Title> {plan.nombre} </Card.Title> 
+            <Card.Title> {plan.nombre} </Card.Title>
+            <Card.Divider/>
+
+            <Image
+               style={{ width: 280, height: 200,alignSelf:'center' }}
+               source={{ uri: plan.imagen }}
+            />
+            <Card.Divider/>
+
             <Text style={{fontSize:18,color:'gray',flexDirection:'row'}}> {plan.descripcion}</Text>
             <Text style={{fontSize:18,color:'gray',flexDirection:'row'}}> {plan.precioTotal} €</Text>
             <Card.Divider/>
