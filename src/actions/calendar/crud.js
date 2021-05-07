@@ -1,6 +1,6 @@
 import Api from '../../common/utilities/api'
 
-const baseUrl = 'http://localhost:3002' //Aquí irá la URL del backend
+const baseUrl = 'http://localhost:8080' //Aquí irá la URL del backend
 
 const api = token =>
     new Api({
