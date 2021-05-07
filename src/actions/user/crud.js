@@ -3,10 +3,7 @@ import Api from '../../common/utilities/api'
 const baseUrl = 'http://localhost:8080' //Aquí irá la URL del backend
 
 const api = token =>
-    new Api({
-        baseUrl: baseUrl,
-        defaultOptions: { headers: { Authorization: `Bearer ${token}` } }
-    })
+    new Api(baseUrl)
 
 const TypeActionsCrud = {
     LOGIN_USER: 'LOGIN_USER',
