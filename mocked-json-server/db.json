@@ -101,7 +101,8 @@
       "imagen": "https://firebasestorage.googleapis.com/v0/b/taes-imagenes.appspot.com/o/d41ae4d2094a139eb9b42838a192a211.jpg?alt=media&token=7d6ad63d-da83-4dad-99e2-c7ae3b331030",
       "descripcion": "Ruta playera que te cagas",
       "precioTotal": "120",
-      "servicios": [
+      "id": 1,
+      "servicios":[
         {
           "nombre": "Tapitas ricas",
           "fecha": "06-04-2021",
