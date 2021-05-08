@@ -5,6 +5,8 @@ import {
     changeUserLoginInfo,
     registerUser,
     registerStore,
+    changeServiceInfo,
+    newService,
     clearInput
 } from './crud'
 
@@ -20,5 +22,7 @@ export {
     changeUserLoginInfo,
     registerUser,
     registerStore,
+    changeServiceInfo,
+    newService,
     clearInput
 }

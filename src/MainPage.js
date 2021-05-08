@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import Search from './components/Search'
 import {Icon} from 'react-native-elements'
 
 /*
@@ -15,6 +14,8 @@ import Search from './components/Search'
 import Home from './scenes/Home'
 import Login from './scenes/Login'
 import Register from './scenes/Register'
+import HomeEmpresa from './scenes/HomeEmpresa'
+import Plan from './scenes/Plan'
 
 import {
     DrawerContentScrollView,
@@ -27,7 +28,6 @@ const Drawer = createDrawerNavigator();
 function SideMenu({props, isLoggedIn}){
     return (
         <DrawerContentScrollView {...props}>
-            <Search/>
             {
                 isLoggedIn &&
                 <DrawerItem  label="Home" icon={() => <Icon name='home' type='font-awesome'/>} onPress={() => props.navigation.navigate('Home')} />
@@ -51,6 +51,8 @@ const MainPage = ({
                     isLoggedIn ? (
                         <>
                             <Drawer.Screen name="Home" component={Home}/>
+                            <Drawer.Screen name="HomeEmpresa" component={HomeEmpresa} />
+                            <Drawer.Screen name="Plan" component={Plan}  />
                         </>
                     ) : (
                         <>

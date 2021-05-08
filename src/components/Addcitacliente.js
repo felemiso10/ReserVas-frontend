@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Card } from 'react-native-elements'
 import { View, Button } from 'react-native';
 import styles from '../styles/commonStyles'
@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import {changeServiceInfo, newService} from '../actions/user'
 
-const Addcitahomeservice = ({
+const Addcitacliente = ({
   service,
   changeServiceInfo,
   newService
@@ -20,15 +20,13 @@ const Addcitahomeservice = ({
  })
 
  function newServiceComp() {
-  if(service.name === "" || service.name === undefined ||service.precio === "" || service.precio === undefined 
-      ||service.cliente === "" || service.cliente === undefined ){
+  if(service.name === "" || service.name === undefined ){
        setIsEnabled({isValidForm: false})
   }
   else{
    setIsEnabled({isValidForm: true})
 
        newService({
-           cliente: service.cliente,
            name: service.name,
            precio:service.precio
        })
@@ -71,20 +69,6 @@ const [open, setOpen] = React.useState(false);
                 idInput='name'
                 object ={service}
                 isRequired = 'true'                  
-                /> 
-                <CustomInput 
-                placeholder='Usuario...' 
-                onChange={changeServiceInfo} 
-                idInput='cliente'
-                object ={service}
-                isRequired = 'true'                  
-                />
-                 <CustomInput 
-                placeholder='Precio...' 
-                onChange={changeServiceInfo} 
-                idInput='precio'
-                object ={service}
-                isRequired = 'true'      
                 />
 
                 <Card.Divider/>
@@ -108,7 +92,7 @@ const mapDispatchToProps = {
   changeServiceInfo
 }
 
-const AddcitahomeserviceConnected = connect(mapStateToProps, mapDispatchToProps)(Addcitahomeservice)
+const AddcitaclienteConnected = connect(mapStateToProps, mapDispatchToProps)(Addcitacliente)
 
-export default AddcitahomeserviceConnected;
-export { Addcitahomeservice }
+export default AddcitaclienteConnected;
+export { Addcitacliente }
