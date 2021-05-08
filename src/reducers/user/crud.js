@@ -17,6 +17,15 @@ const loginUserRejected = state => ({
     error: 'Error al iniciar sesión'
 })
 
+const logoutUser = state => ({
+    ...state,
+    isLoggedIn: false,
+    userLogged: {
+        token: '',
+        name: ''
+    }
+})
+
 
 
 const changeUserLoginInfo = (state, { payload }) => {
@@ -61,12 +70,13 @@ const clearInput = (state) => {
 const Crud = {
     [fullfilled(Actions.LOGIN_USER)]: loginUserFullFilled,
     [rejected(Actions.LOGIN_USER)]: loginUserRejected,
+    [Actions.LOGOUT_USER]: logoutUser,
     [Actions.CHANGE_LOGIN_INFO]: changeUserLoginInfo,
     [fullfilled(Actions.REGISTER_USER)]: registerUserFullFilled,
     [rejected(Actions.REGISTER_USER)]: registerUserRejected,
     [fullfilled(Actions.REGISTER_STORE)]: registerStoreFullFiled,
     [rejected(Actions.REGISTER_STORE)]: registerStoreRejected,
-    [Actions.CLEAR_INPUT]: clearInput
+    [Actions.CLEAR_INPUT]: clearInput,
 }
 
 export default Crud

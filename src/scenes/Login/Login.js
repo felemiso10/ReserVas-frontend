@@ -33,8 +33,8 @@ const Login = ({
         
         
         return () => {
-            refName.current.clear();
-            refPassword.current.clear();
+            refName.current?.clear();
+            refPassword.current?.clear();
             clearInput()
           
         };

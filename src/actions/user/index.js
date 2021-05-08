@@ -1,6 +1,7 @@
 import {
     TypeActionsCrud,
     loginUser,
+    logoutUser,
     changeUserLoginInfo,
     registerUser,
     registerStore,
@@ -15,6 +16,7 @@ const Actions = {
 export {
     Actions,
     loginUser,
+    logoutUser,
     changeUserLoginInfo,
     registerUser,
     registerStore,
