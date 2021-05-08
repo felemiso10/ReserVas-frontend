@@ -12,6 +12,8 @@ import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Tooltip from '@material-ui/core/Tooltip';
+import AddIcon from '@material-ui/icons/Add';
+import Button from '@material-ui/core/Button';
 
 import BookCard from './BookCard'
 
@@ -77,7 +79,20 @@ const Calendar = ({
                                                     <BookCard book={b} />
                                                 ))
                                             :
-                                                <> No tienes citas para este día </>
+                                                <> 
+                                                    No tienes citas para este día
+                                                    <Button
+                                                        size="small"
+                                                        variant="outlined"
+                                                        endIcon={<AddIcon />}
+                                                    >
+                                                        <Typography
+                                                            variant="body2"
+                                                        >
+                                                            Generar citas del días
+                                                        </Typography>
+                                                    </Button>  
+                                                </>
                                         }
                                     </TableCell>
                                 ))
