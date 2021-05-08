@@ -17,12 +17,14 @@ import Login from './scenes/Login'
 import Register from './scenes/Register'
 import HomeEmpresa from './scenes/HomeEmpresa'
 import Plan from './scenes/Plan'
+import Categorias from './scenes/Categorias'
 
 import {
     DrawerContentScrollView,
     DrawerItem, 
     createDrawerNavigator 
 } from '@react-navigation/drawer';
+
 
 const Drawer = createDrawerNavigator();
 
@@ -89,6 +91,7 @@ const MainPage = ({
                 <Drawer.Screen name="Login" component={Login} />
                 <Drawer.Screen name="Register" component={Register} />
                 <Drawer.Screen name="HomeEmpresa" component={HomeEmpresa} />
+                <Drawer.Screen name="Categorias" component={Categorias} />
                 <Drawer.Screen name="Plan" component={Plan}  />
 
             </Drawer.Navigator>

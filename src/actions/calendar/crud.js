@@ -11,7 +11,8 @@ const api = token =>
 const TypeActionsCrud = {
     GET_ALL_BOOKINGS: 'GET_ALL_BOOKINGS',
     CHANGE_WEEK: 'CHANGE_WEEK',
-    GET_ALL_PLANES: 'GET_ALL_PLANES'
+    GET_ALL_PLANES: 'GET_ALL_PLANES',
+    GET_CATEGORIES: 'GET_CATEGORIES'
 }
 
 const getAllBookings = () => ({
@@ -29,9 +30,15 @@ const getAllPlanes = () => ({
     payload: api().get('/allplanes')
 })
 
+const getCategories = () => ({
+    type: TypeActionsCrud.GET_CATEGORIES,
+    payload: api().get('/categories')
+})
+
 export {
     TypeActionsCrud,
     getAllBookings,
     changeWeek,
-    getAllPlanes
+    getAllPlanes,
+    getCategories
 }
