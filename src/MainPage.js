@@ -42,7 +42,8 @@ function SideMenu({props, isLoggedIn}){
 }
 
 const MainPage = ({
-    isLoggedIn
+    isLoggedIn,
+    categoriaUser
 }) => {
 
     return (
@@ -50,8 +51,7 @@ const MainPage = ({
                 {
                     isLoggedIn ? (
                         <>
-                            <Drawer.Screen name="Home" component={Home}/>
-                            <Drawer.Screen name="HomeEmpresa" component={HomeEmpresa} />
+                            <Drawer.Screen name="Home" component={categoriaUser === 'empresa' ? HomeEmpresa : Home}/>
                             <Drawer.Screen name="Plan" component={Plan}  />
                         </>
                     ) : (
@@ -66,7 +66,8 @@ const MainPage = ({
 }
 
 const mapStateToProps = state => ({
-    isLoggedIn: state.user.isLoggedIn
+    isLoggedIn: state.user.isLoggedIn,
+    categoriaUser: state.user.userLogged.categoria
 })
 
 const mapDispatchToProps = {

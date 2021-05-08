@@ -11,10 +11,11 @@ import { View, Text,TouchableOpacity,Image } from 'react-native';
 const Showplanes = ({
     getAllPlanes,
     allPlanes,
+    token
 }) => {
 
     useEffect(() => {
-        getAllPlanes()
+        getAllPlanes(token)
     },[])
 
     const navigation = useNavigation();
@@ -43,7 +44,8 @@ const Showplanes = ({
 }
 
 const mapStateToProps = state => ({
-    allPlanes: state.calendar.allPlanes
+    allPlanes: state.calendar.allPlanes,
+    token: state.user.userLogged.token
 })
 
 const mapDispatchToProps = {

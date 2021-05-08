@@ -27,7 +27,8 @@ import {
 const Calendar = ({
     fecha, //debe ser un lunes
     selectedDate,
-    changeWeek
+    changeWeek,
+    categoriaUser
 }) => {
     const [columns, setColumns] = useState(calcularFechasParaColumnasCalendario(fecha))
 
@@ -81,17 +82,20 @@ const Calendar = ({
                                             :
                                                 <> 
                                                     No tienes citas para este día
-                                                    <Button
-                                                        size="small"
-                                                        variant="outlined"
-                                                        endIcon={<AddIcon />}
-                                                    >
-                                                        <Typography
-                                                            variant="body2"
+                                                    {
+                                                        categoriaUser === 'empresa' &&
+                                                        <Button
+                                                            size="small"
+                                                            variant="outlined"
+                                                            endIcon={<AddIcon />}
                                                         >
-                                                            Generar citas del días
-                                                        </Typography>
-                                                    </Button>  
+                                                            <Typography
+                                                                variant="body2"
+                                                            >
+                                                                Generar citas del días
+                                                            </Typography>
+                                                        </Button>
+                                                    }
                                                 </>
                                         }
                                     </TableCell>

@@ -7,7 +7,8 @@ const loginUserFullFilled = (state, { payload }) => {
         isLoggedIn: true,
         userLogged: {
             token: payload.token,
-            name: state.user.name
+            name: state.user.name,
+            categoria: payload.direccion ? 'empresa' : 'cliente'
         }
     }
 }
@@ -22,7 +23,8 @@ const logoutUser = state => ({
     isLoggedIn: false,
     userLogged: {
         token: '',
-        name: ''
+        name: '',
+        categoria: ''
     }
 })
 

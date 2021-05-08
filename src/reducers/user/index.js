@@ -26,7 +26,8 @@ const initialState = {
     token: null,
     userLogged: {
         token: '',
-        name: ''
+        name: '',
+        categoria: ''
     }
 }
 

@@ -7,8 +7,9 @@ const appJson = 'application/json'
 const contType = 'Content-Type'
 
 export default class Api {
-    constructor(baseUrl) {
+    constructor(baseUrl, token) {
         this.baseUrl = baseUrl
+        this.token = token
     }
 
     getUrl = url => `${this.baseUrl}${url}`
@@ -19,7 +20,8 @@ export default class Api {
             'access-control-allow-origin': '*',
             'access-control-allow-methods': '*',
             'access-control-allow-headers': '*',
-            "Content-type": "application/json"
+            "Content-type": "application/json",
+            'Authorization': this.token
           }
         }
         //Si options tiene body, se añade en formato JSON al objeto del request
