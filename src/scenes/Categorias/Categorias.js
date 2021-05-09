@@ -24,24 +24,23 @@ const Categorias  = ({
       {
         empres.categories.map((categorie) => (
           <View style={{margin:'auto',paddingTop:40}}>
-            <Card style = {{width: 300, paddingTop:5}}>
+            <Card style = {{width: 340, padding:15}}>
       
                 
-              <Text style={{fontSize:22,margin:'auto'}}> {categorie.empresa}</Text>
+              <Text style={{fontSize:22,margin:'auto',fontWeight:"450"}}> {categorie.empresa}</Text>
               <br/>
-              <Text style={{fontSize:18,color:'navy',marginLeft:5}}> {categorie.direccion}</Text>
+              <Text style={{fontSize:18,color:'navy'}}> {categorie.direccion}</Text>
               <br/>
-              <Text style={{fontSize:18,color:'navy',marginLeft:5}}> {categorie.nombre}</Text>
+              <Text style={{fontSize:18,color:'navy'}}> {categorie.nombre}</Text>
               
               <Image
-               style={{ width: 240, height: 200, margin:'auto',marginTop:10}}
+               style={{ width: 280, height: 220, margin:'auto',marginTop:10}}
                source={{ uri: categorie.imagen }}
             />
             <br/>
 
-            <TouchableOpacity onPress={() => navigation2.navigate('Register')}>
-            <Text style={{marginLeft:5,marginBottom:5,color:'blue'}}>Ver más (enlace)</Text>
-            </TouchableOpacity>
+            <Text style={{marginLeft:5,marginBottom:5,color:'blue'}}  onPress={() => navigation.navigate('Register')}>
+              Ver más (enlace)</Text>
 
             </Card>
           </View>
