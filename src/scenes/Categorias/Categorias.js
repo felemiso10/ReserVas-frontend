@@ -39,8 +39,8 @@ const Categorias  = ({
             />
             <br/>
 
-            <Text style={{marginLeft:5,marginBottom:5,color:'blue'}}  onPress={() => navigation.navigate('Register')}>
-              Ver más (enlace)</Text>
+            <Text style={{marginLeft:5,marginBottom:5,color:'blue'}}  onPress={() => navigation.navigate('VerEmpresa',{empresa : {categorie}})}>
+              Ver más</Text>
 
             </Card>
           </View>

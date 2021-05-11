@@ -6,11 +6,31 @@ import AddIcon from '@material-ui/icons/Add';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import Addcitahomeservice  from './Addcitahomeservice';
+import Addcitacliente  from './Addcitacliente';
 
 const BookCard = ({
-    book
+    book,
+    tipo
 }) => {
-    return book.nombre === "" ? 
+    return tipo == "verEmpresa" ? 
+    (
+        <Card>
+                <CardContent>
+                    <Typography color="textSecondary">
+                        Hora inicio: {book.horaInicio}
+                    </Typography>
+                    <Typography color="textSecondary">
+                        Hora fin: {book.horaFin}
+                    </Typography>
+                    <Tooltip title="Crear cita" >
+                        <Addcitacliente></Addcitacliente>        
+                    </Tooltip>
+                </CardContent>
+            </Card>
+    )
+    :
+    (
+        book.nombre === "" ? 
         (
             <Card>
                 <CardContent>
@@ -41,6 +61,7 @@ const BookCard = ({
                 </Typography>
             </CardContent>
         </Card>
+        )
     )
 }
 
