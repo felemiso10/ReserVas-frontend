@@ -88,9 +88,6 @@ const Home = ({
 }) => {
     const [fecha, setFecha] = useState(calcularLunes(new Date()))
 
-    const [empresas, setEmpresa] = React.useState({
-        empresas:[]
-    })
     const [imagen, setImagen] = useState(null)
     const [downloadURL, setDownloadURL] = useState('')
 
