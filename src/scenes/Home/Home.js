@@ -10,11 +10,12 @@ import {
     calcularSemanaAnterior,
     calcularSemanaPosterior
 } from '../../common/dateFunctions'
-import { changeWeek, getAllBookings,getAllPlanes } from '../../actions/calendar'
+import { changeWeek, getAllBookings,getAllPlanes,getCategories } from '../../actions/calendar'
 import styles from '../../styles/commonStyles'
 import CatCarousel from '../../components/CatCarousel';
 import * as ImagePicker from 'expo-image-picker'
 import Showplanes from '../../components/Showplanes';
+
 
 //Funciones para subir imagenes
 
@@ -84,7 +85,9 @@ const Home = ({
     selectedDate,
     getAllPlanes,
     categoriaUser,
-    token
+    token,
+    getCategories
+
 }) => {
     const [fecha, setFecha] = useState(calcularLunes(new Date()))
 
@@ -126,7 +129,7 @@ const Home = ({
                 />
             </View>             
             <View style={styles.homeCarousel}>               
-                <CatCarousel></CatCarousel>  
+                <CatCarousel getCategories={getCategories}></CatCarousel>  
             </View>  
 
             <View>
@@ -152,7 +155,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
     getAllBookings,
     changeWeek,
-    getAllPlanes
+    getAllPlanes,
+    getCategories
 }
 
 const HomeConnected = connect(mapStateToProps, mapDispatchToProps)(Home)
