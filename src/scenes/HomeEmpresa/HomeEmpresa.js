@@ -13,8 +13,11 @@ import { changeWeek, getAllBookings } from '../../actions/calendar'
 import styles from '../../styles/commonStyles'
 import CatCarousel from '../../components/CatCarousel';
 import * as ImagePicker from 'expo-image-picker'
-
+import Modal from '@material-ui/core/Modal';
 import Addcitahomeservice from '../../components/Addcitahomeservice';
+import { Card } from 'react-native-elements'
+import CustomInput from '../../components/forms/CustomInput'
+import {changeServiceInfo, newService} from '../../actions/user'
 
 //Funciones para subir imagenes
 
@@ -81,10 +84,20 @@ const HomeEmpresa = ({
     getAllBookings, 
     changeWeek,
     allBookings,
-    selectedDate
+    selectedDate,
+    service,
+    changeServiceInfo,
 }) => {
     const [fecha, setFecha] = useState(calcularLunes(new Date()))
+    const [open, setOpen] = React.useState(true);
 
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
     const [imagen, setImagen] = useState(null)
     const [downloadURL, setDownloadURL] = useState('')
 
@@ -123,19 +136,60 @@ const HomeEmpresa = ({
             {/** 
             <Button onPress={() => openImagePickerAsync(setImagen)} title="Seleccionar imagen" /> 
             <Button onPress={() => subirImagen(imagen, setDownloadURL)} title="Subir imagen" />  
-            */}  
+            */}
+             <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+            >
+            <View style={styles.registerContainer}>
+                <div className="row">
+                <Card>
+                <Card.Title>Rellenar cita</Card.Title>
+                <Card.Divider/>
+
+                <CustomInput 
+                placeholder='Hora de Inicio' 
+                onChange={changeServiceInfo} 
+                idInput='horaInicio'
+                object ={service}
+                isRequired = 'true'                  
+                />
+
+                <CustomInput 
+                placeholder='Hora de Finalización' 
+                onChange={changeServiceInfo} 
+                idInput='horaFin'
+                object ={service}
+                isRequired = 'true'                  
+                />  
+               
+                <Card.Divider/>
+                <Button onPress={() => 
+                newServiceComp()
+                } title="Agregar cita" />
+                </Card>
+                </div>
+            </View>
+            </Modal>
+
+              
         </View>
     )
 }
 
 const mapStateToProps = state => ({
     allBookings: state.calendar.allBookings,
-    selectedDate: state.calendar.selectedDate
+    selectedDate: state.calendar.selectedDate,
+    service: state.user.service
+
 })
 
 const mapDispatchToProps = {
     getAllBookings,
-    changeWeek
+    changeWeek,
+    changeServiceInfo
 }
 
 const HomeEmpresaConnected = connect(mapStateToProps, mapDispatchToProps)(HomeEmpresa)
