@@ -69,8 +69,6 @@ const Register = ({
           email: user.email,
           date: fechaModificada
         })
-
-
       }
     }
     function storeForm() {
@@ -223,7 +221,6 @@ const Register = ({
              <Button onPress={() => storeForm() } title="Registrar" />
              <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
                onPress={() => goToLogin()}
-          
                >
                Sign in
              </Text>

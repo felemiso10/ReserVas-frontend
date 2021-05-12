@@ -1,7 +1,9 @@
 import {
     TypeActionsCrud,
     getAllBookings,
-    changeWeek
+    changeWeek,
+    getAllPlanes,
+    getCategories
 } from './crud'
 
 const Actions = {
@@ -11,5 +13,7 @@ const Actions = {
 export {
     Actions,
     getAllBookings,
-    changeWeek
+    changeWeek,
+    getAllPlanes,
+    getCategories
 }

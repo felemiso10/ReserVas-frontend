@@ -23,9 +23,18 @@ const changeWeek = (state, { payload }) => {
     }
 }
 
+const getAllPlanesFullFilled = (state, { payload }) => {
+    console.log(payload)
+    return {
+        ...state,
+        allPlanes: payload
+    }
+}
+
 const Crud = {
     [fullfilled(Actions.GET_ALL_BOOKINGS)]: getAllBookingsFullFilled,
-    [Actions.CHANGE_WEEK]: changeWeek
+    [Actions.CHANGE_WEEK]: changeWeek,
+    [fullfilled(Actions.GET_ALL_PLANES)]: getAllPlanesFullFilled
 }
 
 export default Crud
