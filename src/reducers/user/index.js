@@ -23,7 +23,12 @@ const initialState = {
     userType: 'cliente',
     isLoggedIn: false,
     error: '',
-    token: null
+    token: null,
+    userLogged: {
+        token: '',
+        name: '',
+        categoria: ''
+    }
 }
 
 const Managers = {

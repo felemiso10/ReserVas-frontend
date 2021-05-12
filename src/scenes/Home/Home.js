@@ -84,7 +84,10 @@ const Home = ({
     allBookings,
     selectedDate,
     getAllPlanes,
+    categoriaUser,
+    token,
     getCategories
+
 }) => {
     const [fecha, setFecha] = useState(calcularLunes(new Date()))
 
@@ -93,7 +96,7 @@ const Home = ({
 
     useEffect(() => {
         getAllBookings(),
-        getAllPlanes()
+        getAllPlanes(token)
     },[])
 
     useEffect(() => {
@@ -118,7 +121,12 @@ const Home = ({
         <View>             
             <Header navigation={navigation}/>             
             <View style={{display: 'flex', justifyContent: 'center'}}>
-                <Calendar fecha={fecha} selectedDate={selectedDate} changeWeek={changeWeek} />
+                <Calendar 
+                    fecha={fecha} 
+                    selectedDate={selectedDate} 
+                    changeWeek={changeWeek}
+                    categoriaUser={categoriaUser} 
+                />
             </View>             
             <View style={styles.homeCarousel}>               
                 <CatCarousel getCategories={getCategories}></CatCarousel>  
@@ -139,7 +147,9 @@ const Home = ({
 
 const mapStateToProps = state => ({
     allBookings: state.calendar.allBookings,
-    selectedDate: state.calendar.selectedDate
+    selectedDate: state.calendar.selectedDate,
+    categoriaUser: state.user.userLogged.categoria,
+    token: state.user.userLogged.token
 })
 
 const mapDispatchToProps = {

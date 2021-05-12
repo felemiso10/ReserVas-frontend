@@ -1,12 +1,9 @@
 import Api from '../../common/utilities/api'
 
-const baseUrl = 'http://localhost:3002' //Aquí irá la URL del backend
+const baseUrl = 'http://localhost:8080' //Aquí irá la URL del backend
 
 const api = token =>
-    new Api({
-        baseUrl: baseUrl,
-        defaultOptions: { headers: { Authorization: `Bearer ${token}` } }
-    })
+    new Api(baseUrl, token)
 
 const TypeActionsCrud = {
     GET_ALL_BOOKINGS: 'GET_ALL_BOOKINGS',
@@ -25,9 +22,9 @@ const changeWeek = (fechaLunes) => ({
     payload: { fechaLunes }
 })
 
-const getAllPlanes = () => ({
+const getAllPlanes = (token) => ({
     type: TypeActionsCrud.GET_ALL_PLANES,
-    payload: api().get('/allplanes')
+    payload: api(token).get('/plans')
 })
 
 const getCategories = (category) => ({
