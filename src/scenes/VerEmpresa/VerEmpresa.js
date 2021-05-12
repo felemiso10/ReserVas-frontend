@@ -44,11 +44,13 @@ useEffect(() => {
         setFecha(selectedDate.lunes.fecha)
     }
 }, [selectedDate]) 
+console.log(empresa)
 
     return (
       <View>
       <Header navigation={navigation}/>
           <View style={{alignItems:'center'}} >
+      
           <Card>
             <Card.Title> {empresa.nombreUser} </Card.Title>
             <Image
@@ -57,7 +59,7 @@ useEffect(() => {
             />
             <Card.Divider/>
             <Text style={{fontSize:18,color:'navy'}}> {empresa.direccion}</Text>
-            <Text style={{fontSize:18,color:'navy'}}> {empresa.categoria} </Text>
+            <Text style={{fontSize:18,color:'navy'}}> {empresa.email} </Text>
             </Card>
           </View>
 

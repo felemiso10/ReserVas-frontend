@@ -27,9 +27,9 @@ const getAllPlanes = (token) => ({
     payload: api(token).get('/plans')
 })
 
-const getCategories = (category) => ({
+const getCategories = (category,token) => ({
     type: TypeActionsCrud.GET_CATEGORIES,
-    payload: api().get('/Gimnasio/store')
+    payload: api(token).get('/'+category.category+'/stores')
 })
 
 export {

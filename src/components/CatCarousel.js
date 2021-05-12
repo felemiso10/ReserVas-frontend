@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
 });
 
 const CatCarousel = ({
-  getCategories
+  getCategories,
+  token
 }) => {
   const navigation = useNavigation();
   
@@ -36,53 +37,53 @@ const CatCarousel = ({
 
     switch (val) {
       case 1:
-        getCategories({category:'Medico'}).then(res => {
+        getCategories({category:'Medico'},token).then(res => {
           navigation.navigate('Categorias', {categories:res.value})
         })   
         break;
     
       case 2:
-        getCategories({category:'Psicologo'}).then(res => {
+        getCategories({category:'Psicologo'},token).then(res => {
           navigation.navigate('Categorias', {categories:res.value})
         })   
         break;
 
       case 3:
-        getCategories({category:'Mascotas'}).then(res => {
+        getCategories({category:'Mascotas'},token).then(res => {
           navigation.navigate('Categorias', {categories:res.value})
         })   
         break;
 
       case 4:
-        getCategories({category:'Spa'}).then(res => {
+        getCategories({category:'Spa'},token).then(res => {
           navigation.navigate('Categorias', {categories:res.value})
          })   
       break;
 
       case 5:
-        getCategories({category:'Restaurantes'}).then(res => {
+        getCategories({category:'Restaurantes'},token).then(res => {
           navigation.navigate('Categorias',{categories:res.value})
         })   
         break;
       case 6:
-        getCategories({category:'Estetica'}).then(res => {
+        getCategories({category:'Estetica'},token).then(res => {
           navigation.navigate('Categorias',{categories:res.value})
         })   
         break;
 
       case 7:
-        getCategories({category:'Peluqueria'}).then(res => {
+        getCategories({category:'Peluqueria'},token).then(res => {
           navigation.navigate('Categorias', {categories:res.value})
         })   
         break;
 
       case 8:
-        getCategories({category:'Gimnasio'}).then(res => {
+        getCategories({category:'Gimnasio'},token).then(res => {
           navigation.navigate('Categorias', {categories:res.value})
         })   
       break
       case 9:
-        getCategories({category:'Excursion'}).then(res => {
+        getCategories({category:'Excursion'},token).then(res => {
           navigation.navigate('Categorias', {categories:res.value})
         })   
         break;

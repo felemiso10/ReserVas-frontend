@@ -14,7 +14,7 @@ const BookCard = ({
 }) => {
     return tipo == "verEmpresa" ? 
     (
-        book.nombre === "" ? 
+        book.cliente === "" ? 
         (
             <Card>
                 <CardContent>

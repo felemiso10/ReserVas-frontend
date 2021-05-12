@@ -29,10 +29,14 @@ const Categorias  = ({
                 
               <Text style={{fontSize:22,margin:'auto',fontWeight:"450"}}> {categorie.nombreUser}</Text>
               <br/>
+              <Text style={{fontSize:18}}> Direccion: </Text>
               <Text style={{fontSize:18,color:'navy'}}> {categorie.direccion}</Text>
               <br/>
+              <Text style={{fontSize:18}}> Email: </Text>
               <Text style={{fontSize:18,color:'navy'}}> {categorie.email}</Text>
-              
+              <br/>
+              <Text style={{fontSize:16,color:'navy'}}> {categorie.categoria}</Text>
+
               <Image
                style={{ width: 280, height: 220, margin:'auto',marginTop:10}}
                source={{ uri: categorie.img }}

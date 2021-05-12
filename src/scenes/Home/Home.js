@@ -129,7 +129,7 @@ const Home = ({
                 />
             </View>             
             <View style={styles.homeCarousel}>               
-                <CatCarousel getCategories={getCategories}></CatCarousel>  
+                <CatCarousel getCategories={getCategories} token={token}></CatCarousel>  
             </View>  
 
             <View>
