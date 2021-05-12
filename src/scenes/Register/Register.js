@@ -12,6 +12,72 @@ import { useFocusEffect } from '@react-navigation/native';
 
 import styles from '../../styles/commonStyles'
 
+
+import * as ImagePicker from 'expo-image-picker'
+
+//Funciones para subir imagenes
+
+import firebase from 'firebase/app'
+import 'firebase/storage'
+
+async function transformImageToBlob(uri) {
+    const blob = await new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+          resolve(xhr.response);
+        };
+        xhr.onerror = function(e) {
+          console.log(e);
+          reject(new TypeError('Network request failed'));
+        };
+        xhr.responseType = 'blob';
+        xhr.open('GET', uri, true);
+        xhr.send(null);
+      });
+    return blob
+}
+
+async function subirImagen(localUri, setDownloadURL){
+    const blob = await transformImageToBlob(localUri)
+    const formato = '.png'
+    const nombreImagen = Date.now() + formato
+    var downloadURL = ''
+    firebase.storage().ref(nombreImagen)
+        .put(blob)
+        .then(function(snapshot){
+            snapshot.ref.getDownloadURL().then(function(url){
+                downloadURL = url
+                setDownloadURL(url)
+                console.log(downloadURL)
+            })
+        })
+        .catch(error => {
+            console.log('Error: ', error)
+        })
+    
+}
+
+let openImagePickerAsync = async (setImageFunction) => {
+    const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      alert("Permission to camara roll is required");
+      return;
+    }
+
+    const pickerResult = await ImagePicker.launchImageLibraryAsync({
+        base64: true
+    });
+    if (pickerResult.cancelled === true) {
+      return;
+    }
+    await setImageFunction(pickerResult.uri);
+  };
+
+  
+
+////////////////////////////////
+
 const Register = ({
   changeUserLoginInfo,
   user,
@@ -20,7 +86,9 @@ const Register = ({
   clearInput,
   navigation
 }) => {
+    const [imagen, setImagen] = useState(null)
     const [isEnabled, setIsEnabled] = useState(true);
+    const [downloadURL, setDownloadURL] = useState('')
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);  
     const [visibility, setVisibility] = useState(false);
 
@@ -37,8 +105,6 @@ const Register = ({
     const refAddress = React.createRef();
     useFocusEffect(
       React.useCallback(() => {
-
-
 
         return () => {
 
@@ -73,6 +139,7 @@ const Register = ({
 
       }
     }
+
     function storeForm() {
       if (!user.name || !user.password || !user.username || !user.surname || !user.email || !user.address){
         setValid({
@@ -219,6 +286,8 @@ const Register = ({
                 refer={refAddress}
               />
                 
+                <Button onPress={() => openImagePickerAsync(setImagen)} title="Seleccionar imagen" /> 
+                <Button onPress={() => subirImagen(imagen, setDownloadURL)} title="Subir imagen" />
              
              <Button onPress={() => storeForm() } title="Registrar" />
              <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
