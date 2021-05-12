@@ -36,53 +36,53 @@ const CatCarousel = ({
 
     switch (val) {
       case 1:
-        getCategories().then(res => {
+        getCategories({category:'medico'}).then(res => {
           navigation.navigate('Categorias', {categories:res.value})
         })   
         break;
     
       case 2:
-        getCategories().then(res => {
+        getCategories({category:'psicologo'}).then(res => {
           navigation.navigate('Categorias', {categories:res.value})
         })   
         break;
 
       case 3:
-        getCategories().then(res => {
+        getCategories({category:'mascotas'}).then(res => {
           navigation.navigate('Categorias', {categories:res.value})
         })   
         break;
 
       case 4:
-        getCategories().then(res => {
+        getCategories({category:'spa'}).then(res => {
           navigation.navigate('Categorias', {categories:res.value})
          })   
       break;
 
       case 5:
-        getCategories().then(res => {
+        getCategories({category:'restaurantes'}).then(res => {
           navigation.navigate('Categorias',{categories:res.value})
         })   
         break;
       case 6:
-        getCategories().then(res => {
+        getCategories({category:'estetica'}).then(res => {
           navigation.navigate('Categorias',{categories:res.value})
         })   
         break;
 
       case 7:
-        getCategories().then(res => {
+        getCategories({category:'peluqueria'}).then(res => {
           navigation.navigate('Categorias', {categories:res.value})
         })   
         break;
 
       case 8:
-        getCategories().then(res => {
+        getCategories({category:'deporte'}).then(res => {
           navigation.navigate('Categorias', {categories:res.value})
         })   
       break
       case 9:
-        getCategories().then(res => {
+        getCategories({category:'ocioAireLibre'}).then(res => {
           navigation.navigate('Categorias', {categories:res.value})
         })   
         break;
