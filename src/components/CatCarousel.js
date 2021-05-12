@@ -36,53 +36,53 @@ const CatCarousel = ({
 
     switch (val) {
       case 1:
-        getCategories({category:'medico'}).then(res => {
+        getCategories({category:'Medico'}).then(res => {
           navigation.navigate('Categorias', {categories:res.value})
         })   
         break;
     
       case 2:
-        getCategories({category:'psicologo'}).then(res => {
+        getCategories({category:'Psicologo'}).then(res => {
           navigation.navigate('Categorias', {categories:res.value})
         })   
         break;
 
       case 3:
-        getCategories({category:'mascotas'}).then(res => {
+        getCategories({category:'Mascotas'}).then(res => {
           navigation.navigate('Categorias', {categories:res.value})
         })   
         break;
 
       case 4:
-        getCategories({category:'spa'}).then(res => {
+        getCategories({category:'Spa'}).then(res => {
           navigation.navigate('Categorias', {categories:res.value})
          })   
       break;
 
       case 5:
-        getCategories({category:'restaurantes'}).then(res => {
+        getCategories({category:'Restaurantes'}).then(res => {
           navigation.navigate('Categorias',{categories:res.value})
         })   
         break;
       case 6:
-        getCategories({category:'estetica'}).then(res => {
+        getCategories({category:'Estetica'}).then(res => {
           navigation.navigate('Categorias',{categories:res.value})
         })   
         break;
 
       case 7:
-        getCategories({category:'peluqueria'}).then(res => {
+        getCategories({category:'Peluqueria'}).then(res => {
           navigation.navigate('Categorias', {categories:res.value})
         })   
         break;
 
       case 8:
-        getCategories({category:'deporte'}).then(res => {
+        getCategories({category:'Gimnasio'}).then(res => {
           navigation.navigate('Categorias', {categories:res.value})
         })   
       break
       case 9:
-        getCategories({category:'ocioAireLibre'}).then(res => {
+        getCategories({category:'Excursion'}).then(res => {
           navigation.navigate('Categorias', {categories:res.value})
         })   
         break;

@@ -32,7 +32,7 @@ const getAllPlanes = () => ({
 
 const getCategories = (category) => ({
     type: TypeActionsCrud.GET_CATEGORIES,
-    payload: api().get('/categories',{category:category})
+    payload: api().get('/Gimnasio/store')
 })
 
 export {
