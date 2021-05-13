@@ -15,6 +15,7 @@ import styles from '../../styles/commonStyles'
 import CatCarousel from '../../components/CatCarousel';
 import * as ImagePicker from 'expo-image-picker'
 import Showplanes from '../../components/Showplanes';
+import { useFocusEffect } from '@react-navigation/native';
 
 
 //Funciones para subir imagenes
@@ -87,17 +88,22 @@ const Home = ({
     categoriaUser,
     token,
     getCategories
-
 }) => {
     const [fecha, setFecha] = useState(calcularLunes(new Date()))
 
     const [imagen, setImagen] = useState(null)
     const [downloadURL, setDownloadURL] = useState('')
 
-    useEffect(() => {
-        getAllBookings(),
-        getAllPlanes(token)
-    },[])
+    useFocusEffect(
+        React.useCallback(() => {
+            //ComponentWillMount
+            getAllBookings()
+            getAllPlanes(token)
+            return () => {
+                //ComponentWillUnmount
+            }
+        }, [])
+    )
 
     useEffect(() => {
         console.log(downloadURL)
@@ -134,7 +140,6 @@ const Home = ({
 
             <View>
             <Text style={{fontSize:24,textAlign:'center',fontWeight:'semi-bold',paddingTop: 30}}>Planes completos</Text>
-
                 <Showplanes></Showplanes>  
             </View>    
             {/** 

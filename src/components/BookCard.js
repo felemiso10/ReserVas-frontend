@@ -16,6 +16,9 @@ const BookCard = ({
     (
        <Card>
              <CardContent>
+                <Typography variant="h5" component="h2">
+                    {book.nombre}
+                </Typography>
                  <Typography color="textSecondary">
                     Hora inicio: {book.horaInicio}
                  </Typography>
