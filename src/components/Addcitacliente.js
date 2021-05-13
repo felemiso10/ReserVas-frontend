@@ -9,6 +9,8 @@ import Modal from '@material-ui/core/Modal';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import {reservaServicio} from '../actions/user'
+import {citasVacias} from '../actions/calendar'
+
 import { useNavigation } from '@react-navigation/native';
 
 const Addcitacliente = ({
@@ -16,6 +18,7 @@ const Addcitacliente = ({
   reservaServicio,
   token,
   user,
+  citasVacias
 }) => {
  const [valid, setIsEnabled] = React.useState({
      isValidForm: true,
@@ -33,7 +36,7 @@ const Addcitacliente = ({
        var millisecondsToWait = 900;
        setTimeout(function() {
         setOpen(false)
-        navigation.navigate('Categorias')
+        citasVacias(user,token)
        }, millisecondsToWait);
   }
 
@@ -83,6 +86,7 @@ const mapStateToProps = state => ({
 })
 const mapDispatchToProps = {
   reservaServicio,
+  citasVacias
 }
 
 const AddcitaclienteConnected = connect(mapStateToProps, mapDispatchToProps)(Addcitacliente)
