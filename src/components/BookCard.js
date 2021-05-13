@@ -12,6 +12,7 @@ const BookCard = ({
     book,
     tipo
 }) => {
+   // console.log(book)
     return tipo == "verEmpresa" ? 
     (
        <Card>
@@ -26,7 +27,7 @@ const BookCard = ({
                         Hora fin: {book.horaFin}
                 </Typography>
                 <Tooltip title="Añadir cita" >
-                     <Addcitacliente></Addcitacliente>        
+                     <Addcitacliente service={book}></Addcitacliente>        
                  </Tooltip>
             </CardContent>
        </Card>

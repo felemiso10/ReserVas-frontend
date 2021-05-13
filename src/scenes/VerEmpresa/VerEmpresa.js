@@ -12,6 +12,7 @@ import {
 } from '../../common/dateFunctions'
 import { changeWeek, citasVacias } from '../../actions/calendar'
 import styles from '../../styles/commonStyles'
+import { useFocusEffect } from '@react-navigation/native';
 
 
 const Plan  = ({
@@ -29,9 +30,15 @@ token
  // console.log(empresa.nombreUser)
   const empresaName = empresa.nombreUser;
 
-useEffect(() => {
-    citasVacias({empresaName},token)
-},[empresaName])
+  useFocusEffect(
+    React.useCallback(() => {
+        //ComponentWillMount
+        citasVacias({empresaName},token)
+        return () => {
+            //ComponentWillUnmount
+        }
+    }, [])
+)
 
 useEffect(() => {
     console.log('Semana seleccionada: ', getTituloSemana(fecha))
