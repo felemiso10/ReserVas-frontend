@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, Button } from 'react-native';
-import Addcitahomeservice from '../../components/Addcitahomeservice';
+import MyPlanes from '../../components/MyPlanes';
 import Header from '../../components/Header'
 import Calendar from '../../components/Calendar'
 import { 
@@ -10,11 +10,12 @@ import {
     calcularSemanaAnterior,
     calcularSemanaPosterior
 } from '../../common/dateFunctions'
-import { changeWeek, getAllBookings,getAllPlanes,getCategories } from '../../actions/calendar'
+import { changeWeek, getAllBookings,getAllPlanes,getCategories, getMyPlanes } from '../../actions/calendar'
 import styles from '../../styles/commonStyles'
 import CatCarousel from '../../components/CatCarousel';
 import * as ImagePicker from 'expo-image-picker'
 import Showplanes from '../../components/Showplanes';
+import { useFocusEffect } from '@react-navigation/native';
 
 
 //Funciones para subir imagenes
@@ -86,18 +87,26 @@ const Home = ({
     getAllPlanes,
     categoriaUser,
     token,
-    getCategories
-
+    getCategories,
+    user,
+    getMyPlanes
 }) => {
     const [fecha, setFecha] = useState(calcularLunes(new Date()))
 
     const [imagen, setImagen] = useState(null)
     const [downloadURL, setDownloadURL] = useState('')
 
-    useEffect(() => {
-        getAllBookings(),
-        getAllPlanes(token)
-    },[])
+    useFocusEffect(
+        React.useCallback(() => {
+            //ComponentWillMount
+            getAllBookings()
+            getAllPlanes(token)
+            getMyPlanes(user,token)
+            return () => {
+                //ComponentWillUnmount
+            }
+        }, [])
+    )
 
     useEffect(() => {
         console.log(downloadURL)
@@ -129,12 +138,16 @@ const Home = ({
                 />
             </View>             
             <View style={styles.homeCarousel}>               
-                <CatCarousel getCategories={getCategories}></CatCarousel>  
+                <CatCarousel getCategories={getCategories} token={token}></CatCarousel>  
             </View>  
+            <View>
 
+            <Text style={{fontSize:24,textAlign:'center',fontWeight:'semi-bold',paddingTop: 30}}>Mis Planes</Text>
+                <MyPlanes></MyPlanes>  
+            </View>  
+            
             <View>
             <Text style={{fontSize:24,textAlign:'center',fontWeight:'semi-bold',paddingTop: 30}}>Planes completos</Text>
-
                 <Showplanes></Showplanes>  
             </View>    
             {/** 
@@ -149,14 +162,16 @@ const mapStateToProps = state => ({
     allBookings: state.calendar.allBookings,
     selectedDate: state.calendar.selectedDate,
     categoriaUser: state.user.userLogged.categoria,
-    token: state.user.userLogged.token
+    token: state.user.userLogged.token,
+    user: state.user.userLogged.name,
 })
 
 const mapDispatchToProps = {
     getAllBookings,
     changeWeek,
     getAllPlanes,
-    getCategories
+    getCategories,
+    getMyPlanes
 }
 
 const HomeConnected = connect(mapStateToProps, mapDispatchToProps)(Home)

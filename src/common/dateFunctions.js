@@ -9,11 +9,11 @@ const calcularLunes = (fecha) => {
     var lunes 
     if(fecha.getDay() > 1){
         var dias = fecha.getDay() - 1
-        lunes = moment(fecha).subtract(dias, 'days').format('DD-MM-YYYY')
+        lunes = moment(fecha).subtract(dias, 'days').format('YYYY-MM-DD')
     } else if (fecha.getDay() == 1){
-        lunes = moment(fecha).format('DD-MM-YYYY')
+        lunes = moment(fecha).format('YYYY-MM-DD')
     } else if(fecha.getDay() == 0){
-        lunes = moment(fecha).subtract(6, 'days').format('DD-MM-YYYY')
+        lunes = moment(fecha).subtract(6, 'days').format('YYYY-MM-DD')
     }
     return lunes
 }
@@ -23,7 +23,7 @@ const calcularLunes = (fecha) => {
 const calcularFechasPorSemana = (lunes) => {
     var fechas = []
     for(var i = 0; i < 7; i++){
-        fechas.push(moment(lunes, 'DD-MM-YYYY').add(i, 'days').format('DD-MM-YYYY'))
+        fechas.push(moment(lunes, 'YYYY-MM-DD').add(i, 'days').format('YYYY-MM-DD'))
     }
     return fechas
 }
@@ -40,19 +40,19 @@ const calcularFechasParaColumnasCalendario = (lunes) => {
 
 //Se le pasa un lunes con formato DD-MM-YYYY y devuelve la fecha del lunes anterior
 const calcularSemanaAnterior = (lunes) => {
-    var fechaAnterior = moment(lunes, 'DD-MM-YYYY').subtract(7, 'days').format('DD-MM-YYYY')
+    var fechaAnterior = moment(lunes, 'YYYY-MM-DD').subtract(7, 'days').format('YYYY-MM-DD')
     return fechaAnterior
 }
 
 //Se le pasa un lunes con formato DD-MM-YYYY y devuelve la fecha del lunes posterior
 const calcularSemanaPosterior = (lunes) => {
-    return moment(lunes, 'DD-MM-YYYY').add(7, 'days').format('DD-MM-YYYY')
+    return moment(lunes, 'YYYY-MM-DD').add(7, 'days').format('YYYY-MM-DD')
 }
 
 const getTituloSemana = (lunes) => {
-    const dia = moment(lunes, 'DD-MM-YYYY').format('D')
-    const mes = meses[moment(lunes, 'DD-MM-YYYY').format('M') - 1]
-    const anyo = moment(lunes, 'DD-MM-YYYY').format('YYYY')
+    const dia = moment(lunes, 'YYYY-MM-DD').format('D')
+    const mes = meses[moment(lunes, 'YYYY-MM-DD').format('M') - 1]
+    const anyo = moment(lunes, 'YYYY-MM-DD').format('YYYY')
 
     return 'Semana del ' + dia + ' de ' + mes + ' de ' + anyo
 }

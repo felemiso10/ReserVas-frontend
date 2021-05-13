@@ -37,11 +37,7 @@ const Register = ({
     const refAddress = React.createRef();
     useFocusEffect(
       React.useCallback(() => {
-
-
-
         return () => {
-
           //resetAll()
           clearInput()
         };

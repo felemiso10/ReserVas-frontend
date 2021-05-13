@@ -12,38 +12,29 @@ const BookCard = ({
     book,
     tipo
 }) => {
+   // console.log(book)
     return tipo == "verEmpresa" ? 
     (
-        book.nombre === "" ? 
-        (
-            <Card>
-                <CardContent>
-                    <Typography color="textSecondary">
-                        Hora inicio: {book.horaInicio}
-                    </Typography>
-                    <Typography color="textSecondary">
+       <Card>
+             <CardContent>
+                <Typography variant="h5" component="h2">
+                    {book.nombre}
+                </Typography>
+                 <Typography color="textSecondary">
+                    Hora inicio: {book.horaInicio}
+                 </Typography>
+                <Typography color="textSecondary">
                         Hora fin: {book.horaFin}
-                    </Typography>
-                    <Tooltip title="Añadir cita" >
-                        <Addcitacliente></Addcitacliente>        
-                    </Tooltip>
-                </CardContent>
-            </Card>
-        )
-        :
-        (
-            <Card>
-            <CardContent>
-             <Typography color="textSecondary">
-             Ya Reservado
-             </Typography>
+                </Typography>
+                <Tooltip title="Añadir cita" >
+                     <Addcitacliente service={book}></Addcitacliente>        
+                 </Tooltip>
             </CardContent>
-            </Card>
-        )
+       </Card>
     )
     :
     (
-        book.nombre === "" ? 
+        book.estado == "LIBRE" ? 
         (
             <Card>
                 <CardContent>
@@ -54,7 +45,7 @@ const BookCard = ({
                         Hora fin: {book.horaFin}
                     </Typography>
                     <Tooltip title="Añadir cita" >
-                        <Addcitahomeservice></Addcitahomeservice>        
+                        <Addcitahomeservice servicio={book}></Addcitahomeservice>        
                     </Tooltip>
                 </CardContent>
             </Card>

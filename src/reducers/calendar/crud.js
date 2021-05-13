@@ -31,10 +31,37 @@ const getAllPlanesFullFilled = (state, { payload }) => {
     }
 }
 
+const citasVacias = (state, { payload }) => {
+    console.log(payload)
+    return {
+        ...state,
+        allBookings: payload
+    }
+}
+
+const getCitasEmpresa = (state, { payload }) => {
+    console.log(payload)
+    return {
+        ...state,
+        allBookings: payload
+    }
+}
+
+const getMyPlanesFullfilled = (state, { payload }) => {
+    console.log(payload)
+    return {
+        ...state,
+        myPlanes: payload
+    }
+}
+
 const Crud = {
     [fullfilled(Actions.GET_ALL_BOOKINGS)]: getAllBookingsFullFilled,
     [Actions.CHANGE_WEEK]: changeWeek,
-    [fullfilled(Actions.GET_ALL_PLANES)]: getAllPlanesFullFilled
+    [fullfilled(Actions.GET_ALL_PLANES)]: getAllPlanesFullFilled,
+    [fullfilled(Actions.GET_CITAS_VACIAS)]: citasVacias,
+    [fullfilled(Actions.GET_ALL_BOOKINGS)]: getCitasEmpresa,
+    [fullfilled(Actions.GET_MY_PLANES)]: getMyPlanesFullfilled,
 }
 
 export default Crud

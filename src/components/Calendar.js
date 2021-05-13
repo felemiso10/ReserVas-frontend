@@ -84,7 +84,6 @@ const Calendar = ({
                                                 tipo == "verEmpresa" ?
                                                 (
                                                     <> No hay citas disponibles</>
-
                                                 )
                                                 :
                                                 (                                               

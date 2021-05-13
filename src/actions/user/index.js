@@ -7,7 +7,9 @@ import {
     registerStore,
     changeServiceInfo,
     newService,
-    clearInput
+    clearInput,
+    reservaPlan,
+    reservaServicio
 } from './crud'
 
 
@@ -24,5 +26,7 @@ export {
     registerStore,
     changeServiceInfo,
     newService,
-    clearInput
+    clearInput,
+    reservaPlan,
+    reservaServicio
 }

@@ -9,7 +9,9 @@ const TypeActionsCrud = {
     GET_ALL_BOOKINGS: 'GET_ALL_BOOKINGS',
     CHANGE_WEEK: 'CHANGE_WEEK',
     GET_ALL_PLANES: 'GET_ALL_PLANES',
-    GET_CATEGORIES: 'GET_CATEGORIES'
+    GET_CATEGORIES: 'GET_CATEGORIES',
+    GET_CITAS_VACIAS: 'GET_CITAS_VACIAS',
+    GET_MY_PLANES: 'GET_MY_PLANES'
 }
 
 const getAllBookings = () => ({
@@ -27,9 +29,24 @@ const getAllPlanes = (token) => ({
     payload: api(token).get('/plans')
 })
 
-const getCategories = (category) => ({
+const getMyPlanes = (data,token) => ({
+    type: TypeActionsCrud.GET_MY_PLANES,
+    payload: api(token).get('/users/'+data+'/plans')
+})
+
+const getCategories = (category,token) => ({
     type: TypeActionsCrud.GET_CATEGORIES,
-    payload: api().get('/Gimnasio/store')
+    payload: api(token).get('/'+category.category+'/stores')
+})
+
+const citasVacias = (nombreUser,token) => ({
+    type: TypeActionsCrud.GET_CITAS_VACIAS,
+    payload: api(token).get('/stores/services/available/' + nombreUser.empresaName)
+})
+
+const getCitasEmpresa = (data,token) => ({
+    type: TypeActionsCrud.GET_ALL_BOOKINGS,
+    payload: api(token).get('/stores/'+data+'/services')
 })
 
 export {
@@ -37,5 +54,8 @@ export {
     getAllBookings,
     changeWeek,
     getAllPlanes,
-    getCategories
+    getCategories,
+    citasVacias,
+    getCitasEmpresa,
+    getMyPlanes
 }

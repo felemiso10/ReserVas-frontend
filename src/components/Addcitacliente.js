@@ -8,31 +8,37 @@ import CustomInput from '../components/forms/CustomInput'
 import Modal from '@material-ui/core/Modal';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
-import {changeServiceInfo, newService} from '../actions/user'
+import {reservaServicio} from '../actions/user'
+import {citasVacias} from '../actions/calendar'
+
+import { useNavigation } from '@react-navigation/native';
 
 const Addcitacliente = ({
   service,
-  changeServiceInfo,
-  newService
+  reservaServicio,
+  token,
+  user,
+  citasVacias
 }) => {
  const [valid, setIsEnabled] = React.useState({
      isValidForm: true,
  })
 
- function newServiceComp() {
-  if(service.name === "" || service.name === undefined ){
-       setIsEnabled({isValidForm: false})
-  }
-  else{
-   setIsEnabled({isValidForm: true})
+ const navigation = useNavigation();
 
-       newService({
-           name: service.name,
-           precio:service.precio
+
+ function reservarServicio() {
+     reservaServicio({
+           name: user,
+           token: token,
+           id: service.id
        })
-
+       var millisecondsToWait = 900;
+       setTimeout(function() {
+        setOpen(false)
+        citasVacias(user,token)
+       }, millisecondsToWait);
   }
-}
 
 const [open, setOpen] = React.useState(false);
 
@@ -62,18 +68,8 @@ const [open, setOpen] = React.useState(false);
                 <Card>
                 <Card.Title>Rellenar cita</Card.Title>
                 <Card.Divider/>
-
-                <CustomInput 
-                placeholder='Nombre del servicio...' 
-                onChange={changeServiceInfo} 
-                idInput='name'
-                object ={service}
-                isRequired = 'true'                  
-                />
-
-                <Card.Divider/>
                 <Button onPress={() => 
-                newServiceComp()
+                reservarServicio()
                 } title="Agregar cita" />
                 </Card>
                 </div>
@@ -85,11 +81,12 @@ const [open, setOpen] = React.useState(false);
 }
 
 const mapStateToProps = state => ({
-  service: state.user.service
+  token: state.user.userLogged.token,
+  user: state.user.userLogged.name,
 })
 const mapDispatchToProps = {
-  newService,
-  changeServiceInfo
+  reservaServicio,
+  citasVacias
 }
 
 const AddcitaclienteConnected = connect(mapStateToProps, mapDispatchToProps)(Addcitacliente)
