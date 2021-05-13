@@ -91,6 +91,7 @@ const HomeEmpresa = ({
 
     useEffect(() => {
         getAllBookings()
+        getAllPlanes(token)
     },[])
 
     useEffect(() => {
@@ -142,7 +143,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     getAllBookings,
-    changeWeek
+    changeWeek,
 }
 
 const HomeEmpresaConnected = connect(mapStateToProps, mapDispatchToProps)(HomeEmpresa)
