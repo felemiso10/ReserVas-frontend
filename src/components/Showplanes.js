@@ -19,7 +19,7 @@ const Showplanes = ({
     },[])
 
     const navigation = useNavigation();
-
+    
     return (
             <View style={styles.showPlanes}>
                     {
@@ -29,7 +29,7 @@ const Showplanes = ({
                            <TouchableOpacity onPress={() => navigation.navigate('Plan',{plan : {plan}})}>
                            <Image
                               style={{ width: 225, height: 175,margin:5 }}
-                              source={{ uri: plan.imagen }}
+                              source={{ uri: plan.img }}
                               />
                             </TouchableOpacity>
                             <Text style={{fontSize:18,fontWeight:400}}>

@@ -24,7 +24,7 @@ const Plan  = ({
 
             <Image
                style={{ width: 280, height: 200,alignSelf:'center' }}
-               source={{ uri: plan.imagen }}
+               source={{ uri: plan.img }}
             />
             <Card.Divider/>
 

@@ -14,32 +14,19 @@ const BookCard = ({
 }) => {
     return tipo == "verEmpresa" ? 
     (
-        book.cliente === "" ? 
-        (
-            <Card>
-                <CardContent>
-                    <Typography color="textSecondary">
-                        Hora inicio: {book.horaInicio}
-                    </Typography>
-                    <Typography color="textSecondary">
+       <Card>
+             <CardContent>
+                 <Typography color="textSecondary">
+                    Hora inicio: {book.horaInicio}
+                 </Typography>
+                <Typography color="textSecondary">
                         Hora fin: {book.horaFin}
-                    </Typography>
-                    <Tooltip title="Añadir cita" >
-                        <Addcitacliente></Addcitacliente>        
-                    </Tooltip>
-                </CardContent>
-            </Card>
-        )
-        :
-        (
-            <Card>
-            <CardContent>
-             <Typography color="textSecondary">
-             Ya Reservado
-             </Typography>
+                </Typography>
+                <Tooltip title="Añadir cita" >
+                     <Addcitacliente></Addcitacliente>        
+                 </Tooltip>
             </CardContent>
-            </Card>
-        )
+       </Card>
     )
     :
     (
