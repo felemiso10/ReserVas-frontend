@@ -27,16 +27,20 @@ const Categorias  = ({
             <Card style = {{width: 340, padding:15}}>
       
                 
-              <Text style={{fontSize:22,margin:'auto',fontWeight:"450"}}> {categorie.empresa}</Text>
+              <Text style={{fontSize:22,margin:'auto',fontWeight:"450"}}> {categorie.nombreUser}</Text>
               <br/>
+              <Text style={{fontSize:18}}> Direccion: </Text>
               <Text style={{fontSize:18,color:'navy'}}> {categorie.direccion}</Text>
               <br/>
-              <Text style={{fontSize:18,color:'navy'}}> {categorie.nombre}</Text>
-              
+              <Text style={{fontSize:18}}> Email: </Text>
+              <Text style={{fontSize:18,color:'navy'}}> {categorie.email}</Text>
+              <br/>
+              <Text style={{fontSize:16,color:'navy'}}> {categorie.categoria}</Text>
+
               <Image
                style={{ width: 280, height: 220, margin:'auto',marginTop:10}}
-               source={{ uri: categorie.imagen }}
-            />
+               source={{ uri: categorie.img }}
+              />
             <br/>
 
             <Text style={{marginLeft:5,marginBottom:5,color:'blue'}}  onPress={() => navigation.navigate('VerEmpresa',{empresa : {categorie}})}>

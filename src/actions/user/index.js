@@ -1,12 +1,16 @@
 import {
     TypeActionsCrud,
     loginUser,
+    logoutUser,
     changeUserLoginInfo,
     registerUser,
     registerStore,
     changeServiceInfo,
     newService,
-    clearInput
+    clearInput,
+    reservaPlan,
+    reservaServicio,
+    realizarCancelacion
 } from './crud'
 
 
@@ -17,10 +21,14 @@ const Actions = {
 export {
     Actions,
     loginUser,
+    logoutUser,
     changeUserLoginInfo,
     registerUser,
     registerStore,
     changeServiceInfo,
     newService,
-    clearInput
+    clearInput,
+    reservaPlan,
+    reservaServicio,
+    realizarCancelacion
 }

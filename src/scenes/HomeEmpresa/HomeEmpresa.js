@@ -9,12 +9,11 @@ import {
     calcularSemanaAnterior,
     calcularSemanaPosterior
 } from '../../common/dateFunctions'
-import { changeWeek, getAllBookings } from '../../actions/calendar'
+import { changeWeek, getCitasEmpresa } from '../../actions/calendar'
 import styles from '../../styles/commonStyles'
 import CatCarousel from '../../components/CatCarousel';
 import * as ImagePicker from 'expo-image-picker'
-
-import Addcitahomeservice from '../../components/Addcitahomeservice';
+import { useFocusEffect } from '@react-navigation/native';
 
 //Funciones para subir imagenes
 
@@ -78,19 +77,28 @@ let openImagePickerAsync = async (setImageFunction) => {
 
 const HomeEmpresa = ({
     navigation, 
-    getAllBookings, 
+    getCitasEmpresa, 
     changeWeek,
     allBookings,
-    selectedDate
+    selectedDate,
+    categoriaUser,
+    user,
+    token
 }) => {
     const [fecha, setFecha] = useState(calcularLunes(new Date()))
 
     const [imagen, setImagen] = useState(null)
     const [downloadURL, setDownloadURL] = useState('')
 
-    useEffect(() => {
-        getAllBookings()
-    },[])
+    useFocusEffect(
+        React.useCallback(() => {
+            //ComponentWillMount
+            getCitasEmpresa(user,token)
+            return () => {
+                //ComponentWillUnmount
+            }
+        }, [])
+    )
 
     useEffect(() => {
         console.log(downloadURL)
@@ -114,7 +122,12 @@ const HomeEmpresa = ({
         <View>             
             <Header navigation={navigation}/>             
             <View style={{display: 'flex', justifyContent: 'center'}}>
-                <Calendar fecha={fecha} selectedDate={selectedDate} changeWeek={changeWeek} />
+                <Calendar 
+                    fecha={fecha} 
+                    selectedDate={selectedDate} 
+                    changeWeek={changeWeek}
+                    categoriaUser={categoriaUser} 
+                />
             </View>             
             
             <View style={styles.homeCarousel}>               
@@ -130,12 +143,16 @@ const HomeEmpresa = ({
 
 const mapStateToProps = state => ({
     allBookings: state.calendar.allBookings,
-    selectedDate: state.calendar.selectedDate
+    selectedDate: state.calendar.selectedDate,
+    categoriaUser: state.user.userLogged.categoria,
+    user: state.user.userLogged.name,
+    token: state.user.userLogged.token
 })
 
 const mapDispatchToProps = {
-    getAllBookings,
-    changeWeek
+    getCitasEmpresa,
+    changeWeek,
+
 }
 
 const HomeEmpresaConnected = connect(mapStateToProps, mapDispatchToProps)(HomeEmpresa)

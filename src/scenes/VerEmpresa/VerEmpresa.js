@@ -10,26 +10,35 @@ import {
     calcularSemanaAnterior,
     calcularSemanaPosterior
 } from '../../common/dateFunctions'
-import { changeWeek, getAllBookings,getCategories } from '../../actions/calendar'
+import { changeWeek, citasVacias } from '../../actions/calendar'
 import styles from '../../styles/commonStyles'
+import { useFocusEffect } from '@react-navigation/native';
 
 
 const Plan  = ({
 navigation,
-getAllBookings, 
+citasVacias, 
 changeWeek,
 allBookings,
 selectedDate,
-route
+route,
+token
 }) => {
 
   const [fecha, setFecha] = useState(calcularLunes(new Date()))
   const empresa = route.params.empresa.categorie;
-  console.log(empresa)
+ // console.log(empresa.nombreUser)
+  const empresaName = empresa.nombreUser;
 
-  useEffect(() => {
-    getAllBookings()
-},[])
+  useFocusEffect(
+    React.useCallback(() => {
+        //ComponentWillMount
+        citasVacias({empresaName},token)
+        return () => {
+            //ComponentWillUnmount
+        }
+    }, [])
+)
 
 useEffect(() => {
     console.log('Semana seleccionada: ', getTituloSemana(fecha))
@@ -49,6 +58,7 @@ useEffect(() => {
       <View>
       <Header navigation={navigation}/>
           <View style={{alignItems:'center'}} >
+      
           <Card>
             <Card.Title> {empresa.nombreUser} </Card.Title>
             <Image
@@ -57,7 +67,7 @@ useEffect(() => {
             />
             <Card.Divider/>
             <Text style={{fontSize:18,color:'navy'}}> {empresa.direccion}</Text>
-            <Text style={{fontSize:18,color:'navy'}}> {empresa.categoria} </Text>
+            <Text style={{fontSize:18,color:'navy'}}> {empresa.email} </Text>
             </Card>
           </View>
 
@@ -71,11 +81,12 @@ useEffect(() => {
 
 const mapStateToProps = state => ({
   allBookings: state.calendar.allBookings,
-  selectedDate: state.calendar.selectedDate
+  selectedDate: state.calendar.selectedDate,
+  token: state.user.userLogged.token
 })
 
  const mapDispatchToProps = {
-  getAllBookings,
+  citasVacias,
   changeWeek,
  }
 
