@@ -34,7 +34,7 @@ const BookCard = ({
     )
     :
     (
-        book.nombre === "" ? 
+        book.estado == "LIBRE" ? 
         (
             <Card>
                 <CardContent>
@@ -45,7 +45,7 @@ const BookCard = ({
                         Hora fin: {book.horaFin}
                     </Typography>
                     <Tooltip title="Añadir cita" >
-                        <Addcitahomeservice></Addcitahomeservice>        
+                        <Addcitahomeservice servicio={book}></Addcitahomeservice>        
                     </Tooltip>
                 </CardContent>
             </Card>

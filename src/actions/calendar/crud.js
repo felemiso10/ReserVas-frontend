@@ -38,11 +38,17 @@ const citasVacias = (nombreUser,token) => ({
     payload: api(token).get('/stores/services/available/' + nombreUser.empresaName)
 })
 
+const getCitasEmpresa = (data,token) => ({
+    type: TypeActionsCrud.GET_ALL_BOOKINGS,
+    payload: api(token).get('/stores/'+data+'/services')
+})
+
 export {
     TypeActionsCrud,
     getAllBookings,
     changeWeek,
     getAllPlanes,
     getCategories,
-    citasVacias
+    citasVacias,
+    getCitasEmpresa
 }

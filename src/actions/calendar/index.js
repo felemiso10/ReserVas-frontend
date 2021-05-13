@@ -4,7 +4,8 @@ import {
     changeWeek,
     getAllPlanes,
     getCategories,
-    citasVacias
+    citasVacias,
+    getCitasEmpresa
 } from './crud'
 
 const Actions = {
@@ -17,5 +18,6 @@ export {
     changeWeek,
     getAllPlanes,
     getCategories,
-    citasVacias
+    citasVacias,
+    getCitasEmpresa
 }
