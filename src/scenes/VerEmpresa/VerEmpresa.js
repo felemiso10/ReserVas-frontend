@@ -10,25 +10,27 @@ import {
     calcularSemanaAnterior,
     calcularSemanaPosterior
 } from '../../common/dateFunctions'
-import { changeWeek, getAllBookings,getCategories } from '../../actions/calendar'
+import { changeWeek, citasVacias } from '../../actions/calendar'
 import styles from '../../styles/commonStyles'
 
 
 const Plan  = ({
 navigation,
-getAllBookings, 
+citasVacias, 
 changeWeek,
 allBookings,
 selectedDate,
-route
+route,
+token
 }) => {
 
   const [fecha, setFecha] = useState(calcularLunes(new Date()))
   const empresa = route.params.empresa.categorie;
-  console.log(empresa)
+ // console.log(empresa.nombreUser)
+  const empresaName = empresa.nombreUser;
 
-  useEffect(() => {
-    getAllBookings()
+useEffect(() => {
+    citasVacias({empresaName},token)
 },[])
 
 useEffect(() => {
@@ -44,7 +46,6 @@ useEffect(() => {
         setFecha(selectedDate.lunes.fecha)
     }
 }, [selectedDate]) 
-console.log(empresa)
 
     return (
       <View>
@@ -73,11 +74,12 @@ console.log(empresa)
 
 const mapStateToProps = state => ({
   allBookings: state.calendar.allBookings,
-  selectedDate: state.calendar.selectedDate
+  selectedDate: state.calendar.selectedDate,
+  token: state.user.userLogged.token
 })
 
  const mapDispatchToProps = {
-  getAllBookings,
+  citasVacias,
   changeWeek,
  }
 

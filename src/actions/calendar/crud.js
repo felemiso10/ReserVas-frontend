@@ -9,7 +9,8 @@ const TypeActionsCrud = {
     GET_ALL_BOOKINGS: 'GET_ALL_BOOKINGS',
     CHANGE_WEEK: 'CHANGE_WEEK',
     GET_ALL_PLANES: 'GET_ALL_PLANES',
-    GET_CATEGORIES: 'GET_CATEGORIES'
+    GET_CATEGORIES: 'GET_CATEGORIES',
+    GET_CITAS_VACIAS: 'GET_CITAS_VACIAS'
 }
 
 const getAllBookings = () => ({
@@ -32,10 +33,16 @@ const getCategories = (category,token) => ({
     payload: api(token).get('/'+category.category+'/stores')
 })
 
+const citasVacias = (nombreUser,token) => ({
+    type: TypeActionsCrud.GET_CITAS_VACIAS,
+    payload: api(token).get('/stores/services/available/' + nombreUser.empresaName)
+})
+
 export {
     TypeActionsCrud,
     getAllBookings,
     changeWeek,
     getAllPlanes,
-    getCategories
+    getCategories,
+    citasVacias
 }
