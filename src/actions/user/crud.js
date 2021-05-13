@@ -13,7 +13,8 @@ const TypeActionsCrud = {
     REGISTER_STORE: 'REGISTER_STORE',
     CHANGE_SERVICE_INFO: 'CHANGE_SERVICE_INFO',
     NEW_SERVICE: 'NEW_SERVICE',
-    CLEAR_INPUT: 'CLEAR_INPUT'
+    CLEAR_INPUT: 'CLEAR_INPUT',
+    RESERVAR_PLAN: 'RESERVAR_PLAN'
 }
 
 
@@ -55,7 +56,12 @@ const registerStore = (user) => ({
 //Preguntar por esto 
 const newService = (user) => ({
     type: TypeActionsCrud.NEW_SERVICE,
-    payload: api().post('/login', {body: user})
+    payload: api().post('/RESRVAR')
+})
+
+const reservaPlan = (datos) => ({
+    type: TypeActionsCrud.NEW_SERVICE,
+    payload: api(datos.token).post('/plans/'+datos.id+'/reserve/'+datos.name)
 })
 
 const clearInput = () => ({
@@ -71,5 +77,7 @@ export {
     registerStore,
     changeServiceInfo,
     newService,
-    clearInput
+    reservaPlan,
+    clearInput,
+    
 }

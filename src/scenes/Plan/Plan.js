@@ -4,15 +4,27 @@ import { connect } from 'react-redux'
 import { View } from 'react-native';
 import Header from '../../components/Header'
 import { Card } from 'react-native-elements'
+import { reservaPlan } from '../../actions/user'
 
 const Plan  = ({
     navigation,
+    reservaPlan,
     //Route sirve para pasar los paremetros -
-    route
+    route,
+    user,
+    token
 }) => {
   //No se porque guarda plan dentro de plan en lugar de hacer x= x
   const plan = route.params.plan.plan;
-  console.log(plan)
+  console.log(user)
+  function realizarReserva() {    
+        reservaPlan({
+             id: plan.id,
+             name: user,
+             token
+         })
+  }
+ 
     return (
       <View>
       <Header navigation={navigation}/>
@@ -49,11 +61,13 @@ const Plan  = ({
 }
 
 const mapStateToProps = state => ({
-
+  user: state.user.userLogged.name,
+  token: state.user.userLogged.token
 })
 
  const mapDispatchToProps = {
    //Aqui ira el boton para realizar la reserva -
+   reservaPlan,
  }
 
 const PlanConnected = connect(mapStateToProps, mapDispatchToProps)(Plan)

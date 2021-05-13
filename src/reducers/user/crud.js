@@ -73,6 +73,10 @@ const newServiceRejected = state => ({
     error: 'Error al crear la cita'
 })
 
+const reservaPlanFullFilled = (state, { payload }) => ({
+    ...state  
+})
+
 const clearInput = (state) => {
     state.user.name = ""
     state.user.password = ""
@@ -96,7 +100,8 @@ const Crud = {
     [Actions.CHANGE_SERVICE_INFO]: changeServiceInfo,  
     [fullfilled(Actions.NEW_SERVICE)]: newServiceFullFilled,
     [rejected(Actions.NEW_SERVICE)]: newServiceRejected,
-    [Actions.CLEAR_INPUT]: clearInput
+    [Actions.CLEAR_INPUT]: clearInput,
+    [fullfilled(Actions.RESERVAR_PLAN)]: reservaPlanFullFilled,
 }
 
 export default Crud
