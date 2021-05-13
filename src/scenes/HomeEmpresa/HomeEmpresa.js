@@ -150,7 +150,6 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-    getAllBookings,
     changeWeek,
     getCitasEmpresa
 }
