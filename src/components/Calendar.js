@@ -29,7 +29,8 @@ const Calendar = ({
     selectedDate,
     changeWeek,
     categoriaUser,
-    tipo
+    tipo,
+    
 }) => {
     const [columns, setColumns] = useState(calcularFechasParaColumnasCalendario(fecha))
 
@@ -78,7 +79,7 @@ const Calendar = ({
                                         { 
                                             selectedDate[col.id].bookings.length > 0 ?
                                                 selectedDate[col.id].bookings.map(b => (
-                                                    <BookCard book={b} tipo={tipo}/>
+                                                    <BookCard book={b} tipo={tipo} tipoUser={categoriaUser}/>
                                                 ))
                                             :
                                                 tipo == "verEmpresa" ?

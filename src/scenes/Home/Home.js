@@ -99,7 +99,7 @@ const Home = ({
     useFocusEffect(
         React.useCallback(() => {
             //ComponentWillMount
-            getAllBookings()
+            getAllBookings(token, user)
             getAllPlanes(token)
             getMyPlanes(user,token)
             return () => {
@@ -139,9 +139,9 @@ const Home = ({
             </View>             
             <View style={styles.homeCarousel}>               
                 <CatCarousel getCategories={getCategories} token={token}></CatCarousel>  
-            </View>  
+            </View>
+             
             <View>
-
             <Text style={{fontSize:24,textAlign:'center',fontWeight:'semi-bold',paddingTop: 30}}>Mis Planes</Text>
                 <MyPlanes></MyPlanes>  
             </View>  
