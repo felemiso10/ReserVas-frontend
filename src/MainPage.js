@@ -16,6 +16,8 @@ import Login from './scenes/Login'
 import Register from './scenes/Register'
 import HomeEmpresa from './scenes/HomeEmpresa'
 import Plan from './scenes/Plan'
+import Categorias from './scenes/Categorias'
+import VerEmpresa from './scenes/VerEmpresa'
 
 import {
     DrawerContentScrollView,
@@ -23,11 +25,13 @@ import {
     createDrawerNavigator 
 } from '@react-navigation/drawer';
 
+
 const Drawer = createDrawerNavigator();
 
 function SideMenu({props, isLoggedIn}){
     return (
         <DrawerContentScrollView {...props}>
+
             {
                 isLoggedIn &&
                 <DrawerItem  label="Home" icon={() => <Icon name='home' type='font-awesome'/>} onPress={() => props.navigation.navigate('Home')} />
@@ -53,6 +57,9 @@ const MainPage = ({
                         <>
                             <Drawer.Screen name="Home" component={categoriaUser === 'empresa' ? HomeEmpresa : Home}/>
                             <Drawer.Screen name="Plan" component={Plan}  />
+                            <Drawer.Screen name="Categorias" component={Categorias} />
+                            <Drawer.Screen name="VerEmpresa" component={VerEmpresa}  />
+
                         </>
                     ) : (
                         <>
@@ -61,6 +68,7 @@ const MainPage = ({
                         </>
                     )
                 }
+
             </Drawer.Navigator>
     )
 }

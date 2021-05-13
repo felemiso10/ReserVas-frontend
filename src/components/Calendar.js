@@ -28,7 +28,8 @@ const Calendar = ({
     fecha, //debe ser un lunes
     selectedDate,
     changeWeek,
-    categoriaUser
+    categoriaUser,
+    tipo
 }) => {
     const [columns, setColumns] = useState(calcularFechasParaColumnasCalendario(fecha))
 
@@ -77,10 +78,17 @@ const Calendar = ({
                                         { 
                                             selectedDate[col.id].bookings.length > 0 ?
                                                 selectedDate[col.id].bookings.map(b => (
-                                                    <BookCard book={b} />
+                                                    <BookCard book={b} tipo={tipo}/>
                                                 ))
                                             :
-                                                <> 
+                                                tipo == "verEmpresa" ?
+                                                (
+                                                    <> No hay citas disponibles</>
+
+                                                )
+                                                :
+                                                (                                               
+                                                    <> 
                                                     No tienes citas para este día
                                                     {
                                                         categoriaUser === 'empresa' &&
@@ -97,6 +105,7 @@ const Calendar = ({
                                                         </Button>
                                                     }
                                                 </>
+                                                )
                                         }
                                     </TableCell>
                                 ))
