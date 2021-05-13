@@ -31,7 +31,7 @@ token
 
 useEffect(() => {
     citasVacias({empresaName},token)
-},[])
+},[empresaName])
 
 useEffect(() => {
     console.log('Semana seleccionada: ', getTituloSemana(fecha))
