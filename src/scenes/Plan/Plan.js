@@ -17,13 +17,19 @@ const Plan  = ({
   //No se porque guarda plan dentro de plan en lugar de hacer x= x
   const plan = route.params.plan.plan;
   console.log(user)
- function realizarReserva() {    
+ async function realizarReserva() {    
+   
         reservaPlan({
              id: plan.id,
              name: user,
              token
          })
-         navigation.navigate('Home')
+
+         var millisecondsToWait = 900;
+          setTimeout(function() {
+            navigation.navigate('Home')
+          }, millisecondsToWait);
+
   }
  
     return (
