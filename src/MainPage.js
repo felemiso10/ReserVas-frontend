@@ -18,6 +18,8 @@ import HomeEmpresa from './scenes/HomeEmpresa'
 import Plan from './scenes/Plan'
 import Categorias from './scenes/Categorias'
 import VerEmpresa from './scenes/VerEmpresa'
+import Vermiplan from './scenes/Vermiplan'
+
 
 import {
     DrawerContentScrollView,
@@ -59,6 +61,7 @@ const MainPage = ({
                             <Drawer.Screen name="Plan" component={Plan}  />
                             <Drawer.Screen name="Categorias" component={Categorias} />
                             <Drawer.Screen name="VerEmpresa" component={VerEmpresa}  />
+                            <Drawer.Screen name="Vermiplan" component={Vermiplan}  />
 
                         </>
                     ) : (

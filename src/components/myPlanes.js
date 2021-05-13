@@ -22,7 +22,7 @@ const MyPlanes = ({
                         allPlanes.map((plan) => (
                         <View style={{paddingLeft:30,paddingTop:40}}>
                           <Card style = {{padding:15,width:270,height:250}}>
-                           <TouchableOpacity onPress={() => navigation.navigate('Plan',{plan : {plan}})}>
+                           <TouchableOpacity onPress={() => navigation.navigate('Vermiplan',{plan : {plan}})}>
                            <Image
                               style={{ width: 225, height: 175,margin:5 }}
                               source={{ uri: plan.img }}

@@ -9,7 +9,8 @@ import {
     newService,
     clearInput,
     reservaPlan,
-    reservaServicio
+    reservaServicio,
+    realizarCancelacion
 } from './crud'
 
 
@@ -28,5 +29,6 @@ export {
     newService,
     clearInput,
     reservaPlan,
-    reservaServicio
+    reservaServicio,
+    realizarCancelacion
 }
