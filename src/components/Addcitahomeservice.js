@@ -75,7 +75,7 @@ const [open, setOpen] = React.useState(false);
             <View style={styles.registerContainer}>
                 <div className="row">
                 <Card>
-                <Card.Title>Rellenar cita</Card.Title>
+                <Card.Title>¿Agregar cita?</Card.Title>
                 <Card.Divider/>
                 <CustomInput 
                 placeholder='Usuario...' 

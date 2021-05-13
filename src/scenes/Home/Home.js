@@ -89,7 +89,9 @@ const Home = ({
     token,
     getCategories,
     user,
-    getMyPlanes
+    getMyPlanes,
+    allPlanes,
+    myPlanes
 }) => {
     const [fecha, setFecha] = useState(calcularLunes(new Date()))
 
@@ -140,16 +142,27 @@ const Home = ({
             <View style={styles.homeCarousel}>               
                 <CatCarousel getCategories={getCategories} token={token}></CatCarousel>  
             </View>  
-            <View>
 
+        {
+          
+            myPlanes.length !== 0 &&
+            (
+            <View>
             <Text style={{fontSize:24,textAlign:'center',fontWeight:'semi-bold',paddingTop: 30}}>Mis Planes</Text>
                 <MyPlanes></MyPlanes>  
             </View>  
-            
+            )
+        } 
+        
+        {
+            allPlanes.length !== 0 &&
+            (
             <View>
             <Text style={{fontSize:24,textAlign:'center',fontWeight:'semi-bold',paddingTop: 30}}>Planes completos</Text>
                 <Showplanes></Showplanes>  
             </View>    
+            )
+        }
             {/** 
             <Button onPress={() => openImagePickerAsync(setImagen)} title="Seleccionar imagen" /> 
             <Button onPress={() => subirImagen(imagen, setDownloadURL)} title="Subir imagen" />  
@@ -164,6 +177,9 @@ const mapStateToProps = state => ({
     categoriaUser: state.user.userLogged.categoria,
     token: state.user.userLogged.token,
     user: state.user.userLogged.name,
+    allPlanes: state.calendar.allPlanes,
+    myPlanes: state.calendar.myPlanes,
+
 })
 
 const mapDispatchToProps = {
