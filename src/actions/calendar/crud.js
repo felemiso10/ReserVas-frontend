@@ -45,7 +45,7 @@ const citasVacias = (nombreUser,token) => ({
 })
 
 const getCitasEmpresa = (data,token) => ({
-    type: TypeActionsCrud.GET_MY_PLANES,
+    type: TypeActionsCrud.GET_ALL_BOOKINGS,
     payload: api(token).get('/stores/'+data+'/services')
 })
 
