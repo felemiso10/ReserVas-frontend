@@ -5,7 +5,8 @@ import {
     getAllPlanes,
     getCategories,
     citasVacias,
-    getCitasEmpresa
+    getCitasEmpresa,
+    getMyPlanes
 } from './crud'
 
 const Actions = {
@@ -19,5 +20,6 @@ export {
     getAllPlanes,
     getCategories,
     citasVacias,
-    getCitasEmpresa
+    getCitasEmpresa,
+    getMyPlanes
 }
