@@ -37,7 +37,7 @@ token
         return () => {
             //ComponentWillUnmount
         }
-    }, [])
+    }, [empresaName])
 )
 
 useEffect(() => {

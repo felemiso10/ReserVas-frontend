@@ -15,7 +15,8 @@ const TypeActionsCrud = {
     NEW_SERVICE: 'NEW_SERVICE',
     CLEAR_INPUT: 'CLEAR_INPUT',
     RESERVAR_PLAN: 'RESERVAR_PLAN',
-    RESERVAR_SERVICIO: 'RESERVAR_SERVICIO'
+    RESERVAR_SERVICIO: 'RESERVAR_SERVICIO',
+    CANCELAR_SERVICIO: 'CANCELAR_SERVICIO'
 }
 
 
@@ -70,6 +71,11 @@ const reservaServicio = (datos) => ({
     payload: api(datos.token).post('/services/'+datos.id+'/reserve/'+datos.name)
 })
 
+const realizarCancelacion = (datos) => ({
+    type: TypeActionsCrud.NEW_SERVICE,
+    payload: api(datos.token).post('/plans/'+datos.id+'/cancel')
+})
+
 const clearInput = () => ({
     type: TypeActionsCrud.CLEAR_INPUT,
 })
@@ -85,5 +91,6 @@ export {
     newService,
     reservaPlan,
     clearInput,
-    reservaServicio
+    reservaServicio,
+    realizarCancelacion
 }

@@ -81,6 +81,10 @@ const reservaServicioFullFilled = (state, { payload }) => ({
     ...state  
 })
 
+const realizarCancelacionFullFilled = (state, { payload }) => ({
+    ...state  
+})
+
 const clearInput = (state) => {
     state.user.name = ""
     state.user.password = ""
@@ -107,6 +111,7 @@ const Crud = {
     [Actions.CLEAR_INPUT]: clearInput,
     [fullfilled(Actions.RESERVAR_PLAN)]: reservaPlanFullFilled,
     [fullfilled(Actions.RESERVAR_SERVICIO)]: reservaServicioFullFilled,
+    [fullfilled(Actions.CANCELAR_SERVICIO)]: realizarCancelacionFullFilled,
 }
 
 export default Crud
