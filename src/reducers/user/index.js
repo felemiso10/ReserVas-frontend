@@ -9,7 +9,10 @@ const initialState = {
         nif: '',
         phone: '',
         address: '',
-        date: ''
+        date: '',
+        categoria: '',
+        inicioJornada: '',
+        finJornada: ''
     },
     service: {
         name: '', //(service)

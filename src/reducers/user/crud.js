@@ -69,6 +69,11 @@ const clearInput = (state) => {
     return{...state}
 }
 
+const addHoras = state => ({
+    ...state,
+    error: 'Error al añadir las Horas'
+})
+
 const Crud = {
     [fullfilled(Actions.LOGIN_USER)]: loginUserFullFilled,
     [rejected(Actions.LOGIN_USER)]: loginUserRejected,
@@ -80,7 +85,8 @@ const Crud = {
     [Actions.CHANGE_SERVICE_INFO]: changeServiceInfo,  
     [fullfilled(Actions.NEW_SERVICE)]: newServiceFullFilled,
     [rejected(Actions.NEW_SERVICE)]: newServiceRejected,
-    [Actions.CLEAR_INPUT]: clearInput
+    [Actions.CLEAR_INPUT]: clearInput,
+    [Actions.ADD_HORAS]: addHoras
 }
 
 export default Crud

@@ -15,7 +15,8 @@ const TypeActionsCrud = {
     REGISTER_STORE: 'REGISTER_STORE',
     CHANGE_SERVICE_INFO: 'CHANGE_SERVICE_INFO',
     NEW_SERVICE: 'NEW_SERVICE',
-    CLEAR_INPUT: 'CLEAR_INPUT'
+    CLEAR_INPUT: 'CLEAR_INPUT',
+    ADD_HORAS:'ADD_HORAS'
 }
 
 
@@ -60,6 +61,12 @@ const clearInput = () => ({
     type: TypeActionsCrud.CLEAR_INPUT,
 })
 
+const addHoras = (user,name) => ({
+    type: TypeActionsCrud.ADD_HORAS,
+    payload: api().post('/establishTimeTable/' +name, {body:user})
+})
+
+
 export {
     TypeActionsCrud,
     loginUser,
@@ -68,5 +75,6 @@ export {
     registerStore,
     changeServiceInfo,
     newService,
-    clearInput
+    clearInput,
+    addHoras
 }

@@ -17,7 +17,7 @@ import Modal from '@material-ui/core/Modal';
 import Addcitahomeservice from '../../components/Addcitahomeservice';
 import { Card } from 'react-native-elements'
 import CustomInput from '../../components/forms/CustomInput'
-import {changeServiceInfo, newService} from '../../actions/user'
+import {addHoras, changeUserLoginInfo} from '../../actions/user'
 
 //Funciones para subir imagenes
 
@@ -85,8 +85,9 @@ const HomeEmpresa = ({
     changeWeek,
     allBookings,
     selectedDate,
-    service,
-    changeServiceInfo,
+    user,
+    changeUserLoginInfo,
+    addHoras
 }) => {
     const [fecha, setFecha] = useState(calcularLunes(new Date()))
     const [open, setOpen] = React.useState(true);
@@ -151,23 +152,26 @@ const HomeEmpresa = ({
 
                 <CustomInput 
                 placeholder='Hora de Inicio' 
-                onChange={changeServiceInfo} 
-                idInput='horaInicio'
-                object ={service}
+                onChange={changeUserLoginInfo} 
+                idInput='inicioJornada'
+                object ={user}
                 isRequired = 'true'                  
                 />
 
                 <CustomInput 
                 placeholder='Hora de Finalización' 
-                onChange={changeServiceInfo} 
-                idInput='horaFin'
-                object ={service}
+                onChange={changeUserLoginInfo} 
+                idInput='finJornada'
+                object ={user}
                 isRequired = 'true'                  
                 />  
                
                 <Card.Divider/>
                 <Button onPress={() => 
-                newServiceComp()
+                addHoras({
+                    inicioJornada: user.inicioJornada,
+                    finJornada: user.finJornada
+                },user.username)
                 } title="Agregar cita" />
                 </Card>
                 </div>
@@ -182,14 +186,15 @@ const HomeEmpresa = ({
 const mapStateToProps = state => ({
     allBookings: state.calendar.allBookings,
     selectedDate: state.calendar.selectedDate,
-    service: state.user.service
+    user: state.user.user
 
 })
 
 const mapDispatchToProps = {
     getAllBookings,
     changeWeek,
-    changeServiceInfo
+    changeUserLoginInfo,
+    addHoras
 }
 
 const HomeEmpresaConnected = connect(mapStateToProps, mapDispatchToProps)(HomeEmpresa)
