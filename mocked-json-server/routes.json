@@ -1,0 +1,7 @@
+{
+  "/businessrules/getAll?page=:page&size=:size": "/businessrules?_page=:page&_limit=:size",
+  "/businessrules/getAll/:field\\::order\\?page=:page&size=:size": "/businessrules?_page=:page&_limit=:size&_sort=:field&_order=:order",
+  "/businessrules/delete": "/businessrules",
+  "/businessrules/create": "/businessrules",
+  "/:option/get": "/:option"
+}
