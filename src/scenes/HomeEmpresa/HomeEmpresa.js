@@ -150,9 +150,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-    getCitasEmpresa,
     changeWeek,
-
+    getCitasEmpresa
 }
 
 const HomeEmpresaConnected = connect(mapStateToProps, mapDispatchToProps)(HomeEmpresa)

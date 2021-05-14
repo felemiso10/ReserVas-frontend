@@ -101,7 +101,7 @@ const Home = ({
     useFocusEffect(
         React.useCallback(() => {
             //ComponentWillMount
-            getAllBookings()
+            getAllBookings(token, user)
             getAllPlanes(token)
             getMyPlanes(user,token)
             return () => {
