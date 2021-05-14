@@ -9,7 +9,7 @@ import Header from '../../components/Header'
 import CustomInput from '../../components/forms/CustomInput'
 import DatePicker from 'react-native-modern-datepicker';
 import { useFocusEffect } from '@react-navigation/native';
-
+import {Picker} from '@react-native-picker/picker';
 import styles from '../../styles/commonStyles'
 
 
@@ -91,7 +91,8 @@ const Register = ({
     const [downloadURL, setDownloadURL] = useState('')
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);  
     const [visibility, setVisibility] = useState(false);
-
+    const [selectedLanguage, setSelectedLanguage] = useState();
+  
     const [valid, setValid] = React.useState({
       isValidUserForm: true,
       isValidStoreForm: true
@@ -133,7 +134,8 @@ const Register = ({
           password: user.password,
           name: user.name,
           email: user.email,
-          date: fechaModificada
+          date: fechaModificada,
+          category: user.category
         })
 
 
@@ -156,7 +158,8 @@ const Register = ({
           password: user.password,
           name: user.name,
           email: user.email,
-          address: user.address
+          address: user.address,
+          category: user.category
         })
       }
     }
@@ -285,12 +288,30 @@ const Register = ({
                 isRequired = 'true'
                 refer={refAddress}
               />
-                
+
+              <Picker
+                selectedValue={selectedLanguage}
+                onValueChange={(itemValue, itemIndex) =>
+                  changeUserLoginInfo('category', itemValue)
+                }>
+                <Picker.Item label="Medico" value= "Medico" />
+                <Picker.Item label="Psicologo" value="Psicologo" />
+                <Picker.Item label="Mascotas" value="Mascotas" />
+                <Picker.Item label="Spa" value="Spa" />
+                <Picker.Item label="Restaurantes" value="Restaurantes" />
+                <Picker.Item label="Estetica" value="Estetica" />
+                <Picker.Item label="Peluquería" value="Peluqueria" />
+                <Picker.Item label="Deporte" value="Psicologo" />
+                <Picker.Item label="Ocio al Aire Libre" value="ocioAireLibre" />
+              </Picker>
+
+                <br/>
                 <Button onPress={() => openImagePickerAsync(setImagen)} title="Seleccionar imagen" /> 
+                <br/>
                 <Button onPress={() => subirImagen(imagen, setDownloadURL)} title="Subir imagen" />
-             
+                <br/>
              <Button onPress={() => storeForm() } title="Registrar" />
-             <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
+            <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
                onPress={() => goToLogin()}
           
                >

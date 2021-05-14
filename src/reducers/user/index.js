@@ -9,7 +9,8 @@ const initialState = {
         nif: '',
         phone: '',
         address: '',
-        date: ''
+        date: '',
+        category:''
     },
     //El tipo de usuario puede ser tienda o cliente
     userType: 'cliente',
