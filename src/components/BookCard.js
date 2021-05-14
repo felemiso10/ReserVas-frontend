@@ -19,7 +19,8 @@ const BookCard = ({
     tipoUser,
     token,
     getPlanById,
-    selectedPlan
+    selectedPlan,
+    empresaName
 }) => {
    // console.log(book)
 
@@ -81,7 +82,7 @@ const BookCard = ({
                 {
                     tipo === 'verEmpresa' &&
                     <Tooltip title="Añadir cita" >
-                        <Addcitacliente service={book}></Addcitacliente>        
+                        <Addcitacliente service={book} empresaName = {empresaName}></Addcitacliente>        
                     </Tooltip>
                 }
                 </CardContent>
