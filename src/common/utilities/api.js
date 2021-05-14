@@ -17,11 +17,20 @@ export default class Api {
     generateOptionsRequestObject = options => {
         var requestObject = {
           headers: {
+            'accept': '*/*',
+            'accept-encoding': 'gzip, deflate, br',
+            'Accept-Language': 'es-ES,es;q=0.9',
+            'access-control-allow-headers': 'Origin, Content-Type, X-Auth-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization',
+            'access-control-allow-methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
             'access-control-allow-origin': '*',
-            'access-control-allow-methods': '*',
-            'access-control-allow-headers': '*',
+            'Authorization': this.token,
+            //'Connection': 'keep-alive',
             "Content-type": "application/json",
-            'Authorization': this.token
+            //'Host': 'localhost:8080',
+            //'Referer': 'http://localhost:19006/',
+            //'Sec-Fetch-Dest': 'empty',
+            //'Sec-Fetch-Mode': 'cors',
+            //'Sec-Fetch-Site': 'same-site',
           }
         }
         //Si options tiene body, se añade en formato JSON al objeto del request
@@ -42,32 +51,33 @@ export default class Api {
       }
     
       get = (url, options={}) => 
-      fetch(this.getUrl(url), this.generateOptionsRequestObject(options))
-        .then(response => response.json())
-        .catch(error => {
-          console.log(error)
-          throw { error }
-        })
-        post = (url, options={}) => 
+        fetch(this.getUrl(url), this.generateOptionsRequestObject({...options, method: 'GET'}))
+          .then(response => response.json())
+          .catch(error => {
+            console.log(error)
+            throw { error }
+          })
+      post = (url, options={}) => 
         fetch(this.getUrl(url), this.generateOptionsRequestObject({...options, method: 'POST'}))
           .then(response => response.json())
           .catch(error => {
             console.log(error)
             throw { error }
           })
-          put = (url, options={}) => 
-          fetch(this.getUrl(url), this.generateOptionsRequestObject({...options, method: 'PUT'}))
-            .then(response => response.json())
-            .catch(error => {
-              console.log(error)
-              throw { error }
-            })
+
+      put = (url, options={}) => 
+        fetch(this.getUrl(url), this.generateOptionsRequestObject({...options, method: 'PUT'}))
+          .then(response => response.json())
+          .catch(error => {
+            console.log(error)
+            throw { error }
+          })
         
-        delete = (url, options={}) =>
-            fetch(this.getUrl(url), this.generateOptionsRequestObject({...options, method: 'DELETE'}))
-            .then(response => response.json())
-            .catch(error => {
-              console.log(error)
-              throw { error }
-            })
+      delete = (url, options={}) =>
+        fetch(this.getUrl(url), this.generateOptionsRequestObject({...options, method: 'DELETE'}))
+          .then(response => response.json())
+          .catch(error => {
+            console.log(error)
+            throw { error }
+          })
 }

@@ -11,12 +11,13 @@ const TypeActionsCrud = {
     GET_ALL_PLANES: 'GET_ALL_PLANES',
     GET_CATEGORIES: 'GET_CATEGORIES',
     GET_CITAS_VACIAS: 'GET_CITAS_VACIAS',
-    GET_MY_PLANES: 'GET_MY_PLANES'
+    GET_MY_PLANES: 'GET_MY_PLANES',
+    GET_PLAN_BY_ID: 'GET_PLAN_BY_ID'
 }
 
-const getAllBookings = () => ({
+const getAllBookings = (token, nombreUser) => ({
     type: TypeActionsCrud.GET_ALL_BOOKINGS,
-    payload: api().get('/reservasUsuario')
+    payload: api(token).get('/users/'+ nombreUser + '/services')
 })
 
 const changeWeek = (fechaLunes) => ({
@@ -49,6 +50,11 @@ const getCitasEmpresa = (data,token) => ({
     payload: api(token).get('/stores/'+data+'/services')
 })
 
+const getPlanById = (token, id) => ({
+    type: TypeActionsCrud.GET_PLAN_BY_ID,
+    payload: api(token).get('/services/' + id)
+})
+
 export {
     TypeActionsCrud,
     getAllBookings,
@@ -57,5 +63,6 @@ export {
     getCategories,
     citasVacias,
     getCitasEmpresa,
-    getMyPlanes
+    getMyPlanes,
+    getPlanById
 }
