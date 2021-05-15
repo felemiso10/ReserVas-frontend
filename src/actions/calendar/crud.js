@@ -13,7 +13,8 @@ const TypeActionsCrud = {
     GET_CATEGORIES: 'GET_CATEGORIES',
     GET_CITAS_VACIAS: 'GET_CITAS_VACIAS',
     GET_MY_PLANES: 'GET_MY_PLANES',
-    GET_PLAN_BY_ID: 'GET_PLAN_BY_ID'
+    GET_PLAN_BY_ID: 'GET_PLAN_BY_ID',
+    CANCELA_SERVICIO: 'CANCELA_SERVICIO'
 }
 
 const getAllBookings = (token, nombreUser) => ({
@@ -60,6 +61,12 @@ const getClientes = (nombreUser, token) => ({
     type: TypeActionsCrud.GET_CLIENTES,
     payload: api(token).get('/stores/'+nombreUser+'/clientes')
 })
+//"/services/{id}/cancel"
+const cancelaServicio = (data) => ({
+    type: TypeActionsCrud.CANCELA_SERVICIO,
+    payload: api(data.token).post('/services/'+ data.id + '/cancel')
+})
+
 
 export {
     TypeActionsCrud,
@@ -71,5 +78,6 @@ export {
     citasVacias,
     getCitasEmpresa,
     getMyPlanes,
-    getPlanById
+    getPlanById,
+    cancelaServicio
 }

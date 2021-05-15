@@ -1,4 +1,4 @@
-import { Actions, getClientes,getPlanById } from '../../actions/calendar'
+import { Actions, cancelaServicio, getClientes,getPlanById } from '../../actions/calendar'
 import { fullfilled, rejected, pending } from '../utils'
 import { calcularFechasPorSemana } from '../../common/dateFunctions'
 
@@ -69,6 +69,11 @@ const getPlanByIdFullfilled = (state, { payload }) => {
     }
 }
 
+const cancelaServicioFullfilled = (state, { payload }) => {
+    return {
+        ...state,
+    }
+}
 const Crud = {
     [fullfilled(Actions.GET_ALL_BOOKINGS)]: getAllBookingsFullFilled,
     [Actions.CHANGE_WEEK]: changeWeek,
@@ -77,7 +82,8 @@ const Crud = {
     [fullfilled(Actions.GET_CITAS_VACIAS)]: citasVacias,
     [fullfilled(Actions.GET_ALL_BOOKINGS)]: getCitasEmpresa,
     [fullfilled(Actions.GET_MY_PLANES)]: getMyPlanesFullfilled,
-    [fullfilled(Actions.GET_PLAN_BY_ID)]: getPlanByIdFullfilled
+    [fullfilled(Actions.GET_PLAN_BY_ID)]: getPlanByIdFullfilled,
+    [fullfilled(Actions.CANCELA_SERVICIO)] : cancelaServicio
 }
 
 export default Crud

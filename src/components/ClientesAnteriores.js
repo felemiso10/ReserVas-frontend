@@ -25,12 +25,12 @@ const clientesAnteriores = ({
                     {
                         clientesAnteriores.map((cliente) => (
                         <View style={{paddingLeft:30,paddingTop:40}}>
-                          <Card style = {{padding:15,width:450,height:130, display:'flex',alignItems:'center'}}>
+                          <Card style = {{padding:15,width:250,height:130, display:'flex',alignItems:'center'}}>
                            <Image
                               style={{ width: 100, height: 100,margin:5,borderRadius:50 }}
                               source={{ uri: cliente.img }}
                               />
-                            <Text style={{fontSize:18,fontWeight:400, marginLeft:10, marginRight:5}}>
+                            <Text style={{fontSize:18,fontWeight:400, marginLeft:5, marginRight:5}}>
                                 {cliente.nombreUser}
                             </Text>
                         
