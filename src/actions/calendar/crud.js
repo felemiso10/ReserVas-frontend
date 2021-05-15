@@ -56,9 +56,9 @@ const getPlanById = (token, id) => ({
     payload: api(token).get('/services/' + id)
 })
 
-const getClientes = () => ({
+const getClientes = (nombreUser, token) => ({
     type: TypeActionsCrud.GET_CLIENTES,
-    payload: api().get('/clientesAnteriores')
+    payload: api(token).get('/stores/'+nombreUser+'/clientes')
 })
 
 export {

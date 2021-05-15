@@ -59,7 +59,15 @@ const styles = StyleSheet.create({
         paddingLeft: 1,
         alignSelf: "auto",
         flexWrap: "wrap"
-      }
+      },
+      infoCita: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "row",
+        justifyContent: 'space-around',
+        marginTop: 100
+    }
   });
 
   export default styles

@@ -24,7 +24,15 @@ const BookCard = ({
 }) => {
    // console.log(book)
 
-    const [openModal, setOpenModal] = useState(false)
+   const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
    return (
        tipoUser === 'empresa' ?
@@ -67,7 +75,7 @@ const BookCard = ({
        (
            <>
             <Card onClick={() => {
-                tipo !== 'verEmpresa' && getPlanById(token, book.id) && setOpenModal(true)
+                tipo !== 'verEmpresa' && getPlanById(token, book.id) && handleOpen
             }}>
                 <CardContent>
                 <Typography variant="h5" component="h2">
@@ -80,6 +88,12 @@ const BookCard = ({
                         Hora fin: {book.horaFin}
                 </Typography>
                 {
+                    tipo !== 'verEmpresa' &&
+                <Text style={{marginLeft:5,marginBottom:5,color:'blue',textDecoration:'underline',cursor:'pointer'}}  onClick={handleOpen}>
+                Más info
+                </Text>
+                }
+                {
                     tipo === 'verEmpresa' &&
                     <Tooltip title="Añadir cita" >
                         <Addcitacliente service={book} empresaName = {empresaName}></Addcitacliente>        
@@ -89,14 +103,25 @@ const BookCard = ({
             </Card>
 
             <Modal
-                open={openModal}
-                onClose={() => setOpenModal(false)}
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
             >
-                <View style={styles.registerContainer}>
-                    <div className="row">
-                        Aquí va la información de la cita (selectedPlan tiene toda la información de la cita)
-                    </div>
-                </View>
+            <View style={styles.infoCita}>
+                <div className="row">
+                <Card >
+                <CardContent>
+
+                <Typography color="textSecondary">
+                        Servicio: {book.nombre}
+                </Typography>
+
+
+                </CardContent>
+                </Card>
+                </div>
+            </View>
             </Modal>
             </>
        )

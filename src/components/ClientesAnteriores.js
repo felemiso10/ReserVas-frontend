@@ -31,15 +31,9 @@ const clientesAnteriores = ({
                               source={{ uri: cliente.img }}
                               />
                             <Text style={{fontSize:18,fontWeight:400, marginLeft:10, marginRight:5}}>
-                                {cliente.nombre}
-                            </Text>
-                            <Text style={{fontSize:18,fontWeight:400}}>
-                                {cliente.apellidos}
+                                {cliente.nombreUser}
                             </Text>
                         
-                            <Button style={{marginLeft:30,border:1}}>
-                               añadir cita
-                           </Button>
                            </Card>
                         </View>
                       ))

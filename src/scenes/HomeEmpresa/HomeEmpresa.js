@@ -9,17 +9,13 @@ import {
     calcularSemanaAnterior,
     calcularSemanaPosterior
 } from '../../common/dateFunctions'
-import { changeWeek, getAllBookings,getClientes } from '../../actions/calendar'
+import { changeWeek, getAllBookings,getClientes,getCitasEmpresa } from '../../actions/calendar'
 import styles from '../../styles/commonStyles'
 import CatCarousel from '../../components/CatCarousel';
 import * as ImagePicker from 'expo-image-picker'
 import ClientesAnteriores from '../../components/ClientesAnteriores'
 import Addcitahomeservice from '../../components/Addcitahomeservice';
 import Card from '@material-ui/core/Card';
-import { changeWeek, getCitasEmpresa } from '../../actions/calendar'
-import styles from '../../styles/commonStyles'
-import CatCarousel from '../../components/CatCarousel';
-import * as ImagePicker from 'expo-image-picker'
 import { useFocusEffect } from '@react-navigation/native';
 
 //Funciones para subir imagenes
@@ -102,7 +98,7 @@ const HomeEmpresa = ({
         React.useCallback(() => {
             //ComponentWillMount
             getCitasEmpresa(user,token),
-            getClientes()
+            getClientes(user,token)
             return () => {
                 //ComponentWillUnmount
             }
@@ -142,8 +138,8 @@ const HomeEmpresa = ({
             <View>
             <Text style={{fontSize:24,textAlign:'center',fontWeight:'semi-bold',paddingTop: 30}}>Clientes Anteriores</Text>               
                 <ClientesAnteriores></ClientesAnteriores>
-                
-            </View>             
+            </View>
+
         </View>
     )
 }
