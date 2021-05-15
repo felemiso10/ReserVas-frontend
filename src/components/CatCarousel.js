@@ -61,7 +61,7 @@ const CatCarousel = ({
       break;
 
       case 5:
-        getCategories({category:'Restaurantes'},token).then(res => {
+        getCategories({category:'Restaurante'},token).then(res => {
           navigation.navigate('Categorias',{categories:res.value})
         })   
         break;

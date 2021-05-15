@@ -10,9 +10,9 @@ import Addcitahomeservice  from './Addcitahomeservice';
 import Addcitacliente  from './Addcitacliente';
 import { getPlanById } from '../actions/calendar'
 import Modal from '@material-ui/core/Modal';
-import { Text, View } from 'react-native';
+import { Text, View, Button } from 'react-native';
 import styles from '../styles/commonStyles'
-
+import {getAllBookings, cancelaServicio} from '../actions/calendar'
 const BookCard = ({
     book,
     tipo,
@@ -20,7 +20,10 @@ const BookCard = ({
     token,
     getPlanById,
     selectedPlan,
-    empresaName
+    empresaName,
+    getAllBookings,
+    user,
+    cancelaServicio
 }) => {
    // console.log(book)
 
@@ -33,6 +36,18 @@ const BookCard = ({
   const handleClose = () => {
     setOpen(false);
   };
+
+  function cancelarServicio() {
+    cancelaServicio({
+          token: token,
+          id: book.id
+      })
+      var millisecondsToWait = 900;
+      setTimeout(function() {
+       setOpen(false)
+       getAllBookings(token, user)
+      }, millisecondsToWait);
+ }
 
    return (
        tipoUser === 'empresa' ?
@@ -110,13 +125,22 @@ const BookCard = ({
             >
             <View style={styles.infoCita}>
                 <div className="row">
-                <Card >
-                <CardContent>
-
+                <Card style={{justifyContent:'center',alignItems:'center',display:'flex',flexDirection:'column'}}>
+                <Typography style={{fontSize:24,alignItems:'center',fontWeight:'semi-bold',paddingTop: 30}}>Detalles Servicio</Typography> 
+                <CardContent> 
                 <Typography color="textSecondary">
-                        Servicio: {book.nombre}
+                       Servicio: {book.nombre}
                 </Typography>
-
+                <br/>
+                <Typography color="textSecondary">
+                        Direccion: {book.direccion}
+                </Typography>
+                <br/>
+                <Typography color="textSecondary">
+                        Precio: {book.precio}
+                </Typography>
+                <br/>
+                <Button color="red" onPress={() => cancelarServicio()} title="Cancelar" />
 
                 </CardContent>
                 </Card>
@@ -131,11 +155,14 @@ const BookCard = ({
 
 const mapStateToProps = state => ({
     token: state.user.userLogged.token,
-    selectedPlan: state.calendar.selectedPlan
+    selectedPlan: state.calendar.selectedPlan,
+    user: state.user.userLogged.name,
 })
 
 const mapDispatchToProps = {
-    getPlanById
+    getPlanById,
+    getAllBookings,
+    cancelaServicio
 }
 
 const BookCardConnected = connect(mapStateToProps, mapDispatchToProps)(BookCard)
