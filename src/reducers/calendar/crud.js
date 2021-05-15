@@ -1,5 +1,4 @@
-import { Actions, getClientes } from '../../actions/calendar'
-import { Actions, getPlanById } from '../../actions/calendar'
+import { Actions, getClientes,getPlanById } from '../../actions/calendar'
 import { fullfilled, rejected, pending } from '../utils'
 import { calcularFechasPorSemana } from '../../common/dateFunctions'
 
@@ -36,6 +35,8 @@ const getClientesFullFilled = (state, { payload }) => {
     return {
         ...state,
         clientesAnteriores: payload
+    }
+}
 
 const citasVacias = (state, { payload }) => {
     console.log(payload)
