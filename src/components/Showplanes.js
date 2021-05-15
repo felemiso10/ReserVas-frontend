@@ -19,7 +19,7 @@ const Showplanes = ({
     },[])
 
     const navigation = useNavigation();
-    
+
     return (
             <View style={styles.showPlanes}>
                     {
