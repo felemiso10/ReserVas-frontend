@@ -18,7 +18,7 @@ const Showplanes = ({
     },[])
 
     const navigation = useNavigation();
-
+    console.log(allPlanes,"Es este?")
     return (
             <View style={styles.showPlanes}>
                     {

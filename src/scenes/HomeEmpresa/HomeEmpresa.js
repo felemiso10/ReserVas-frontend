@@ -9,12 +9,13 @@ import {
     calcularSemanaAnterior,
     calcularSemanaPosterior
 } from '../../common/dateFunctions'
-import { changeWeek, getAllBookings } from '../../actions/calendar'
+import { changeWeek, getAllBookings,getClientes } from '../../actions/calendar'
 import styles from '../../styles/commonStyles'
 import CatCarousel from '../../components/CatCarousel';
 import * as ImagePicker from 'expo-image-picker'
-
+import ClientesAnteriores from '../../components/ClientesAnteriores'
 import Addcitahomeservice from '../../components/Addcitahomeservice';
+import Card from '@material-ui/core/Card';
 
 //Funciones para subir imagenes
 
@@ -81,7 +82,8 @@ const HomeEmpresa = ({
     getAllBookings, 
     changeWeek,
     allBookings,
-    selectedDate
+    selectedDate,
+    getClientes
 }) => {
     const [fecha, setFecha] = useState(calcularLunes(new Date()))
 
@@ -89,7 +91,8 @@ const HomeEmpresa = ({
     const [downloadURL, setDownloadURL] = useState('')
 
     useEffect(() => {
-        getAllBookings()
+        getAllBookings(),
+        getClientes()
     },[])
 
     useEffect(() => {
@@ -117,13 +120,11 @@ const HomeEmpresa = ({
                 <Calendar fecha={fecha} selectedDate={selectedDate} changeWeek={changeWeek} />
             </View>             
             
-            <View style={styles.homeCarousel}>               
-                <Text>Aqui iria Clientes anteriores</Text>
+            <View>
+            <Text style={{fontSize:24,textAlign:'center',fontWeight:'semi-bold',paddingTop: 30}}>Clientes Anteriores</Text>               
+                <ClientesAnteriores></ClientesAnteriores>
+                
             </View>             
-            {/** 
-            <Button onPress={() => openImagePickerAsync(setImagen)} title="Seleccionar imagen" /> 
-            <Button onPress={() => subirImagen(imagen, setDownloadURL)} title="Subir imagen" />  
-            */}  
         </View>
     )
 }
@@ -135,7 +136,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     getAllBookings,
-    changeWeek
+    changeWeek,
+    getClientes
 }
 
 const HomeEmpresaConnected = connect(mapStateToProps, mapDispatchToProps)(HomeEmpresa)
