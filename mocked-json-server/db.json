@@ -67,6 +67,50 @@
       "fecha": "31-03-2020",
       "horaInicio": "",
       "horaFin": ""
+    },
+    {
+      "nombre": "",
+      "fecha": "31-03-2020",
+      "horaInicio": "",
+      "horaFin": ""
+    },
+    {
+      "nombre": "",
+      "fecha": "31-03-2020",
+      "horaInicio": "",
+      "horaFin": ""
+    },
+    {
+      "nombre": "",
+      "fecha": "31-03-2020",
+      "horaInicio": "",
+      "horaFin": ""
+    }
+  ],
+  "clientesAnteriores":[
+    {
+      "nombre":"Rafael",
+      "apellidos":"Miso García",
+      "email":"rafamiso16@gmail.com",
+      "img": "https://firebasestorage.googleapis.com/v0/b/taes-imagenes.appspot.com/o/d41ae4d2094a139eb9b42838a192a211.jpg?alt=media&token=7d6ad63d-da83-4dad-99e2-c7ae3b331030"
+    },
+    {
+      "nombre":"Rafael",
+      "apellidos":"Miso García",
+      "email":"rafamiso16@gmail.com",
+      "img": "https://firebasestorage.googleapis.com/v0/b/taes-imagenes.appspot.com/o/d41ae4d2094a139eb9b42838a192a211.jpg?alt=media&token=7d6ad63d-da83-4dad-99e2-c7ae3b331030"
+    },
+    {
+      "nombre":"Rafael",
+      "apellidos":"Miso García",
+      "email":"rafamiso16@gmail.com",
+      "img": "https://firebasestorage.googleapis.com/v0/b/taes-imagenes.appspot.com/o/d41ae4d2094a139eb9b42838a192a211.jpg?alt=media&token=7d6ad63d-da83-4dad-99e2-c7ae3b331030"
+    },
+    {
+      "nombre":"Rafael",
+      "apellidos":"Miso García",
+      "email":"rafamiso16@gmail.com",
+      "img": "https://firebasestorage.googleapis.com/v0/b/taes-imagenes.appspot.com/o/d41ae4d2094a139eb9b42838a192a211.jpg?alt=media&token=7d6ad63d-da83-4dad-99e2-c7ae3b331030"
     }
   ],
   "categories": [
