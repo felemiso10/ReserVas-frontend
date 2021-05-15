@@ -18,7 +18,8 @@ const Addcitacliente = ({
   reservaServicio,
   token,
   user,
-  citasVacias
+  citasVacias,
+  empresaName
 }) => {
  const [valid, setIsEnabled] = React.useState({
      isValidForm: true,
@@ -36,7 +37,7 @@ const Addcitacliente = ({
        var millisecondsToWait = 900;
        setTimeout(function() {
         setOpen(false)
-        citasVacias(user,token)
+        citasVacias({empresaName},token)
        }, millisecondsToWait);
   }
 

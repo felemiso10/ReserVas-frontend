@@ -9,10 +9,13 @@ import {
     calcularSemanaAnterior,
     calcularSemanaPosterior
 } from '../../common/dateFunctions'
-import { changeWeek, getCitasEmpresa } from '../../actions/calendar'
+import { changeWeek, getAllBookings,getClientes,getCitasEmpresa } from '../../actions/calendar'
 import styles from '../../styles/commonStyles'
 import CatCarousel from '../../components/CatCarousel';
 import * as ImagePicker from 'expo-image-picker'
+import ClientesAnteriores from '../../components/ClientesAnteriores'
+import Addcitahomeservice from '../../components/Addcitahomeservice';
+import Card from '@material-ui/core/Card';
 import { useFocusEffect } from '@react-navigation/native';
 
 //Funciones para subir imagenes
@@ -81,6 +84,7 @@ const HomeEmpresa = ({
     changeWeek,
     allBookings,
     selectedDate,
+    getClientes,
     categoriaUser,
     user,
     token
@@ -93,7 +97,8 @@ const HomeEmpresa = ({
     useFocusEffect(
         React.useCallback(() => {
             //ComponentWillMount
-            getCitasEmpresa(user,token)
+            getCitasEmpresa(user,token),
+            getClientes(user,token)
             return () => {
                 //ComponentWillUnmount
             }
@@ -130,13 +135,11 @@ const HomeEmpresa = ({
                 />
             </View>             
             
-            <View style={styles.homeCarousel}>               
-                <Text>Aqui iria Clientes anteriores</Text>
-            </View>             
-            {/** 
-            <Button onPress={() => openImagePickerAsync(setImagen)} title="Seleccionar imagen" /> 
-            <Button onPress={() => subirImagen(imagen, setDownloadURL)} title="Subir imagen" />  
-            */}  
+            <View>
+            <Text style={{fontSize:24,textAlign:'center',fontWeight:'semi-bold',paddingTop: 30}}>Clientes Anteriores</Text>               
+                <ClientesAnteriores></ClientesAnteriores>
+            </View>
+
         </View>
     )
 }
@@ -150,6 +153,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
+    getAllBookings,
+    changeWeek,
+    getClientes,
     changeWeek,
     getCitasEmpresa
 }

@@ -72,7 +72,7 @@ useEffect(() => {
           </View>
 
           <View style={{display: 'flex', justifyContent: 'center',marginTop:20}}>
-                <Calendar fecha={fecha} selectedDate={selectedDate} changeWeek={changeWeek} tipo="verEmpresa"/>
+                <Calendar fecha={fecha} selectedDate={selectedDate} changeWeek={changeWeek} tipo="verEmpresa" empresaName = {empresaName}/>
           </View>   
      </View>
         
