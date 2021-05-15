@@ -7,96 +7,77 @@ const appJson = 'application/json'
 const contType = 'Content-Type'
 
 export default class Api {
-    constructor(options = { baseUrl: 'api/', defaultOptions: {} }) {
-        this.baseUrl = options.baseUrl
-        this.defaultOptions = {
-            credentials: 'same-origin',
-            ...options.defaultOptions,
-        }
-        this.defaultOptions.headers = {
-            Accept: appJson,
-            'Content-Type': appJson,
-            ...options.defaultOptions.headers,
-        }
+    constructor(baseUrl, token) {
+        this.baseUrl = baseUrl
+        this.token = token
     }
 
-    getUrl = originalUrl => `${this.baseUrl}${originalUrl}`
+    getUrl = url => `${this.baseUrl}${url}`
 
-    fetch = (url, options) =>
-        fetch(url, options)
-            .then(this.parseBody)
-            .then(this.checkStatus.bind(this, url, options))
-
-    parseBody(response) {
-        const contentType = response.headers.get(contType)
-        let parsePromise
-        if (/json/.test(contentType)) {
-            parsePromise = response.json()
-        } else if (/multipart/.test(contentType)) {
-            parsePromise = response.formData()
-        } else if (/pdf|xml/.test(contentType)) {
-            parsePromise = response.blob()
-        } else {
-            parsePromise = response.text()
+    generateOptionsRequestObject = options => {
+        var requestObject = {
+          headers: {
+            'accept': '*/*',
+            'accept-encoding': 'gzip, deflate, br',
+            'Accept-Language': 'es-ES,es;q=0.9',
+            'access-control-allow-headers': 'Origin, Content-Type, X-Auth-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization',
+            'access-control-allow-methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+            'access-control-allow-origin': '*',
+            'Authorization': this.token,
+            //'Connection': 'keep-alive',
+            "Content-type": "application/json",
+            //'Host': 'localhost:8080',
+            //'Referer': 'http://localhost:19006/',
+            //'Sec-Fetch-Dest': 'empty',
+            //'Sec-Fetch-Mode': 'cors',
+            //'Sec-Fetch-Site': 'same-site',
+          }
         }
-        return parsePromise.then(parsedBody => ({ response, parsedBody }))
-    }
-
-    checkStatus(url, originalOptions, { response, parsedBody }) {
-        if (response.ok) {
-            switch (response.status) {
-            case 204:
-                return {
-                ...response,
-                requestBody: JSON.parse(originalOptions.body),
-                }
-            default:
-                return parsedBody || {}
-            }
+        //Si options tiene body, se añade en formato JSON al objeto del request
+        if(options.body){
+          requestObject = {
+            ...requestObject,
+            body: JSON.stringify(options.body)
+          }
         }
-        switch (response.status) {
-            case 401:
-            case 403:
-            default:
-            throw {
-                ...response,
-                requestBody: JSON.parse(originalOptions.body),
-                responseBody: { status: parsedBody.status },
-            }
+    
+        //Si options tiene method, se añade al objeto del request, si no se añade GET por defecto
+        requestObject = {
+          ...requestObject,
+          method: options.method || 'GET'
         }
-    }
+    
+        return requestObject
+      }
+    
+      get = (url, options={}) => 
+        fetch(this.getUrl(url), this.generateOptionsRequestObject({...options, method: 'GET'}))
+          .then(response => response.json())
+          .catch(error => {
+            console.log(error)
+            throw { error }
+          })
+      post = (url, options={}) => 
+        fetch(this.getUrl(url), this.generateOptionsRequestObject({...options, method: 'POST'}))
+          .then(response => response.json())
+          .catch(error => {
+            console.log(error)
+            throw { error }
+          })
 
-    genericRequest(method, originalUrl, options) {
-        const url = this.getUrl(originalUrl)
-        const opt = { ...clone(this.defaultOptions), ...options, method }
-        opt.headers = { ...this.defaultOptions.headers, ...options.headers }
-        if (options?.body instanceof FormData) {
-            delete opt.headers[contType]
-        }
-        if (opt.headers[contType] === appJson) {
-            // opt.body = JSON.stringify(opt.body, replacer)
-            opt.body = JSON.stringify(opt.body)
-        }
-        return this.fetch(url, opt)
-    }
-
-    get = (originalUrl, options = {}) =>
-    this.genericRequest('get', originalUrl, {
-      ...options,
-      headers: { ...options.headers, 'Content-Type': null },
-    })
-
-    post = (originalUrl, options = {}) => this.genericRequest('post', originalUrl, options)
-
-    put = (originalUrl, options = {}) => this.genericRequest('put', originalUrl, options)
-
-    patch = (originalUrl, options = {}) => this.genericRequest('PATCH', originalUrl, options)
-
-    delete(originalUrl, options = {}) {
-        options.headers = options.headers || {}
-        options.headers.Accept = options.headers.Accept || '*'
-        return this.genericRequest('delete', originalUrl, options)
-    }
-
-    uploadFiles = (url, files) => this.post(url, { body: buildFilesFormData(files) })
+      put = (url, options={}) => 
+        fetch(this.getUrl(url), this.generateOptionsRequestObject({...options, method: 'PUT'}))
+          .then(response => response.json())
+          .catch(error => {
+            console.log(error)
+            throw { error }
+          })
+        
+      delete = (url, options={}) =>
+        fetch(this.getUrl(url), this.generateOptionsRequestObject({...options, method: 'DELETE'}))
+          .then(response => response.json())
+          .catch(error => {
+            console.log(error)
+            throw { error }
+          })
 }

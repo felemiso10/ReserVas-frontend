@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import Search from './components/Search'
 import {Icon} from 'react-native-elements'
 
 /*
@@ -17,6 +16,10 @@ import Login from './scenes/Login'
 import Register from './scenes/Register'
 import HomeEmpresa from './scenes/HomeEmpresa'
 import Plan from './scenes/Plan'
+import Categorias from './scenes/Categorias'
+import VerEmpresa from './scenes/VerEmpresa'
+import Vermiplan from './scenes/Vermiplan'
+
 
 import {
     DrawerContentScrollView,
@@ -24,79 +27,58 @@ import {
     createDrawerNavigator 
 } from '@react-navigation/drawer';
 
+
 const Drawer = createDrawerNavigator();
 
-function SideMenu(props){
+function SideMenu({props, isLoggedIn}){
     return (
         <DrawerContentScrollView {...props}>
-            <DrawerItem  label="Home" icon={() => <Icon name='home' type='font-awesome'/>} onPress={() => props.navigation.navigate('Home')} />
-            <DrawerItem  label="HomeEmpresa" icon={() => <Icon name='home' type='font-awesome'/>} onPress={() => props.navigation.navigate('HomeEmpresa')} />
-            <DrawerItem  label="Login" icon={() => <Icon name='user-circle-o' type='font-awesome'/>}  onPress={() => props.navigation.navigate('Login')}/>
+
+            {
+                isLoggedIn &&
+                <DrawerItem  label="Home" icon={() => <Icon name='home' type='font-awesome'/>} onPress={() => props.navigation.navigate('Home')} />
+            }
+            {
+                !isLoggedIn &&
+                <DrawerItem  label="Login" icon={() => <Icon name='user-circle-o' type='font-awesome'/>}  onPress={() => props.navigation.navigate('Login')}/>
+            }
+            
         </DrawerContentScrollView>
     )
 }
 
 const MainPage = ({
-    isLoggedIn
+    isLoggedIn,
+    categoriaUser
 }) => {
-    /*
-    return (
-        <Router>
-            <SafeAreaView>
-                <View style={{justifyContent: 'center'}}>
-                    <Header 
-                        containerStyle={{backgroundColor:'darkslategrey',width: '100%', borderBottomWidth: 5, marginBottom:'10px' }}
 
-                        leftComponent={{ icon: 'menu', color: '#fff', underlayColor: '#3488C0', onPress: () => this.toggleMenu() }}
-                        centerComponent={{ text: 'Reser&vas', 
-                            style: { color: '#fff', fontWeight: 'bold', fontSize: 20}}}
-                        rightComponent={{ icon: 'user-circle-o',type:'font-awesome', color: '#fff', 
-                            onPress:()=> Linking.openURL('http://localhost:19006/login') }}
-                    >
-                        
-                    </Header>
-                    
-                </View>
-                <View style={styles.container}>
-                    <Switch>
-                        <PrivateRoute 
-                            component={Home}
-                            path="/"
-                            isLoggedIn={isLoggedIn}
-                            exact
-                        />
-                        <PublicRoute 
-                            component={Login}
-                            path="/login"
-                        />
-                        <PublicRoute 
-                            component={Register}
-                            path="/register"
-                        />
-                        <PrivateRoute 
-                            component={() => <Redirect to={"/"} />}
-                            path="/"
-                            isLoggedIn={isLoggedIn}
-                        />
-                    </Switch>
-                </View>
-            </SafeAreaView>
-        </Router>
-    )*/
     return (
-            <Drawer.Navigator initialRouteName={isLoggedIn ? "Home" : "Login"} drawerContent={props => <SideMenu {...props} />}>
-                <Drawer.Screen name="Home" component={Home}/>
-                <Drawer.Screen name="Login" component={Login} />
-                <Drawer.Screen name="Register" component={Register} />
-                <Drawer.Screen name="HomeEmpresa" component={HomeEmpresa} />
-                <Drawer.Screen name="Plan" component={Plan}  />
+            <Drawer.Navigator initialRouteName={isLoggedIn ? "Home" : "Login"} drawerContent={props => <SideMenu props={props} isLoggedIn={isLoggedIn} />}>
+                {
+                    isLoggedIn ? (
+                        <>
+                            <Drawer.Screen name="Home" component={categoriaUser === 'empresa' ? HomeEmpresa : Home}/>
+                            <Drawer.Screen name="Plan" component={Plan}  />
+                            <Drawer.Screen name="Categorias" component={Categorias} />
+                            <Drawer.Screen name="VerEmpresa" component={VerEmpresa}  />
+                            <Drawer.Screen name="Vermiplan" component={Vermiplan}  />
+
+                        </>
+                    ) : (
+                        <>
+                            <Drawer.Screen name="Login" component={Login} />
+                            <Drawer.Screen name="Register" component={Register} />
+                        </>
+                    )
+                }
 
             </Drawer.Navigator>
     )
 }
 
 const mapStateToProps = state => ({
-    isLoggedIn: state.user.isLoggedIn
+    isLoggedIn: state.user.isLoggedIn,
+    categoriaUser: state.user.userLogged.categoria
 })
 
 const mapDispatchToProps = {

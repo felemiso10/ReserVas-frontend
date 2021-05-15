@@ -1,16 +1,31 @@
 import { Actions } from '../../actions/user'
 import { fullfilled, rejected, pending } from '../utils'
 
-const loginUserFullFilled = (state, { payload }) => ({
-    ...state,
-    isLoggedIn: true,
-    token: payload.token
-    
-})
+const loginUserFullFilled = (state, { payload }) => {
+    return {
+        ...state,
+        isLoggedIn: true,
+        userLogged: {
+            token: payload.token,
+            name: state.user.name,
+            categoria: payload.direccion ? 'empresa' : 'cliente'
+        }
+    }
+}
 
 const loginUserRejected = state => ({
     ...state,
     error: 'Error al iniciar sesión'
+})
+
+const logoutUser = state => ({
+    ...state,
+    isLoggedIn: false,
+    userLogged: {
+        token: '',
+        name: '',
+        categoria: ''
+    }
 })
 
 
@@ -58,6 +73,18 @@ const newServiceRejected = state => ({
     error: 'Error al crear la cita'
 })
 
+const reservaPlanFullFilled = (state, { payload }) => ({
+    ...state  
+})
+
+const reservaServicioFullFilled = (state, { payload }) => ({
+    ...state  
+})
+
+const realizarCancelacionFullFilled = (state, { payload }) => ({
+    ...state  
+})
+
 const clearInput = (state) => {
     state.user.name = ""
     state.user.password = ""
@@ -72,6 +99,7 @@ const clearInput = (state) => {
 const Crud = {
     [fullfilled(Actions.LOGIN_USER)]: loginUserFullFilled,
     [rejected(Actions.LOGIN_USER)]: loginUserRejected,
+    [Actions.LOGOUT_USER]: logoutUser,
     [Actions.CHANGE_LOGIN_INFO]: changeUserLoginInfo,
     [fullfilled(Actions.REGISTER_USER)]: registerUserFullFilled,
     [rejected(Actions.REGISTER_USER)]: registerUserRejected,
@@ -80,7 +108,10 @@ const Crud = {
     [Actions.CHANGE_SERVICE_INFO]: changeServiceInfo,  
     [fullfilled(Actions.NEW_SERVICE)]: newServiceFullFilled,
     [rejected(Actions.NEW_SERVICE)]: newServiceRejected,
-    [Actions.CLEAR_INPUT]: clearInput
+    [Actions.CLEAR_INPUT]: clearInput,
+    [fullfilled(Actions.RESERVAR_PLAN)]: reservaPlanFullFilled,
+    [fullfilled(Actions.RESERVAR_SERVICIO)]: reservaServicioFullFilled,
+    [fullfilled(Actions.CANCELAR_SERVICIO)]: realizarCancelacionFullFilled,
 }
 
 export default Crud

@@ -4,24 +4,22 @@ import { connect } from 'react-redux'
 import { View } from 'react-native';
 import Header from '../../components/Header'
 import { Card } from 'react-native-elements'
-import { reservaPlan } from '../../actions/user'
+import { realizarCancelacion } from '../../actions/user'
 
-const Plan  = ({
+const Vermiplan  = ({
     navigation,
-    reservaPlan,
+    borraPlan,
     //Route sirve para pasar los paremetros -
     route,
-    user,
     token
 }) => {
   //No se porque guarda plan dentro de plan en lugar de hacer x= x
   const plan = route.params.plan.plan;
-  console.log(user)
- async function realizarReserva() {    
+
+ async function cancelar() {    
    
-        reservaPlan({
+         realizarCancelacion({
              id: plan.id,
-             name: user,
              token
          })
 
@@ -59,7 +57,7 @@ const Plan  = ({
             </>
             ))
             }
-            <Button onPress={() => realizarReserva()} title="Reservar" />
+            <Button color="red" onPress={() => cancelar()} title="Cancelar" />
             </Card>
           </View>
      </View>
@@ -68,16 +66,15 @@ const Plan  = ({
 }
 
 const mapStateToProps = state => ({
-  user: state.user.userLogged.name,
   token: state.user.userLogged.token
 })
 
  const mapDispatchToProps = {
    //Aqui ira el boton para realizar la reserva -
-   reservaPlan,
+   realizarCancelacion,
  }
 
-const PlanConnected = connect(mapStateToProps, mapDispatchToProps)(Plan)
+const VermiplanConnected = connect(mapStateToProps, mapDispatchToProps)(Vermiplan)
 
-export default PlanConnected;
-export { Plan }
+export default VermiplanConnected;
+export { Vermiplan }

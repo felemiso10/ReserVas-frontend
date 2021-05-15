@@ -8,30 +8,43 @@ import CustomInput from '../components/forms/CustomInput'
 import Modal from '@material-ui/core/Modal';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
-import {changeServiceInfo, newService} from '../actions/user'
+import {reservaServicio,changeServiceInfo} from '../actions/user'
+import {getCitasEmpresa} from '../actions/calendar'
+
+import { useNavigation } from '@react-navigation/native';
+
 
 const Addcitahomeservice = ({
   service,
   changeServiceInfo,
-  newService
+  servicio,
+  token,
+  user,
+  getCitasEmpresa
 }) => {
  const [valid, setIsEnabled] = React.useState({
      isValidForm: true,
  })
 
- function newServiceComp() {
-  if(service.name === "" || service.name === undefined ||service.precio === "" || service.precio === undefined 
-      ||service.cliente === "" || service.cliente === undefined ){
+ const navigation = useNavigation();
+
+ function reservarServicio() {
+  if(service.cliente === "" || service.cliente === undefined ){
        setIsEnabled({isValidForm: false})
   }
   else{
    setIsEnabled({isValidForm: true})
 
-       newService({
-           cliente: service.cliente,
-           name: service.name,
-           precio:service.precio
-       })
+    reservaServicio({
+          name: service.cliente,
+          token: token,
+          id: servicio.id
+      })
+      var millisecondsToWait = 900;
+      setTimeout(function() {
+       setOpen(false)
+       getCitasEmpresa(user,token)
+      }, millisecondsToWait);
 
   }
 }
@@ -62,16 +75,8 @@ const [open, setOpen] = React.useState(false);
             <View style={styles.registerContainer}>
                 <div className="row">
                 <Card>
-                <Card.Title>Rellenar cita</Card.Title>
+                <Card.Title>¿Agregar cita?</Card.Title>
                 <Card.Divider/>
-
-                <CustomInput 
-                placeholder='Nombre del servicio...' 
-                onChange={changeServiceInfo} 
-                idInput='name'
-                object ={service}
-                isRequired = 'true'                  
-                /> 
                 <CustomInput 
                 placeholder='Usuario...' 
                 onChange={changeServiceInfo} 
@@ -79,17 +84,9 @@ const [open, setOpen] = React.useState(false);
                 object ={service}
                 isRequired = 'true'                  
                 />
-                 <CustomInput 
-                placeholder='Precio...' 
-                onChange={changeServiceInfo} 
-                idInput='precio'
-                object ={service}
-                isRequired = 'true'      
-                />
-
                 <Card.Divider/>
                 <Button onPress={() => 
-                newServiceComp()
+                reservarServicio()
                 } title="Agregar cita" />
                 </Card>
                 </div>
@@ -101,11 +98,14 @@ const [open, setOpen] = React.useState(false);
 }
 
 const mapStateToProps = state => ({
-  service: state.user.service
+  service: state.user.service,
+  token: state.user.userLogged.token,
+  user: state.user.userLogged.name,
 })
 const mapDispatchToProps = {
-  newService,
-  changeServiceInfo
+  reservaServicio,
+  changeServiceInfo,
+  getCitasEmpresa
 }
 
 const AddcitahomeserviceConnected = connect(mapStateToProps, mapDispatchToProps)(Addcitahomeservice)

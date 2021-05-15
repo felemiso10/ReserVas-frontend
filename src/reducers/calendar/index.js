@@ -33,7 +33,9 @@ const initialState = {
     },
     allBookings: [],
     allPlanes:[],
-    clientesAnteriores:[]
+    clientesAnteriores:[],
+    myPlanes:[],
+    selectedPlan: {}
 }
 
 const Managers = {

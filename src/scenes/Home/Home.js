@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, Button } from 'react-native';
-import Addcitahomeservice from '../../components/Addcitahomeservice';
+import MyPlanes from '../../components/MyPlanes';
 import Header from '../../components/Header'
 import Calendar from '../../components/Calendar'
 import { 
@@ -10,11 +10,13 @@ import {
     calcularSemanaAnterior,
     calcularSemanaPosterior
 } from '../../common/dateFunctions'
-import { changeWeek, getAllBookings,getAllPlanes } from '../../actions/calendar'
+import { changeWeek, getAllBookings,getAllPlanes,getCategories, getMyPlanes } from '../../actions/calendar'
 import styles from '../../styles/commonStyles'
 import CatCarousel from '../../components/CatCarousel';
 import * as ImagePicker from 'expo-image-picker'
 import Showplanes from '../../components/Showplanes';
+import { useFocusEffect } from '@react-navigation/native';
+
 
 //Funciones para subir imagenes
 
@@ -82,17 +84,31 @@ const Home = ({
     changeWeek,
     allBookings,
     selectedDate,
-    getAllPlanes
+    getAllPlanes,
+    categoriaUser,
+    token,
+    getCategories,
+    user,
+    getMyPlanes,
+    allPlanes,
+    myPlanes
 }) => {
     const [fecha, setFecha] = useState(calcularLunes(new Date()))
 
     const [imagen, setImagen] = useState(null)
     const [downloadURL, setDownloadURL] = useState('')
 
-    useEffect(() => {
-        getAllBookings(),
-        getAllPlanes()
-    },[])
+    useFocusEffect(
+        React.useCallback(() => {
+            //ComponentWillMount
+            getAllBookings(token, user)
+            getAllPlanes(token)
+            getMyPlanes(user,token)
+            return () => {
+                //ComponentWillUnmount
+            }
+        }, [])
+    )
 
     useEffect(() => {
         console.log(downloadURL)
@@ -116,17 +132,37 @@ const Home = ({
         <View>             
             <Header navigation={navigation}/>             
             <View style={{display: 'flex', justifyContent: 'center'}}>
-                <Calendar fecha={fecha} selectedDate={selectedDate} changeWeek={changeWeek} />
+                <Calendar 
+                    fecha={fecha} 
+                    selectedDate={selectedDate} 
+                    changeWeek={changeWeek}
+                    categoriaUser={categoriaUser} 
+                />
             </View>             
             <View style={styles.homeCarousel}>               
-                <CatCarousel></CatCarousel>  
+                <CatCarousel getCategories={getCategories} token={token}></CatCarousel>  
             </View>  
 
+        {
+          
+            myPlanes.length !== 0 &&
+            (
+            <View>
+            <Text style={{fontSize:24,textAlign:'center',fontWeight:'semi-bold',paddingTop: 30}}>Mis Planes</Text>
+                <MyPlanes></MyPlanes>  
+            </View>  
+            )
+        } 
+        
+        {
+            allPlanes.length !== 0 &&
+            (
             <View>
             <Text style={{fontSize:24,textAlign:'center',fontWeight:'semi-bold',paddingTop: 30}}>Planes completos</Text>
-
                 <Showplanes></Showplanes>  
             </View>    
+            )
+        }
             {/** 
             <Button onPress={() => openImagePickerAsync(setImagen)} title="Seleccionar imagen" /> 
             <Button onPress={() => subirImagen(imagen, setDownloadURL)} title="Subir imagen" />  
@@ -137,13 +173,21 @@ const Home = ({
 
 const mapStateToProps = state => ({
     allBookings: state.calendar.allBookings,
-    selectedDate: state.calendar.selectedDate
+    selectedDate: state.calendar.selectedDate,
+    categoriaUser: state.user.userLogged.categoria,
+    token: state.user.userLogged.token,
+    user: state.user.userLogged.name,
+    allPlanes: state.calendar.allPlanes,
+    myPlanes: state.calendar.myPlanes,
+
 })
 
 const mapDispatchToProps = {
     getAllBookings,
     changeWeek,
-    getAllPlanes
+    getAllPlanes,
+    getCategories,
+    getMyPlanes
 }
 
 const HomeConnected = connect(mapStateToProps, mapDispatchToProps)(Home)

@@ -12,6 +12,8 @@ import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Tooltip from '@material-ui/core/Tooltip';
+import AddIcon from '@material-ui/icons/Add';
+import Button from '@material-ui/core/Button';
 
 import BookCard from './BookCard'
 
@@ -25,7 +27,10 @@ import {
 const Calendar = ({
     fecha, //debe ser un lunes
     selectedDate,
-    changeWeek
+    changeWeek,
+    categoriaUser,
+    tipo,
+    empresaName
 }) => {
     const [columns, setColumns] = useState(calcularFechasParaColumnasCalendario(fecha))
 
@@ -74,10 +79,33 @@ const Calendar = ({
                                         { 
                                             selectedDate[col.id].bookings.length > 0 ?
                                                 selectedDate[col.id].bookings.map(b => (
-                                                    <BookCard book={b} />
+                                                    <BookCard book={b} tipo={tipo} tipoUser={categoriaUser} empresaName = {empresaName}/>
                                                 ))
                                             :
-                                                <> No tienes citas para este día </>
+                                                tipo == "verEmpresa" ?
+                                                (
+                                                    <> No hay citas disponibles</>
+                                                )
+                                                :
+                                                (                                               
+                                                    <> 
+                                                    No tienes citas para este día
+                                                    {
+                                                        categoriaUser === 'empresa' &&
+                                                        <Button
+                                                            size="small"
+                                                            variant="outlined"
+                                                            endIcon={<AddIcon />}
+                                                        >
+                                                            <Typography
+                                                                variant="body2"
+                                                            >
+                                                                Generar citas del días
+                                                            </Typography>
+                                                        </Button>
+                                                    }
+                                                </>
+                                                )
                                         }
                                     </TableCell>
                                 ))
