@@ -114,7 +114,7 @@ const Register = ({
     );
 
     function userForm() {
-      if (!user.name || !user.password || !user.username || !user.surname || !user.email || !user.date){
+      if (!user.name || !user.password || !user.username || !user.surname || !user.email || !user.date ||!downloadURL){
         
         setValid({
           isValidUserForm: false
@@ -128,35 +128,40 @@ const Register = ({
         const fechaModificada = user.date.replaceAll('/', '-')
 
         registerUser({
-          username: user.username,
+          nombreUser: user.username,
           password: user.password,
-          name: user.name,
+          nombre: user.name,
+          apellidos: user.surname,
           email: user.email,
-          date: fechaModificada,
-          category: user.category
+          fechaNac: fechaModificada,
+          img: downloadURL
         })
+        navigation.navigate('Login')
       }
     }
 
     function storeForm() {
-      if (!user.name || !user.password || !user.username || !user.surname || !user.email || !user.address){
+      if (!user.name || !user.password || !user.username || !user.surname || !user.email || !user.address || !downloadURL || !user.category){
         setValid({
           isValidStoreForm: false
         })
       }
       else{
         setValid({
-          isValidStoreForm: false
+          isValidStoreForm: true
         })
 
         registerStore({
-          username: user.username,
+          nombreUser: user.username,
           password: user.password,
-          name: user.name,
+          nombre: user.name,
+          apellidos: user.surname,
           email: user.email,
-          address: user.address,
-          category: user.category
+          direccion: user.address,
+          categoria: user.category,
+          img: downloadURL
         })
+        navigation.navigate('Login')
       }
     }
 
@@ -290,15 +295,16 @@ const Register = ({
                 onValueChange={(itemValue, itemIndex) =>
                   changeUserLoginInfo('category', itemValue)
                 }>
+                <Picker.Item label="Seleccione una" value= "" />
                 <Picker.Item label="Medico" value= "Medico" />
                 <Picker.Item label="Psicologo" value="Psicologo" />
                 <Picker.Item label="Mascotas" value="Mascotas" />
                 <Picker.Item label="Spa" value="Spa" />
-                <Picker.Item label="Restaurante" value="Restaurantes" />
+                <Picker.Item label="Restaurante" value="Restaurante" />
                 <Picker.Item label="Estetica" value="Estetica" />
                 <Picker.Item label="Peluquería" value="Peluqueria" />
-                <Picker.Item label="Gimnasio" value="Psicologo" />
-                <Picker.Item label="Excursion" value="ocioAireLibre" />
+                <Picker.Item label="Gimnasio" value="Gimnasio" />
+                <Picker.Item label="Excursion" value="Excursion" />
               </Picker>
 
                 <br/>
@@ -392,7 +398,11 @@ const Register = ({
                   />
                 </View>
               }
-
+                <br/>
+                <Button onPress={() => openImagePickerAsync(setImagen)} title="Seleccionar imagen" /> 
+                <br/>
+                <Button onPress={() => subirImagen(imagen, setDownloadURL)} title="Subir imagen" />
+                <br/>
             <Button title="Registrar" onPress={() => 
               userForm()
             } />

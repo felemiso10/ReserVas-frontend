@@ -50,12 +50,12 @@ const changeServiceInfo = (id, value) => ({
 
 const registerUser = (user) => ({
     type: TypeActionsCrud.REGISTER_USER,
-    payload: api().post('/register', {body: user})
+    payload: api().post('/registerUser', {body: user})
 })
 
 const registerStore = (user) => ({
     type: TypeActionsCrud.REGISTER_USER,
-    payload: api().post('/register', {body: user})
+    payload: api().post('/registerStore', {body: user})
 })
 
 //Preguntar por esto 
