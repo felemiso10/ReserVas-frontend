@@ -111,7 +111,7 @@ const Calendar = ({
                                                             <Typography
                                                                 variant="body2"
                                                             >
-                                                                Generar citas del días
+                                                                Generar citas del día
                                                             </Typography>
                                                         </Button>
                                                     }

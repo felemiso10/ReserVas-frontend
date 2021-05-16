@@ -129,6 +129,10 @@ const BookCard = ({
                 <Typography style={{fontSize:24,alignItems:'center',fontWeight:'semi-bold',paddingTop: 30,padding: 30}}>Detalles Servicio</Typography> 
                 <CardContent> 
                 <Typography color="textSecondary">
+                       Empresa: {book.empresa}
+                </Typography>
+                <br/>
+                <Typography color="textSecondary">
                        Servicio: {book.nombre}
                 </Typography>
                 <br/>
