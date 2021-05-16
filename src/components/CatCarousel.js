@@ -3,6 +3,9 @@ import { StyleSheet, Text, View,Image,TouchableOpacity} from 'react-native';
 import Swiper from 'react-native-web-swiper';
 import { useNavigation } from '@react-navigation/native';
 
+
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -24,56 +27,138 @@ const styles = StyleSheet.create({
   },
 });
 
-function CatCarousel(){
+const CatCarousel = ({
+  getCategories,
+  token
+}) => {
   const navigation = useNavigation();
+  
+  function goTo(val) {
+
+    switch (val) {
+      case 1:
+        getCategories({category:'Medico'},token).then(res => {
+          navigation.navigate('Categorias', {categories:res.value})
+        })   
+        break;
+    
+      case 2:
+        getCategories({category:'Psicologo'},token).then(res => {
+          navigation.navigate('Categorias', {categories:res.value})
+        })   
+        break;
+
+      case 3:
+        getCategories({category:'Mascotas'},token).then(res => {
+          navigation.navigate('Categorias', {categories:res.value})
+        })   
+        break;
+
+      case 4:
+        getCategories({category:'Spa'},token).then(res => {
+          navigation.navigate('Categorias', {categories:res.value})
+         })   
+      break;
+
+      case 5:
+        getCategories({category:'Restaurante'},token).then(res => {
+          navigation.navigate('Categorias',{categories:res.value})
+        })   
+        break;
+      case 6:
+        getCategories({category:'Estetica'},token).then(res => {
+          navigation.navigate('Categorias',{categories:res.value})
+        })   
+        break;
+
+      case 7:
+        getCategories({category:'Peluqueria'},token).then(res => {
+          navigation.navigate('Categorias', {categories:res.value})
+        })   
+        break;
+
+      case 8:
+        getCategories({category:'Gimnasio'},token).then(res => {
+          navigation.navigate('Categorias', {categories:res.value})
+        })   
+      break
+      case 9:
+        getCategories({category:'Excursion'},token).then(res => {
+          navigation.navigate('Categorias', {categories:res.value})
+        })   
+        break;
+                
+      default:
+        break;
+    }
+  }
+
     return (
         <View style={styles.container}>
         <Swiper loop>
           <View style={[styles.slideContainer,styles.slide]}>
-            <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+            <TouchableOpacity onPress={() => { goTo(1)}}>
             <Image
                   style={{ width: 100, height: 100,margin:5 }}
-                  source={require('../../assets/cat1.png')}
+                  source={require('../../assets/medico.png')}
             />
             </TouchableOpacity>
-            <Image
-                  style={{ width: 100, height: 100,margin:5 }}
-                  source={require('../../assets/cat2.png')}
-            />
-            <Image
-                  style={{ width: 100, height: 100,margin:5 }}
-                  source={require('../../assets/cat3.png')}
-            />
+            <TouchableOpacity onPress={() => { goTo(2)}}>
+              <Image
+                style={{ width: 100, height: 100,margin:5 }}
+                source={require('../../assets/psicologo.png')}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => { goTo(3)}}>
+              <Image
+                style={{ width: 100, height: 100,margin:5 }}
+                source={require('../../assets/mascotas.png')}
+              />
+            </TouchableOpacity>
+
           </View>
           
           <View style={[styles.slideContainer,styles.slide]}>
+            <TouchableOpacity onPress={() => { goTo(4)}}>
             <Image
                   style={{ width: 100, height: 100,margin:5 }}
-                  source={require('../../assets/cat4.png')}
+                  source={require('../../assets/spa.png')}
             />
-            <Image
-                  style={{ width: 100, height: 100,margin:5 }}
-                  source={require('../../assets/cat5.png')}
-            />
-            <Image
-                  style={{ width: 100, height: 100,margin:5 }}
-                  source={require('../../assets/cat6.png')}
-            />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => { goTo(5)}}>
+              <Image
+                    style={{ width: 100, height: 100,margin:5 }}
+                    source={require('../../assets/restaurantes.png')}
+              />
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => { goTo(6)}}>
+              <Image
+                    style={{ width: 100, height: 100,margin:5 }}
+                    source={require('../../assets/estetica.png')}
+              />
+            </TouchableOpacity>
           </View>
 
           <View style={[styles.slideContainer,styles.slide]}>
+            <TouchableOpacity onPress={() => { goTo(7)}}>
             <Image
                   style={{ width: 100, height: 100,margin:5 }}
-                  source={require('../../assets/cat7.png')}
+                  source={require('../../assets/peluqueria.png')}
             />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => { goTo(8)}}>
             <Image
                   style={{ width: 100, height: 100,margin:5 }}
-                  source={require('../../assets/cat8.png')}
+                  source={require('../../assets/deporte.png')}
             />
-            <Image
-                  style={{ width: 100, height: 100,margin:5 }}
-                  source={require('../../assets/cat9.png')}
-            />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => { goTo(9)}}>
+              <Image
+                    style={{ width: 100, height: 100,margin:5 }}
+                    source={require('../../assets/ocioAireLibre.png')}
+              />
+            </TouchableOpacity>
           </View>
          
         </Swiper>

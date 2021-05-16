@@ -10,7 +10,18 @@ const initialState = {
         phone: '',
         address: '',
         date: '',
-        category:''
+        category:'',
+        inicioJornada: '',
+        finJornada: '',
+        tiempoServicio: ''
+    },
+    service: {
+        name: '', //(service)
+        cliente:'', //username
+        precio: '', //price
+        horaInicio: '',
+        horaFin: '',
+        estado:''
     },
     //El tipo de usuario puede ser tienda o cliente
     userType: 'cliente',
@@ -19,7 +30,11 @@ const initialState = {
     token: null,
     userLogged: {
         token: '',
-        name: ''
+        name: '',
+        categoria: '',
+        inicioJornada: '',
+        finJornada: '',
+        tiempoServicio: ''
     }
 }
 

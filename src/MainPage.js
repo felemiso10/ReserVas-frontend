@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import Search from './components/Search'
 import {Icon} from 'react-native-elements'
 
 /*
@@ -15,6 +14,12 @@ import Search from './components/Search'
 import Home from './scenes/Home'
 import Login from './scenes/Login'
 import Register from './scenes/Register'
+import HomeEmpresa from './scenes/HomeEmpresa'
+import Plan from './scenes/Plan'
+import Categorias from './scenes/Categorias'
+import VerEmpresa from './scenes/VerEmpresa'
+import Vermiplan from './scenes/Vermiplan'
+
 
 import {
     DrawerContentScrollView,
@@ -22,12 +27,13 @@ import {
     createDrawerNavigator 
 } from '@react-navigation/drawer';
 
+
 const Drawer = createDrawerNavigator();
 
 function SideMenu({props, isLoggedIn}){
     return (
         <DrawerContentScrollView {...props}>
-            <Search/>
+
             {
                 isLoggedIn &&
                 <DrawerItem  label="Home" icon={() => <Icon name='home' type='font-awesome'/>} onPress={() => props.navigation.navigate('Home')} />
@@ -42,7 +48,8 @@ function SideMenu({props, isLoggedIn}){
 }
 
 const MainPage = ({
-    isLoggedIn
+    isLoggedIn,
+    categoriaUser
 }) => {
 
     return (
@@ -50,7 +57,12 @@ const MainPage = ({
                 {
                     isLoggedIn ? (
                         <>
-                            <Drawer.Screen name="Home" component={Home}/>
+                            <Drawer.Screen name="Home" component={categoriaUser === 'empresa' ? HomeEmpresa : Home}/>
+                            <Drawer.Screen name="Plan" component={Plan}  />
+                            <Drawer.Screen name="Categorias" component={Categorias} />
+                            <Drawer.Screen name="VerEmpresa" component={VerEmpresa}  />
+                            <Drawer.Screen name="Vermiplan" component={Vermiplan}  />
+
                         </>
                     ) : (
                         <>
@@ -59,12 +71,14 @@ const MainPage = ({
                         </>
                     )
                 }
+
             </Drawer.Navigator>
     )
 }
 
 const mapStateToProps = state => ({
-    isLoggedIn: state.user.isLoggedIn
+    isLoggedIn: state.user.isLoggedIn,
+    categoriaUser: state.user.userLogged.categoria
 })
 
 const mapDispatchToProps = {

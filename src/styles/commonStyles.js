@@ -58,6 +58,22 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: 'space-around',
         marginTop: 30
+    },
+    showPlanes: {
+        display:'flex',
+        flexDirection: 'row',
+        flex: 1,
+        paddingLeft: 1,
+        alignSelf: "auto",
+        flexWrap: "wrap"
+      },
+      infoCita: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "row",
+        justifyContent: 'space-around',
+        marginTop: 100
     }
   });
 

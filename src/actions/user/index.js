@@ -5,7 +5,15 @@ import {
     changeUserLoginInfo,
     registerUser,
     registerStore,
-    clearInput
+    changeServiceInfo,
+    newService,
+    clearInput,
+    reservaPlan,
+    reservaServicio,
+    realizarCancelacion,
+    addHoras,
+    addInfoUser,
+    generarCitas
 } from './crud'
 
 
@@ -20,5 +28,13 @@ export {
     changeUserLoginInfo,
     registerUser,
     registerStore,
-    clearInput
+    changeServiceInfo,
+    newService,
+    clearInput,
+    reservaPlan,
+    reservaServicio,
+    realizarCancelacion,
+    addHoras,
+    addInfoUser,
+    generarCitas
 }

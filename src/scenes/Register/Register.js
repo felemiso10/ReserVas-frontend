@@ -106,9 +106,7 @@ const Register = ({
     const refAddress = React.createRef();
     useFocusEffect(
       React.useCallback(() => {
-
         return () => {
-
           //resetAll()
           clearInput()
         };
@@ -137,8 +135,6 @@ const Register = ({
           date: fechaModificada,
           category: user.category
         })
-
-
       }
     }
 
@@ -313,7 +309,6 @@ const Register = ({
              <Button onPress={() => storeForm() } title="Registrar" />
             <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
                onPress={() => goToLogin()}
-          
                >
                Sign in
              </Text>
