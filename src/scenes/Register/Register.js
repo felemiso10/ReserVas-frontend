@@ -294,11 +294,11 @@ const Register = ({
                 <Picker.Item label="Psicologo" value="Psicologo" />
                 <Picker.Item label="Mascotas" value="Mascotas" />
                 <Picker.Item label="Spa" value="Spa" />
-                <Picker.Item label="Restaurantes" value="Restaurantes" />
+                <Picker.Item label="Restaurante" value="Restaurantes" />
                 <Picker.Item label="Estetica" value="Estetica" />
                 <Picker.Item label="Peluquería" value="Peluqueria" />
-                <Picker.Item label="Deporte" value="Psicologo" />
-                <Picker.Item label="Ocio al Aire Libre" value="ocioAireLibre" />
+                <Picker.Item label="Gimnasio" value="Psicologo" />
+                <Picker.Item label="Excursion" value="ocioAireLibre" />
               </Picker>
 
                 <br/>
