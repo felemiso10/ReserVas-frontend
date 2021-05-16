@@ -2,13 +2,16 @@ import { Actions } from '../../actions/user'
 import { fullfilled, rejected, pending } from '../utils'
 
 const loginUserFullFilled = (state, { payload }) => {
+    console.log(payload, "el user payload")
     return {
         ...state,
         isLoggedIn: true,
         userLogged: {
             token: payload.token,
             name: state.user.name,
-            categoria: payload.direccion ? 'empresa' : 'cliente'
+            categoria: payload.direccion ? 'empresa' : 'cliente',
+            inicioJornada:payload.inicioJornada,
+            finJornada:payload.finJornada
         }
     }
 }
@@ -96,6 +99,11 @@ const clearInput = (state) => {
     return{...state}
 }
 
+const addHorasFullFilled = state => ({
+    ...state,
+    error: 'Error al añadir las Horas'
+})
+
 const Crud = {
     [fullfilled(Actions.LOGIN_USER)]: loginUserFullFilled,
     [rejected(Actions.LOGIN_USER)]: loginUserRejected,
@@ -112,6 +120,7 @@ const Crud = {
     [fullfilled(Actions.RESERVAR_PLAN)]: reservaPlanFullFilled,
     [fullfilled(Actions.RESERVAR_SERVICIO)]: reservaServicioFullFilled,
     [fullfilled(Actions.CANCELAR_SERVICIO)]: realizarCancelacionFullFilled,
+    [fullfilled(Actions.ADD_HORAS)]: addHorasFullFilled
 }
 
 export default Crud

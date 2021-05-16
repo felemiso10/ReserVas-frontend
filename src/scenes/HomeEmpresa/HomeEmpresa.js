@@ -15,9 +15,11 @@ import CatCarousel from '../../components/CatCarousel';
 import * as ImagePicker from 'expo-image-picker'
 import ClientesAnteriores from '../../components/ClientesAnteriores'
 import Addcitahomeservice from '../../components/Addcitahomeservice';
-import Card from '@material-ui/core/Card';
+import { Card } from 'react-native-elements'
 import { useFocusEffect } from '@react-navigation/native';
-
+import Modal from '@material-ui/core/Modal';
+import {addHoras, changeUserLoginInfo} from '../../actions/user'
+import CustomInput from '../../components/forms/CustomInput'
 //Funciones para subir imagenes
 
 import firebase from 'firebase/app'
@@ -87,12 +89,26 @@ const HomeEmpresa = ({
     getClientes,
     categoriaUser,
     user,
-    token
+    token,
+    addHoras,
+    changeUserLoginInfo,
+    usuarioActual,
+    usuarioLogueado
 }) => {
     const [fecha, setFecha] = useState(calcularLunes(new Date()))
 
     const [imagen, setImagen] = useState(null)
     const [downloadURL, setDownloadURL] = useState('')
+
+    const [open, setOpen] = React.useState(true);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     useFocusEffect(
         React.useCallback(() => {
@@ -123,6 +139,17 @@ const HomeEmpresa = ({
         }
     }, [selectedDate]) 
 
+    function crearHoras() {
+        addHoras({
+            token:token,
+            username:user,
+            inicioJornada: usuarioActual.inicioJornada,
+            finJornada: usuarioActual.finJornada,
+            tiempoServicio:usuarioActual.tiempoServicio
+        })
+        setOpen(false)
+    }
+
     return (
         <View>             
             <Header navigation={navigation}/>             
@@ -140,6 +167,54 @@ const HomeEmpresa = ({
                 <ClientesAnteriores></ClientesAnteriores>
             </View>
 
+            { usuarioLogueado.inicioJornada != null  ? null
+
+                :
+                <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+            >
+            <View style={styles.registerContainer}>
+                <div className="row">
+                <Card>
+                <Card.Title>Rellenar cita</Card.Title>
+                <Card.Divider/>
+
+                <CustomInput 
+                placeholder='Hora de Inicio' 
+                onChange={changeUserLoginInfo} 
+                idInput='inicioJornada'
+                object ={usuarioActual}
+                isRequired = 'true'                  
+                />
+                
+                <CustomInput 
+                placeholder='Tiempo del servicio' 
+                onChange={changeUserLoginInfo} 
+                idInput='tiempoServicio'
+                object ={usuarioActual}
+                isRequired = 'true'                  
+                />  
+
+                <CustomInput 
+                placeholder='Hora de Finalización' 
+                onChange={changeUserLoginInfo} 
+                idInput='finJornada'
+                object ={usuarioActual}
+                isRequired = 'true'                  
+                />  
+               
+                <Card.Divider/>
+                <Button onPress={() => 
+                    crearHoras()
+                } title="Agregar cita" />
+                </Card>
+                </div>
+            </View>
+            </Modal>
+            }
         </View>
     )
 }
@@ -149,7 +224,9 @@ const mapStateToProps = state => ({
     selectedDate: state.calendar.selectedDate,
     categoriaUser: state.user.userLogged.categoria,
     user: state.user.userLogged.name,
-    token: state.user.userLogged.token
+    token: state.user.userLogged.token,
+    usuarioActual: state.user.user,
+    usuarioLogueado:state.user.userLogged
 })
 
 const mapDispatchToProps = {
@@ -157,7 +234,9 @@ const mapDispatchToProps = {
     changeWeek,
     getClientes,
     changeWeek,
-    getCitasEmpresa
+    getCitasEmpresa,
+    addHoras,
+    changeUserLoginInfo
 }
 
 const HomeEmpresaConnected = connect(mapStateToProps, mapDispatchToProps)(HomeEmpresa)

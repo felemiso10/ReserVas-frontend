@@ -10,7 +10,8 @@ import {
     clearInput,
     reservaPlan,
     reservaServicio,
-    realizarCancelacion
+    realizarCancelacion,
+    addHoras
 } from './crud'
 
 
@@ -30,5 +31,6 @@ export {
     clearInput,
     reservaPlan,
     reservaServicio,
-    realizarCancelacion
+    realizarCancelacion,
+    addHoras
 }
