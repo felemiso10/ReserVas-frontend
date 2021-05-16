@@ -16,7 +16,8 @@ const TypeActionsCrud = {
     CLEAR_INPUT: 'CLEAR_INPUT',
     RESERVAR_PLAN: 'RESERVAR_PLAN',
     RESERVAR_SERVICIO: 'RESERVAR_SERVICIO',
-    CANCELAR_SERVICIO: 'CANCELAR_SERVICIO'
+    CANCELAR_SERVICIO: 'CANCELAR_SERVICIO',
+    ADD_HORAS:'ADD_HORAS'
 }
 
 
@@ -80,6 +81,11 @@ const clearInput = () => ({
     type: TypeActionsCrud.CLEAR_INPUT,
 })
 
+const addHoras = (datos) => ({
+    type: TypeActionsCrud.ADD_HORAS,
+    payload: api(datos.token).post('/establishTimetable/' +datos.username, {body:{inicioJornada:datos.inicioJornada, finJornada:datos.finJornada, tiempoServicio:datos.tiempoServicio}})
+})
+
 export {
     TypeActionsCrud,
     loginUser,
@@ -92,5 +98,6 @@ export {
     reservaPlan,
     clearInput,
     reservaServicio,
-    realizarCancelacion
+    realizarCancelacion,
+    addHoras
 }

@@ -9,7 +9,10 @@ const initialState = {
         nif: '',
         phone: '',
         address: '',
-        date: ''
+        date: '',
+        inicioJornada: '',
+        finJornada: '',
+        tiempoServicio: ''
     },
     service: {
         name: '', //(service)
@@ -27,7 +30,10 @@ const initialState = {
     userLogged: {
         token: '',
         name: '',
-        categoria: ''
+        categoria: '',
+        inicioJornada: '',
+        finJornada: '',
+        tiempoServicio: ''
     }
 }
 
