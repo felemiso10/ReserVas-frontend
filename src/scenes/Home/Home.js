@@ -95,6 +95,11 @@ const Home = ({
 }) => {
     const [fecha, setFecha] = useState(calcularLunes(new Date()))
 
+    useEffect(() => {
+        getAllBookings()
+    },[])
+
+
     const [imagen, setImagen] = useState(null)
     const [downloadURL, setDownloadURL] = useState('')
 
