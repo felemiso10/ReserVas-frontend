@@ -126,7 +126,7 @@ const BookCard = ({
             <View style={styles.infoCita}>
                 <div className="row">
                 <Card style={{justifyContent:'center',alignItems:'center',display:'flex',flexDirection:'column'}}>
-                <Typography style={{fontSize:24,alignItems:'center',fontWeight:'semi-bold',paddingTop: 30}}>Detalles Servicio</Typography> 
+                <Typography style={{fontSize:24,alignItems:'center',fontWeight:'semi-bold',paddingTop: 30,padding: 30}}>Detalles Servicio</Typography> 
                 <CardContent> 
                 <Typography color="textSecondary">
                        Servicio: {book.nombre}
@@ -137,10 +137,10 @@ const BookCard = ({
                 </Typography>
                 <br/>
                 <Typography color="textSecondary">
-                        Precio: {book.precio}
+                        Precio: {book.precio}€
                 </Typography>
                 <br/>
-                <Button color="red" onPress={() => cancelarServicio()} title="Cancelar" />
+                <Button color="red" style={{width:200}} onPress={() => cancelarServicio()} title="Cancelar" />
 
                 </CardContent>
                 </Card>

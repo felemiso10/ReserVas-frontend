@@ -79,6 +79,7 @@ const Login = ({
                             idInput='password'
                             object ={user}
                             isRequired = 'true'
+                            isPasswordInput = 'true'
                             refer = {refPassword} 
                         />
 
