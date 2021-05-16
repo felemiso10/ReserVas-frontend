@@ -17,7 +17,9 @@ const TypeActionsCrud = {
     RESERVAR_PLAN: 'RESERVAR_PLAN',
     RESERVAR_SERVICIO: 'RESERVAR_SERVICIO',
     CANCELAR_SERVICIO: 'CANCELAR_SERVICIO',
-    ADD_HORAS:'ADD_HORAS'
+    ADD_HORAS:'ADD_HORAS',
+    ADD_INFO_USER: 'ADD_INFO_USER',
+    GENERAR_CITAS: 'GENERAR_CITAS'
 }
 
 
@@ -86,6 +88,23 @@ const addHoras = (datos) => ({
     payload: api(datos.token).post('/establishTimetable/' +datos.username, {body:{inicioJornada:datos.inicioJornada, finJornada:datos.finJornada, tiempoServicio:datos.tiempoServicio}})
 })
 
+const addInfoUser = (datos) => ({
+    type: TypeActionsCrud.ADD_INFO_USER,
+    payload: {
+        datos
+    }
+})
+
+const generarCitas = (infoEmpresa, fecha, token) => ({
+    type: TypeActionsCrud.GENERAR_CITAS,
+    payload: api(token).post('/generateDay/' + infoEmpresa.name, {body: {
+        nombre: infoEmpresa.name,
+        direccion: infoEmpresa.direccion,
+        precio: null,
+        fecha: fecha
+    }})
+})
+
 export {
     TypeActionsCrud,
     loginUser,
@@ -99,5 +118,7 @@ export {
     clearInput,
     reservaServicio,
     realizarCancelacion,
-    addHoras
+    addHoras,
+    addInfoUser,
+    generarCitas
 }

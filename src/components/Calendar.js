@@ -30,7 +30,10 @@ const Calendar = ({
     changeWeek,
     categoriaUser,
     tipo,
-    empresaName
+    empresaName,
+    infoEmpresa,
+    generarCitas,
+    getCitasEmpresa
 }) => {
     const [columns, setColumns] = useState(calcularFechasParaColumnasCalendario(fecha))
 
@@ -96,6 +99,14 @@ const Calendar = ({
                                                             size="small"
                                                             variant="outlined"
                                                             endIcon={<AddIcon />}
+                                                            onClick={() => {
+                                                                console.log("boton presionado")
+                                                                generarCitas(infoEmpresa, col.fecha, infoEmpresa.token)
+                                                                var millisecondsToWait = 900;
+                                                                setTimeout(function() {
+                                                                    getCitasEmpresa(infoEmpresa.name, infoEmpresa.token)
+                                                                }, millisecondsToWait);
+                                                            }}
                                                         >
                                                             <Typography
                                                                 variant="body2"

@@ -18,7 +18,7 @@ import Addcitahomeservice from '../../components/Addcitahomeservice';
 import { Card } from 'react-native-elements'
 import { useFocusEffect } from '@react-navigation/native';
 import Modal from '@material-ui/core/Modal';
-import {addHoras, changeUserLoginInfo} from '../../actions/user'
+import {addHoras, changeUserLoginInfo, addInfoUser, generarCitas} from '../../actions/user'
 import CustomInput from '../../components/forms/CustomInput'
 //Funciones para subir imagenes
 
@@ -93,7 +93,9 @@ const HomeEmpresa = ({
     addHoras,
     changeUserLoginInfo,
     usuarioActual,
-    usuarioLogueado
+    usuarioLogueado,
+    addInfoUser,
+    generarCitas
 }) => {
     const [fecha, setFecha] = useState(calcularLunes(new Date()))
 
@@ -148,6 +150,11 @@ const HomeEmpresa = ({
             tiempoServicio:usuarioActual.tiempoServicio
         })
         setOpen(false)
+        addInfoUser({
+            inicioJornada: usuarioActual.inicioJornada,
+            finJornada: usuarioActual.finJornada,
+            tiempoServicio:usuarioActual.tiempoServicio
+        })
     }
 
     return (
@@ -158,7 +165,10 @@ const HomeEmpresa = ({
                     fecha={fecha} 
                     selectedDate={selectedDate} 
                     changeWeek={changeWeek}
-                    categoriaUser={categoriaUser} 
+                    categoriaUser={categoriaUser}
+                    infoEmpresa={usuarioLogueado}
+                    generarCitas={generarCitas}
+                    getCitasEmpresa={getCitasEmpresa} 
                 />
             </View>             
             
@@ -236,7 +246,9 @@ const mapDispatchToProps = {
     changeWeek,
     getCitasEmpresa,
     addHoras,
-    changeUserLoginInfo
+    changeUserLoginInfo,
+    addInfoUser,
+    generarCitas
 }
 
 const HomeEmpresaConnected = connect(mapStateToProps, mapDispatchToProps)(HomeEmpresa)

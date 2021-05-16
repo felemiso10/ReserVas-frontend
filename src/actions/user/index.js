@@ -11,7 +11,9 @@ import {
     reservaPlan,
     reservaServicio,
     realizarCancelacion,
-    addHoras
+    addHoras,
+    addInfoUser,
+    generarCitas
 } from './crud'
 
 
@@ -32,5 +34,7 @@ export {
     reservaPlan,
     reservaServicio,
     realizarCancelacion,
-    addHoras
+    addHoras,
+    addInfoUser,
+    generarCitas
 }

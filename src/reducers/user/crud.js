@@ -104,6 +104,14 @@ const addHorasFullFilled = state => ({
     error: 'Error al añadir las Horas'
 })
 
+const addInfoUser = (state, { payload }) => ({
+    ...state,
+    userLogged: {
+        ...state.userLogged,
+        ...payload.datos
+    }
+})
+
 const Crud = {
     [fullfilled(Actions.LOGIN_USER)]: loginUserFullFilled,
     [rejected(Actions.LOGIN_USER)]: loginUserRejected,
@@ -120,7 +128,8 @@ const Crud = {
     [fullfilled(Actions.RESERVAR_PLAN)]: reservaPlanFullFilled,
     [fullfilled(Actions.RESERVAR_SERVICIO)]: reservaServicioFullFilled,
     [fullfilled(Actions.CANCELAR_SERVICIO)]: realizarCancelacionFullFilled,
-    [fullfilled(Actions.ADD_HORAS)]: addHorasFullFilled
+    [fullfilled(Actions.ADD_HORAS)]: addHorasFullFilled,
+    [Actions.ADD_INFO_USER]: addInfoUser
 }
 
 export default Crud
