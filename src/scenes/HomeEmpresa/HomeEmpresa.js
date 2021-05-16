@@ -189,11 +189,11 @@ const HomeEmpresa = ({
             <View style={styles.registerContainer}>
                 <div className="row">
                 <Card>
-                <Card.Title>Rellenar cita</Card.Title>
+                <Card.Title>Establecer horario</Card.Title>
                 <Card.Divider/>
 
                 <CustomInput 
-                placeholder='Hora de Inicio' 
+                placeholder='Inicio Jornada (HH:MM)' 
                 onChange={changeUserLoginInfo} 
                 idInput='inicioJornada'
                 object ={usuarioActual}
@@ -201,7 +201,7 @@ const HomeEmpresa = ({
                 />
                 
                 <CustomInput 
-                placeholder='Tiempo del servicio' 
+                placeholder='Duración servicio (min)' 
                 onChange={changeUserLoginInfo} 
                 idInput='tiempoServicio'
                 object ={usuarioActual}
@@ -209,7 +209,7 @@ const HomeEmpresa = ({
                 />  
 
                 <CustomInput 
-                placeholder='Hora de Finalización' 
+                placeholder='Fin Jornada (HH:MM)' 
                 onChange={changeUserLoginInfo} 
                 idInput='finJornada'
                 object ={usuarioActual}
@@ -219,7 +219,7 @@ const HomeEmpresa = ({
                 <Card.Divider/>
                 <Button onPress={() => 
                     crearHoras()
-                } title="Agregar cita" />
+                } title="Establecer" />
                 </Card>
                 </div>
             </View>
