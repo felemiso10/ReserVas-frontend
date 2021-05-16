@@ -9,8 +9,74 @@ import Header from '../../components/Header'
 import CustomInput from '../../components/forms/CustomInput'
 import DatePicker from 'react-native-modern-datepicker';
 import { useFocusEffect } from '@react-navigation/native';
-
+import {Picker} from '@react-native-picker/picker';
 import styles from '../../styles/commonStyles'
+
+
+import * as ImagePicker from 'expo-image-picker'
+
+//Funciones para subir imagenes
+
+import firebase from 'firebase/app'
+import 'firebase/storage'
+
+async function transformImageToBlob(uri) {
+    const blob = await new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+          resolve(xhr.response);
+        };
+        xhr.onerror = function(e) {
+          console.log(e);
+          reject(new TypeError('Network request failed'));
+        };
+        xhr.responseType = 'blob';
+        xhr.open('GET', uri, true);
+        xhr.send(null);
+      });
+    return blob
+}
+
+async function subirImagen(localUri, setDownloadURL){
+    const blob = await transformImageToBlob(localUri)
+    const formato = '.png'
+    const nombreImagen = Date.now() + formato
+    var downloadURL = ''
+    firebase.storage().ref(nombreImagen)
+        .put(blob)
+        .then(function(snapshot){
+            snapshot.ref.getDownloadURL().then(function(url){
+                downloadURL = url
+                setDownloadURL(url)
+                console.log(downloadURL)
+            })
+        })
+        .catch(error => {
+            console.log('Error: ', error)
+        })
+    
+}
+
+let openImagePickerAsync = async (setImageFunction) => {
+    const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      alert("Permission to camara roll is required");
+      return;
+    }
+
+    const pickerResult = await ImagePicker.launchImageLibraryAsync({
+        base64: true
+    });
+    if (pickerResult.cancelled === true) {
+      return;
+    }
+    await setImageFunction(pickerResult.uri);
+  };
+
+  
+
+////////////////////////////////
 
 const Register = ({
   changeUserLoginInfo,
@@ -20,10 +86,13 @@ const Register = ({
   clearInput,
   navigation
 }) => {
+    const [imagen, setImagen] = useState(null)
     const [isEnabled, setIsEnabled] = useState(true);
+    const [downloadURL, setDownloadURL] = useState('')
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);  
     const [visibility, setVisibility] = useState(false);
-
+    const [selectedLanguage, setSelectedLanguage] = useState();
+  
     const [valid, setValid] = React.useState({
       isValidUserForm: true,
       isValidStoreForm: true
@@ -63,10 +132,12 @@ const Register = ({
           password: user.password,
           name: user.name,
           email: user.email,
-          date: fechaModificada
+          date: fechaModificada,
+          category: user.category
         })
       }
     }
+
     function storeForm() {
       if (!user.name || !user.password || !user.username || !user.surname || !user.email || !user.address){
         setValid({
@@ -83,7 +154,8 @@ const Register = ({
           password: user.password,
           name: user.name,
           email: user.email,
-          address: user.address
+          address: user.address,
+          category: user.category
         })
       }
     }
@@ -212,10 +284,30 @@ const Register = ({
                 isRequired = 'true'
                 refer={refAddress}
               />
-                
-             
+
+              <Picker
+                selectedValue={selectedLanguage}
+                onValueChange={(itemValue, itemIndex) =>
+                  changeUserLoginInfo('category', itemValue)
+                }>
+                <Picker.Item label="Medico" value= "Medico" />
+                <Picker.Item label="Psicologo" value="Psicologo" />
+                <Picker.Item label="Mascotas" value="Mascotas" />
+                <Picker.Item label="Spa" value="Spa" />
+                <Picker.Item label="Restaurantes" value="Restaurantes" />
+                <Picker.Item label="Estetica" value="Estetica" />
+                <Picker.Item label="Peluquería" value="Peluqueria" />
+                <Picker.Item label="Deporte" value="Psicologo" />
+                <Picker.Item label="Ocio al Aire Libre" value="ocioAireLibre" />
+              </Picker>
+
+                <br/>
+                <Button onPress={() => openImagePickerAsync(setImagen)} title="Seleccionar imagen" /> 
+                <br/>
+                <Button onPress={() => subirImagen(imagen, setDownloadURL)} title="Subir imagen" />
+                <br/>
              <Button onPress={() => storeForm() } title="Registrar" />
-             <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
+            <Text style={{alignSelf: 'center', color: 'black', textDecorationLine: 'underline'}}
                onPress={() => goToLogin()}
                >
                Sign in

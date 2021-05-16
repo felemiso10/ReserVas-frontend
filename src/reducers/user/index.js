@@ -10,6 +10,7 @@ const initialState = {
         phone: '',
         address: '',
         date: '',
+        category:'',
         inicioJornada: '',
         finJornada: '',
         tiempoServicio: ''
